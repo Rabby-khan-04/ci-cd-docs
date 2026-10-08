@@ -1,0 +1,44 @@
+name: First workflow
+
+on:
+  # Run this workflow when a file is pushed to the main branch.
+  push:
+    branches: [main]
+  # Also let a human start it by hand from the Actions tab.
+  workflow_dispatch:
+
+# `permissions` is the first habit to build: give the built-in token the least
+# it needs. `contents: read` is all this workflow needs to check out code.
+permissions:
+  contents: read
+
+jobs:
+  # `hello` is the job id. It is how other jobs refer to this one (`needs:`).
+  hello:
+    # Which machine runs this job. Pinned so a runner-image update can never
+    # silently change your results. See chapter 07.
+    runs-on: ubuntu-24.04
+
+    # One job = one machine = one workspace. Steps run top to bottom on it.
+    steps:
+      # Step 1: download the code. Without this the workspace is empty.
+      - name: Check out the repository
+        uses: actions/checkout@v7 # pinned to a major version; SHA pinning is chapter 39
+
+      # Step 2: prove the runner is alive and we are on a Linux machine.
+      - name: Say hello
+        run: echo "Hello from GitHub Actions"
+
+      # Step 3: print some facts about the run environment.
+      - name: Show what the runner tells us
+        run: |
+          echo "runner os   : ${{ runner.os }}"
+          echo "node version: $(node --version)"
+          echo "npm version : $(npm --version)"
+          echo "working dir : $GITHUB_WORKSPACE"
+          echo "commit      : ${{ github.sha }}"
+          echo "triggered by: ${{ github.event_name }}"
+
+      # Step 4: make sure the build output is not committed to git.
+      - name: Show which files git is tracking
+        run: git ls-files | head -20

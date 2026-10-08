@@ -1,0 +1,27 @@
+{
+  "name": "cicd-learn",
+  "version": "1.0.0",
+  "description": "Tiny Node.js app used to learn CI/CD with GitHub Actions",
+  "main": "dist/app.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "build": "node build.mjs",
+    "start": "node dist/app.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vitest/coverage-v8": "^5.0.3",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "vitest": "^5.0.3"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  }
+}
