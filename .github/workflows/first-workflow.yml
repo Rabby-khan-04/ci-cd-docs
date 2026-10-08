@@ -12,6 +12,13 @@ on:
 permissions:
   contents: read
 
+# The sample app lives in cicd-learn/, not at the repo root. Setting this once
+# means every `run:` step starts there instead of writing
+# `working-directory: cicd-learn` on all 30 steps.
+defaults:
+  run:
+    working-directory: cicd-learn
+
 jobs:
   # `hello` is the job id. It is how other jobs refer to this one (`needs:`).
   hello:
@@ -35,7 +42,7 @@ jobs:
           echo "runner os   : ${{ runner.os }}"
           echo "node version: $(node --version)"
           echo "npm version : $(npm --version)"
-          echo "working dir : $GITHUB_WORKSPACE"
+          echo "working dir : $PWD"
           echo "commit      : ${{ github.sha }}"
           echo "triggered by: ${{ github.event_name }}"
 
