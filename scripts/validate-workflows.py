@@ -51,7 +51,10 @@ def walk_uses(node, path, out):
             walk_uses(v, f"{path}[{i}]", out)
 
 
-for wf in sorted(WF_DIR.glob("*.y*ml")):
+# Recurse: GitHub itself only reads .github/workflows/*.yml at the top level, but
+# a file in a subdirectory here is either a mistake or a scratch file, and we
+# still want it validated.
+for wf in sorted(WF_DIR.rglob("*.y*ml")):
     rel = wf.relative_to(REPO)
     try:
         doc = yaml.safe_load(wf.read_text())
