@@ -1,0 +1,107 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/20-artifacts.yml
+
+time="2026-10-08T15:40:07+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Artifacts/produce the build] ⭐ Run Set up job
+[Artifacts/produce the build] 🚀  Start image=node:24-bookworm
+[Artifacts/produce the build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Artifacts/produce the build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/produce the build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/produce the build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Artifacts/produce the build]   ✅  Success - Set up job
+[Artifacts/produce the build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Artifacts/produce the build]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v7
+[Artifacts/produce the build]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v7
+[Artifacts/produce the build] ⭐ Run Main actions/checkout@v7
+[Artifacts/produce the build]   ✅  Success - Main actions/checkout@v7 [508.471µs]
+[Artifacts/produce the build] ⭐ Run Main actions/setup-node@v7
+[Artifacts/produce the build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Artifacts/produce the build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Artifacts/produce the build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Artifacts/produce the build]   ❓  ::group::Environment details
+[Artifacts/produce the build]   | node: v22.23.3
+[Artifacts/produce the build]   | npm: 10.9.9
+[Artifacts/produce the build]   | yarn: 1.22.22
+[Artifacts/produce the build]   ❓  ::endgroup::
+[Artifacts/produce the build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Artifacts/produce the build]   | /root/.npm
+[Artifacts/produce the build]   ⚙  ***
+[Artifacts/produce the build]   | Cache Size: ~21 MB (22353051 B)
+[Artifacts/produce the build]   | [command]/usr/bin/tar -xf /tmp/6fa61ae8-2b67-46d6-9ff3-911e40cf3aa9/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Artifacts/produce the build]   | Cache restored successfully
+[Artifacts/produce the build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Artifacts/produce the build]   ✅  Success - Main actions/setup-node@v7 [1.317780837s]
+[Artifacts/produce the build]   ⚙  ::set-output:: node-version=v22.23.3
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-hit=true
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Artifacts/produce the build] ⭐ Run Main npm ci
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | added 127 packages, and audited 128 packages in 1s
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | 31 packages are looking for funding
+[Artifacts/produce the build]   |   run `npm fund` for details
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | found 0 vulnerabilities
+[Artifacts/produce the build]   ✅  Success - Main npm ci [1.392097675s]
+[Artifacts/produce the build] ⭐ Run Main Build, and produce a coverage report to upload as a second artifact
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | > cicd-learn@1.0.0 build
+[Artifacts/produce the build]   | > node build.mjs
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | built dist/app.js (2887 bytes)
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | > cicd-learn@1.0.0 coverage
+[Artifacts/produce the build]   | > vitest run --coverage
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Artifacts/produce the build]   |       [2mCoverage enabled with [22m[33mv8[39m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Artifacts/produce the build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Artifacts/produce the build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Artifacts/produce the build]   | [2m   Start at [22m 09:40:14
+[Artifacts/produce the build]   | [2m   Duration [22m 207ms[2m (transform 31%, worker 28%, import 27%, tests 13%)[22m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [34m % [39m[2mCoverage report from [22m[33mv8[39m
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   | File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   | All files |   93.33 |    71.42 |     100 |    92.3 |                   
+[Artifacts/produce the build]   |  app.js   |   66.66 |     62.5 |     100 |   66.66 | 15                
+[Artifacts/produce the build]   |  greet.js |     100 |       75 |     100 |     100 | 4                 
+[Artifacts/produce the build]   |  sum.js   |     100 |      100 |     100 |     100 |                   
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   ✅  Success - Main Build, and produce a coverage report to upload as a second artifact [962.150819ms]
+[Artifacts/produce the build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Artifacts/produce the build] ⭐ Run Main Upload dist
+[Artifacts/produce the build]   🐳  docker cp src=/home/sunny/.cache/act/actions-upload-artifact@v7/ dst=/var/run/act/actions/actions-upload-artifact@v7/
+[Artifacts/produce the build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-upload-artifact@v7/dist/upload/index.js] user= workdir=
+[Artifacts/produce the build]   | With the provided path, there will be 2 files uploaded
+[Artifacts/produce the build]   | Artifact name is valid!
+[Artifacts/produce the build]   | Root directory input is valid!
+[Artifacts/produce the build]   ❗  ::error::Unable to get the ACTIONS_RUNTIME_TOKEN env variable
+[Artifacts/produce the build]   ❌  Failure - Main Upload dist [456.935926ms]
+[Artifacts/produce the build] exitcode '1': failure
+[Artifacts/produce the build] ⭐ Run Complete job
+[Artifacts/produce the build]   ✅  Success - Complete job
+[Artifacts/produce the build] 🏁  Job failed
+Error: Job 'produce the build' failed
+
+### act exit status: 1

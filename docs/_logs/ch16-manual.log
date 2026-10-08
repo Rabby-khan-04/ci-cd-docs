@@ -1,0 +1,95 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/16-caching.yml
+
+time="2026-10-08T15:26:43+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Caching/Manual cache with actions/cache] ⭐ Run Set up job
+[Caching/Manual cache with actions/cache] 🚀  Start image=node:24-bookworm
+[Caching/Manual cache with actions/cache]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Caching/Manual cache with actions/cache]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Caching/Manual cache with actions/cache]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Caching/Manual cache with actions/cache]   ✅  Success - Set up job
+[Caching/Manual cache with actions/cache]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Caching/Manual cache with actions/cache]   ☁  git clone 'https://github.com/actions/cache' # ref=v6
+[Caching/Manual cache with actions/cache] ⭐ Run Main actions/checkout@v7
+[Caching/Manual cache with actions/cache]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Caching/Manual cache with actions/cache]   ✅  Success - Main actions/checkout@v7 [45.178529ms]
+[Caching/Manual cache with actions/cache] ⭐ Run Main actions/setup-node@v7
+[Caching/Manual cache with actions/cache]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Caching/Manual cache with actions/cache]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Caching/Manual cache with actions/cache]   ❓  ::group::Environment details
+[Caching/Manual cache with actions/cache]   | node: v22.23.3
+[Caching/Manual cache with actions/cache]   | npm: 10.9.9
+[Caching/Manual cache with actions/cache]   | yarn: 1.22.22
+[Caching/Manual cache with actions/cache]   ❓  ::endgroup::
+[Caching/Manual cache with actions/cache]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Caching/Manual cache with actions/cache]   | /root/.npm
+[Caching/Manual cache with actions/cache]   ⚙  ***
+[Caching/Manual cache with actions/cache]   | Cache Size: ~21 MB (22346750 B)
+[Caching/Manual cache with actions/cache]   | [command]/usr/bin/tar -xf /tmp/11159b05-2adc-4c70-885b-5ebaf378ce61/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Caching/Manual cache with actions/cache]   | Cache restored successfully
+[Caching/Manual cache with actions/cache]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Caching/Manual cache with actions/cache]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Caching/Manual cache with actions/cache]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Caching/Manual cache with actions/cache]   ✅  Success - Main actions/setup-node@v7 [1.30290936s]
+[Caching/Manual cache with actions/cache]   ⚙  ::set-output:: node-version=v22.23.3
+[Caching/Manual cache with actions/cache]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ⚙  ::set-output:: cache-hit=true
+[Caching/Manual cache with actions/cache]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/workflow/hashfiles/index.js] user= workdir=
+[Caching/Manual cache with actions/cache] ⭐ Run Main Restore the esbuild cache
+[Caching/Manual cache with actions/cache]   🐳  docker cp src=/home/sunny/.cache/act/actions-cache@v6/ dst=/var/run/act/actions/actions-cache@v6/
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-cache@v6/dist/restore/index.js] user= workdir=
+[Caching/Manual cache with actions/cache]   | Cache not found for input keys: esbuild-Linux-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ✅  Success - Main Restore the esbuild cache [738.38635ms]
+[Caching/Manual cache with actions/cache] ⭐ Run Main Report the hit or miss
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Caching/Manual cache with actions/cache]   | cache hit: 
+[Caching/Manual cache with actions/cache]   | cache key: 
+[Caching/Manual cache with actions/cache]   | cold cache; this run will populate it
+[Caching/Manual cache with actions/cache]   ✅  Success - Main Report the hit or miss [73.8778ms]
+[Caching/Manual cache with actions/cache] ⭐ Run Main npm ci
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Caching/Manual cache with actions/cache]   | 
+[Caching/Manual cache with actions/cache]   | added 127 packages, and audited 128 packages in 1s
+[Caching/Manual cache with actions/cache]   | 
+[Caching/Manual cache with actions/cache]   | 31 packages are looking for funding
+[Caching/Manual cache with actions/cache]   |   run `npm fund` for details
+[Caching/Manual cache with actions/cache]   | 
+[Caching/Manual cache with actions/cache]   | found 0 vulnerabilities
+[Caching/Manual cache with actions/cache]   ✅  Success - Main npm ci [1.372697529s]
+[Caching/Manual cache with actions/cache] ⭐ Run Main Build, warming the cache
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Caching/Manual cache with actions/cache]   | 
+[Caching/Manual cache with actions/cache]   | > cicd-learn@1.0.0 build
+[Caching/Manual cache with actions/cache]   | > node build.mjs
+[Caching/Manual cache with actions/cache]   | 
+[Caching/Manual cache with actions/cache]   | built dist/app.js (2887 bytes)
+[Caching/Manual cache with actions/cache]   | 8.0K	.build-cache
+[Caching/Manual cache with actions/cache]   ✅  Success - Main Build, warming the cache [315.199206ms]
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/workflow/hashfiles/index.js] user= workdir=
+[Caching/Manual cache with actions/cache] ⭐ Run Post Restore the esbuild cache
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-cache@v6/dist/save/index.js] user= workdir=
+[Caching/Manual cache with actions/cache]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Caching/Manual cache with actions/cache]   | Cache Size: ~0 MB (629 B)
+[Caching/Manual cache with actions/cache]   | Cache saved successfully
+[Caching/Manual cache with actions/cache]   | Cache saved with key: esbuild-Linux-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ✅  Success - Post Restore the esbuild cache [210.808304ms]
+[Caching/Manual cache with actions/cache] ⭐ Run Post actions/setup-node@v7
+[Caching/Manual cache with actions/cache]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Caching/Manual cache with actions/cache]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Caching/Manual cache with actions/cache]   | Cache Size: ~21 MB (22346582 B)
+[Caching/Manual cache with actions/cache]   | Cache saved successfully
+[Caching/Manual cache with actions/cache]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Caching/Manual cache with actions/cache]   ✅  Success - Post actions/setup-node@v7 [927.212625ms]
+[Caching/Manual cache with actions/cache] ⭐ Run Complete job
+[Caching/Manual cache with actions/cache] Cleaning up container for job Manual cache with actions/cache
+[Caching/Manual cache with actions/cache]   ✅  Success - Complete job
+[Caching/Manual cache with actions/cache] 🏁  Job succeeded
+
+### act exit status: 0

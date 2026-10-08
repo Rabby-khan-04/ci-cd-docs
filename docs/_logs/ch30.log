@@ -1,0 +1,865 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch30.yml
+
+time="2026-10-08T15:49:05+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Set up job
+[Build a Docker image/Build and smoke-test the image] 🚀  Start image=cicd-act-runner:24
+[Build a Docker image/Build and smoke-test the image]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Build a Docker image/Build and smoke-test the image]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Build a Docker image/Build and smoke-test the image]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Set up job
+[Build a Docker image/Build and smoke-test the image]   ☁  git clone 'https://github.com/docker/setup-buildx-action' # ref=v4
+[Build a Docker image/Build and smoke-test the image]   ☁  git clone 'https://github.com/docker/build-push-action' # ref=v7
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main actions/checkout@v7
+[Build a Docker image/Build and smoke-test the image]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main actions/checkout@v7 [55.785142ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main docker/setup-buildx-action@v4
+[Build a Docker image/Build and smoke-test the image]   🐳  docker cp src=/home/sunny/.cache/act/docker-setup-buildx-action@v4/ dst=/var/run/act/actions/docker-setup-buildx-action@v4/
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-setup-buildx-action@v4/dist/index.cjs] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Docker info
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker version
+[Build a Docker image/Build and smoke-test the image]   | Client: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Version:           29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  API version:       1.56
+[Build a Docker image/Build and smoke-test the image]   |  Go version:        go1.26.8
+[Build a Docker image/Build and smoke-test the image]   |  Git commit:        7fc2dff
+[Build a Docker image/Build and smoke-test the image]   |  Built:             Wed Sep 30 19:32:25 2026
+[Build a Docker image/Build and smoke-test the image]   |  OS/Arch:           linux/amd64
+[Build a Docker image/Build and smoke-test the image]   |  Context:           default
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | Server: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Engine:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          29.8.2
+[Build a Docker image/Build and smoke-test the image]   |   API version:      1.56 (minimum version 1.40)
+[Build a Docker image/Build and smoke-test the image]   |   Go version:       go1.26.8
+[Build a Docker image/Build and smoke-test the image]   |   Git commit:       8af9fe3
+[Build a Docker image/Build and smoke-test the image]   |   Built:            Wed Sep 30 19:32:32 2026
+[Build a Docker image/Build and smoke-test the image]   |   OS/Arch:          linux/amd64
+[Build a Docker image/Build and smoke-test the image]   |   Experimental:     false
+[Build a Docker image/Build and smoke-test the image]   |  containerd:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          v2.3.6
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        ee2735368117d2eb259779949d5e75cdafec9761
+[Build a Docker image/Build and smoke-test the image]   |  runc:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          1.5.1
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        v1.5.1-0-g8f2685a4
+[Build a Docker image/Build and smoke-test the image]   |  docker-init:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          0.19.0
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        de40ad0
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker info
+[Build a Docker image/Build and smoke-test the image]   | Client: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Version:    29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  Context:    default
+[Build a Docker image/Build and smoke-test the image]   |  Debug Mode: false
+[Build a Docker image/Build and smoke-test the image]   |  Plugins:
+[Build a Docker image/Build and smoke-test the image]   |   buildx: Docker Buildx (Docker Inc.)
+[Build a Docker image/Build and smoke-test the image]   |     Version:  v0.37.1
+[Build a Docker image/Build and smoke-test the image]   |     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | Server:
+[Build a Docker image/Build and smoke-test the image]   |  Containers: 6
+[Build a Docker image/Build and smoke-test the image]   |   Running: 5
+[Build a Docker image/Build and smoke-test the image]   |   Paused: 0
+[Build a Docker image/Build and smoke-test the image]   |   Stopped: 1
+[Build a Docker image/Build and smoke-test the image]   |  Images: 23
+[Build a Docker image/Build and smoke-test the image]   |  Server Version: 29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  Storage Driver: overlayfs
+[Build a Docker image/Build and smoke-test the image]   |   driver-type: io.containerd.snapshotter.v1
+[Build a Docker image/Build and smoke-test the image]   |  Logging Driver: json-file
+[Build a Docker image/Build and smoke-test the image]   |  Cgroup Driver: systemd
+[Build a Docker image/Build and smoke-test the image]   |  Cgroup Version: 2
+[Build a Docker image/Build and smoke-test the image]   |  Plugins:
+[Build a Docker image/Build and smoke-test the image]   |   Volume: local
+[Build a Docker image/Build and smoke-test the image]   |   Network: bridge host ipvlan macvlan null overlay
+[Build a Docker image/Build and smoke-test the image]   |   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[Build a Docker image/Build and smoke-test the image]   |  CDI spec directories:
+[Build a Docker image/Build and smoke-test the image]   |   /etc/cdi
+[Build a Docker image/Build and smoke-test the image]   |   /var/run/cdi
+[Build a Docker image/Build and smoke-test the image]   |  Swarm: inactive
+[Build a Docker image/Build and smoke-test the image]   |  Runtimes: io.containerd.runc.v2 runc
+[Build a Docker image/Build and smoke-test the image]   |  Default Runtime: runc
+[Build a Docker image/Build and smoke-test the image]   |  Init Binary: docker-init
+[Build a Docker image/Build and smoke-test the image]   |  containerd version: ee2735368117d2eb259779949d5e75cdafec9761
+[Build a Docker image/Build and smoke-test the image]   |  runc version: v1.5.1-0-g8f2685a4
+[Build a Docker image/Build and smoke-test the image]   |  init version: de40ad0
+[Build a Docker image/Build and smoke-test the image]   |  Security Options:
+[Build a Docker image/Build and smoke-test the image]   |   apparmor
+[Build a Docker image/Build and smoke-test the image]   |    Profile: default
+[Build a Docker image/Build and smoke-test the image]   |   seccomp
+[Build a Docker image/Build and smoke-test the image]   |    Profile: builtin
+[Build a Docker image/Build and smoke-test the image]   |   cgroupns
+[Build a Docker image/Build and smoke-test the image]   |  Kernel Version: 7.0.0-38-generic
+[Build a Docker image/Build and smoke-test the image]   |  Operating System: Ubuntu 26.04.1 LTS
+[Build a Docker image/Build and smoke-test the image]   |  OSType: linux
+[Build a Docker image/Build and smoke-test the image]   |  Architecture: x86_64
+[Build a Docker image/Build and smoke-test the image]   |  CPUs: 8
+[Build a Docker image/Build and smoke-test the image]   |  Total Memory: 15.5GiB
+[Build a Docker image/Build and smoke-test the image]   |  Name: Curlware
+[Build a Docker image/Build and smoke-test the image]   |  ID: 3dc3610d-5dce-4c75-ae0b-aa5f0f5563a8
+[Build a Docker image/Build and smoke-test the image]   |  Docker Root Dir: /var/lib/docker
+[Build a Docker image/Build and smoke-test the image]   |  Debug Mode: false
+[Build a Docker image/Build and smoke-test the image]   |  Experimental: false
+[Build a Docker image/Build and smoke-test the image]   |  Insecure Registries:
+[Build a Docker image/Build and smoke-test the image]   |   127.0.0.0/8
+[Build a Docker image/Build and smoke-test the image]   |   ::1/128
+[Build a Docker image/Build and smoke-test the image]   |  Live Restore Enabled: false
+[Build a Docker image/Build and smoke-test the image]   |  Firewall Backend: iptables
+[Build a Docker image/Build and smoke-test the image]   |   EnableUserlandProxy: true
+[Build a Docker image/Build and smoke-test the image]   |   UserlandProxyPath: /usr/bin/docker-proxy
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Buildx version
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx version
+[Build a Docker image/Build and smoke-test the image]   | github.com/docker/buildx v0.37.1 0b265a9f62db554fa9aba6dd19e1bd5704bc7d8a
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Inspecting default docker context
+[Build a Docker image/Build and smoke-test the image]   | [
+[Build a Docker image/Build and smoke-test the image]   |   {
+[Build a Docker image/Build and smoke-test the image]   |     "Name": "default",
+[Build a Docker image/Build and smoke-test the image]   |     "Metadata": {},
+[Build a Docker image/Build and smoke-test the image]   |     "Endpoints": {
+[Build a Docker image/Build and smoke-test the image]   |       "docker": {
+[Build a Docker image/Build and smoke-test the image]   |         "Host": "unix:///var/run/docker.sock",
+[Build a Docker image/Build and smoke-test the image]   |         "SkipTLSVerify": false
+[Build a Docker image/Build and smoke-test the image]   |       }
+[Build a Docker image/Build and smoke-test the image]   |     },
+[Build a Docker image/Build and smoke-test the image]   |     "TLSMaterial": {},
+[Build a Docker image/Build and smoke-test the image]   |     "Storage": {
+[Build a Docker image/Build and smoke-test the image]   |       "MetadataPath": "<IN MEMORY>",
+[Build a Docker image/Build and smoke-test the image]   |       "TLSPath": "<IN MEMORY>"
+[Build a Docker image/Build and smoke-test the image]   |     }
+[Build a Docker image/Build and smoke-test the image]   |   }
+[Build a Docker image/Build and smoke-test the image]   | ]
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Pulling BuildKit image(s)
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker pull moby/buildkit:buildx-stable-1
+[Build a Docker image/Build and smoke-test the image]   | buildx-stable-1: Pulling from moby/buildkit
+[Build a Docker image/Build and smoke-test the image]   | Digest: sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea
+[Build a Docker image/Build and smoke-test the image]   | Status: Image is up to date for moby/buildkit:buildx-stable-1
+[Build a Docker image/Build and smoke-test the image]   | docker.io/moby/buildkit:buildx-stable-1
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Creating a new builder instance
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx create --name builder-21bdd8ef-a0f3-4934-8df6-a4159965544c --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+[Build a Docker image/Build and smoke-test the image]   | builder-21bdd8ef-a0f3-4934-8df6-a4159965544c
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Booting builder
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-21bdd8ef-a0f3-4934-8df6-a4159965544c
+[Build a Docker image/Build and smoke-test the image]   | #1 [internal] booting buildkit
+[Build a Docker image/Build and smoke-test the image]   | #1 pulling image moby/buildkit:buildx-stable-1
+[Build a Docker image/Build and smoke-test the image]   | #1 pulling image moby/buildkit:buildx-stable-1 1.7s done
+[Build a Docker image/Build and smoke-test the image]   | #1 creating container buildx_buildkit_builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0
+[Build a Docker image/Build and smoke-test the image]   | #1 creating container buildx_buildkit_builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0 0.6s done
+[Build a Docker image/Build and smoke-test the image]   | #1 DONE 2.3s
+[Build a Docker image/Build and smoke-test the image]   | Name:          builder-21bdd8ef-a0f3-4934-8df6-a4159965544c
+[Build a Docker image/Build and smoke-test the image]   | Driver:        docker-container
+[Build a Docker image/Build and smoke-test the image]   | Last Activity: 2026-10-08 09:49:11 +0000 UTC
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | Nodes:
+[Build a Docker image/Build and smoke-test the image]   | Name:                  builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0
+[Build a Docker image/Build and smoke-test the image]   | Endpoint:              unix:///var/run/docker.sock
+[Build a Docker image/Build and smoke-test the image]   | Status:                running
+[Build a Docker image/Build and smoke-test the image]   | BuildKit daemon flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+[Build a Docker image/Build and smoke-test the image]   | BuildKit version:      v0.33.1
+[Build a Docker image/Build and smoke-test the image]   | Platforms:             linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
+[Build a Docker image/Build and smoke-test the image]   | Labels:
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.executor:         oci
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.hostname:         edabd65d8104
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.network:          host
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.selinux.enabled:  false
+[Build a Docker image/Build and smoke-test the image]   |  org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+[Build a Docker image/Build and smoke-test the image]   | GC Policy rule#0:
+[Build a Docker image/Build and smoke-test the image]   |  All:            false
+[Build a Docker image/Build and smoke-test the image]   |  Filters:        type==source.local type==exec.cachemount type==source.git.checkout
+[Build a Docker image/Build and smoke-test the image]   |  Keep Duration:  48h0m0s
+[Build a Docker image/Build and smoke-test the image]   |  Max Used Space: 488.3MiB
+[Build a Docker image/Build and smoke-test the image]   | GC Policy rule#1:
+[Build a Docker image/Build and smoke-test the image]   |  All:            false
+[Build a Docker image/Build and smoke-test the image]   |  Keep Duration:  1440h0m0s
+[Build a Docker image/Build and smoke-test the image]   |  Reserved Space: 9.313GiB
+[Build a Docker image/Build and smoke-test the image]   |  Max Used Space: 93.13GiB
+[Build a Docker image/Build and smoke-test the image]   |  Min Free Space: 43.77GiB
+[Build a Docker image/Build and smoke-test the image]   | GC Policy rule#2:
+[Build a Docker image/Build and smoke-test the image]   |  All:            false
+[Build a Docker image/Build and smoke-test the image]   |  Reserved Space: 9.313GiB
+[Build a Docker image/Build and smoke-test the image]   |  Max Used Space: 93.13GiB
+[Build a Docker image/Build and smoke-test the image]   |  Min Free Space: 43.77GiB
+[Build a Docker image/Build and smoke-test the image]   | GC Policy rule#3:
+[Build a Docker image/Build and smoke-test the image]   |  All:            true
+[Build a Docker image/Build and smoke-test the image]   |  Reserved Space: 9.313GiB
+[Build a Docker image/Build and smoke-test the image]   |  Max Used Space: 93.13GiB
+[Build a Docker image/Build and smoke-test the image]   |  Min Free Space: 43.77GiB
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Inspect builder
+[Build a Docker image/Build and smoke-test the image]   | {
+[Build a Docker image/Build and smoke-test the image]   |   "nodes": [
+[Build a Docker image/Build and smoke-test the image]   |     {
+[Build a Docker image/Build and smoke-test the image]   |       "name": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0",
+[Build a Docker image/Build and smoke-test the image]   |       "endpoint": "unix:///var/run/docker.sock",
+[Build a Docker image/Build and smoke-test the image]   |       "status": "running",
+[Build a Docker image/Build and smoke-test the image]   |       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+[Build a Docker image/Build and smoke-test the image]   |       "buildkit": "v0.33.1",
+[Build a Docker image/Build and smoke-test the image]   |       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+[Build a Docker image/Build and smoke-test the image]   |       "features": {
+[Build a Docker image/Build and smoke-test the image]   |         "Automatically load images to the Docker Engine image store": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Cache export": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Direct push": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Docker exporter": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Multi-platform build": true,
+[Build a Docker image/Build and smoke-test the image]   |         "OCI exporter": true
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "labels": {
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.executor": "oci",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.hostname": "edabd65d8104",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.network": "host",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "gcPolicy": [
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "filter": [
+[Build a Docker image/Build and smoke-test the image]   |             "type==source.local type==exec.cachemount type==source.git.checkout"
+[Build a Docker image/Build and smoke-test the image]   |           ],
+[Build a Docker image/Build and smoke-test the image]   |           "keepDuration": "48h0m0s",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "488.3MiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "keepDuration": "1440h0m0s",
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": true,
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         }
+[Build a Docker image/Build and smoke-test the image]   |       ]
+[Build a Docker image/Build and smoke-test the image]   |     }
+[Build a Docker image/Build and smoke-test the image]   |   ],
+[Build a Docker image/Build and smoke-test the image]   |   "name": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c",
+[Build a Docker image/Build and smoke-test the image]   |   "driver": "docker-container",
+[Build a Docker image/Build and smoke-test the image]   |   "lastActivity": "2026-10-08T09:49:11.000Z"
+[Build a Docker image/Build and smoke-test the image]   | }
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::BuildKit version
+[Build a Docker image/Build and smoke-test the image]   | builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0: v0.33.1
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main docker/setup-buildx-action@v4 [5.462815304s]
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: name=builder-21bdd8ef-a0f3-4934-8df6-a4159965544c
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: driver=docker-container
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: platforms=linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: nodes=[
+  {
+    "name": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0",
+    "endpoint": "unix:///var/run/docker.sock",
+    "status": "running",
+    "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+    "buildkit": "v0.33.1",
+    "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+    "features": {
+      "Automatically load images to the Docker Engine image store": true,
+      "Cache export": true,
+      "Direct push": true,
+      "Docker exporter": true,
+      "Multi-platform build": true,
+      "OCI exporter": true
+    },
+    "labels": {
+      "org.mobyproject.buildkit.worker.executor": "oci",
+      "org.mobyproject.buildkit.worker.hostname": "edabd65d8104",
+      "org.mobyproject.buildkit.worker.network": "host",
+      "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+      "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+      "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+    },
+    "gcPolicy": [
+      {
+        "all": false,
+        "filter": [
+          "type==source.local type==exec.cachemount type==source.git.checkout"
+        ],
+        "keepDuration": "48h0m0s",
+        "maxUsedSpace": "488.3MiB"
+      },
+      {
+        "all": false,
+        "keepDuration": "1440h0m0s",
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      },
+      {
+        "all": false,
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      },
+      {
+        "all": true,
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      }
+    ]
+  }
+]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main Build the image
+[Build a Docker image/Build and smoke-test the image]   🐳  docker cp src=/home/sunny/.cache/act/docker-build-push-action@v7/ dst=/var/run/act/actions/docker-build-push-action@v7/
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-build-push-action@v7/dist/index.cjs] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::GitHub Actions runtime token ACs
+[Build a Docker image/Build and smoke-test the image]   🚧  ::warning::ACTIONS_RUNTIME_TOKEN not set
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Docker info
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker version
+[Build a Docker image/Build and smoke-test the image]   | Client: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Version:           29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  API version:       1.56
+[Build a Docker image/Build and smoke-test the image]   |  Go version:        go1.26.8
+[Build a Docker image/Build and smoke-test the image]   |  Git commit:        7fc2dff
+[Build a Docker image/Build and smoke-test the image]   |  Built:             Wed Sep 30 19:32:25 2026
+[Build a Docker image/Build and smoke-test the image]   |  OS/Arch:           linux/amd64
+[Build a Docker image/Build and smoke-test the image]   |  Context:           default
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | Server: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Engine:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          29.8.2
+[Build a Docker image/Build and smoke-test the image]   |   API version:      1.56 (minimum version 1.40)
+[Build a Docker image/Build and smoke-test the image]   |   Go version:       go1.26.8
+[Build a Docker image/Build and smoke-test the image]   |   Git commit:       8af9fe3
+[Build a Docker image/Build and smoke-test the image]   |   Built:            Wed Sep 30 19:32:32 2026
+[Build a Docker image/Build and smoke-test the image]   |   OS/Arch:          linux/amd64
+[Build a Docker image/Build and smoke-test the image]   |   Experimental:     false
+[Build a Docker image/Build and smoke-test the image]   |  containerd:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          v2.3.6
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        ee2735368117d2eb259779949d5e75cdafec9761
+[Build a Docker image/Build and smoke-test the image]   |  runc:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          1.5.1
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        v1.5.1-0-g8f2685a4
+[Build a Docker image/Build and smoke-test the image]   |  docker-init:
+[Build a Docker image/Build and smoke-test the image]   |   Version:          0.19.0
+[Build a Docker image/Build and smoke-test the image]   |   GitCommit:        de40ad0
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker info
+[Build a Docker image/Build and smoke-test the image]   | Client: Docker Engine - Community
+[Build a Docker image/Build and smoke-test the image]   |  Version:    29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  Context:    default
+[Build a Docker image/Build and smoke-test the image]   |  Debug Mode: false
+[Build a Docker image/Build and smoke-test the image]   |  Plugins:
+[Build a Docker image/Build and smoke-test the image]   |   buildx: Docker Buildx (Docker Inc.)
+[Build a Docker image/Build and smoke-test the image]   |     Version:  v0.37.1
+[Build a Docker image/Build and smoke-test the image]   |     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | Server:
+[Build a Docker image/Build and smoke-test the image]   |  Containers: 7
+[Build a Docker image/Build and smoke-test the image]   |   Running: 6
+[Build a Docker image/Build and smoke-test the image]   |   Paused: 0
+[Build a Docker image/Build and smoke-test the image]   |   Stopped: 1
+[Build a Docker image/Build and smoke-test the image]   |  Images: 23
+[Build a Docker image/Build and smoke-test the image]   |  Server Version: 29.8.2
+[Build a Docker image/Build and smoke-test the image]   |  Storage Driver: overlayfs
+[Build a Docker image/Build and smoke-test the image]   |   driver-type: io.containerd.snapshotter.v1
+[Build a Docker image/Build and smoke-test the image]   |  Logging Driver: json-file
+[Build a Docker image/Build and smoke-test the image]   |  Cgroup Driver: systemd
+[Build a Docker image/Build and smoke-test the image]   |  Cgroup Version: 2
+[Build a Docker image/Build and smoke-test the image]   |  Plugins:
+[Build a Docker image/Build and smoke-test the image]   |   Volume: local
+[Build a Docker image/Build and smoke-test the image]   |   Network: bridge host ipvlan macvlan null overlay
+[Build a Docker image/Build and smoke-test the image]   |   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[Build a Docker image/Build and smoke-test the image]   |  CDI spec directories:
+[Build a Docker image/Build and smoke-test the image]   |   /etc/cdi
+[Build a Docker image/Build and smoke-test the image]   |   /var/run/cdi
+[Build a Docker image/Build and smoke-test the image]   |  Swarm: inactive
+[Build a Docker image/Build and smoke-test the image]   |  Runtimes: io.containerd.runc.v2 runc
+[Build a Docker image/Build and smoke-test the image]   |  Default Runtime: runc
+[Build a Docker image/Build and smoke-test the image]   |  Init Binary: docker-init
+[Build a Docker image/Build and smoke-test the image]   |  containerd version: ee2735368117d2eb259779949d5e75cdafec9761
+[Build a Docker image/Build and smoke-test the image]   |  runc version: v1.5.1-0-g8f2685a4
+[Build a Docker image/Build and smoke-test the image]   |  init version: de40ad0
+[Build a Docker image/Build and smoke-test the image]   |  Security Options:
+[Build a Docker image/Build and smoke-test the image]   |   apparmor
+[Build a Docker image/Build and smoke-test the image]   |    Profile: default
+[Build a Docker image/Build and smoke-test the image]   |   seccomp
+[Build a Docker image/Build and smoke-test the image]   |    Profile: builtin
+[Build a Docker image/Build and smoke-test the image]   |   cgroupns
+[Build a Docker image/Build and smoke-test the image]   |  Kernel Version: 7.0.0-38-generic
+[Build a Docker image/Build and smoke-test the image]   |  Operating System: Ubuntu 26.04.1 LTS
+[Build a Docker image/Build and smoke-test the image]   |  OSType: linux
+[Build a Docker image/Build and smoke-test the image]   |  Architecture: x86_64
+[Build a Docker image/Build and smoke-test the image]   |  CPUs: 8
+[Build a Docker image/Build and smoke-test the image]   |  Total Memory: 15.5GiB
+[Build a Docker image/Build and smoke-test the image]   |  Name: Curlware
+[Build a Docker image/Build and smoke-test the image]   |  ID: 3dc3610d-5dce-4c75-ae0b-aa5f0f5563a8
+[Build a Docker image/Build and smoke-test the image]   |  Docker Root Dir: /var/lib/docker
+[Build a Docker image/Build and smoke-test the image]   |  Debug Mode: false
+[Build a Docker image/Build and smoke-test the image]   |  Experimental: false
+[Build a Docker image/Build and smoke-test the image]   |  Insecure Registries:
+[Build a Docker image/Build and smoke-test the image]   |   127.0.0.0/8
+[Build a Docker image/Build and smoke-test the image]   |   ::1/128
+[Build a Docker image/Build and smoke-test the image]   |  Live Restore Enabled: false
+[Build a Docker image/Build and smoke-test the image]   |  Firewall Backend: iptables
+[Build a Docker image/Build and smoke-test the image]   |   EnableUserlandProxy: true
+[Build a Docker image/Build and smoke-test the image]   |   UserlandProxyPath: /usr/bin/docker-proxy
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Proxy configuration
+[Build a Docker image/Build and smoke-test the image]   | No proxy configuration found
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Buildx version
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx version
+[Build a Docker image/Build and smoke-test the image]   | github.com/docker/buildx v0.37.1 0b265a9f62db554fa9aba6dd19e1bd5704bc7d8a
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Builder info
+[Build a Docker image/Build and smoke-test the image]   | {
+[Build a Docker image/Build and smoke-test the image]   |   "nodes": [
+[Build a Docker image/Build and smoke-test the image]   |     {
+[Build a Docker image/Build and smoke-test the image]   |       "name": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0",
+[Build a Docker image/Build and smoke-test the image]   |       "endpoint": "unix:///var/run/docker.sock",
+[Build a Docker image/Build and smoke-test the image]   |       "status": "running",
+[Build a Docker image/Build and smoke-test the image]   |       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+[Build a Docker image/Build and smoke-test the image]   |       "buildkit": "v0.33.1",
+[Build a Docker image/Build and smoke-test the image]   |       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+[Build a Docker image/Build and smoke-test the image]   |       "features": {
+[Build a Docker image/Build and smoke-test the image]   |         "Automatically load images to the Docker Engine image store": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Cache export": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Direct push": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Docker exporter": true,
+[Build a Docker image/Build and smoke-test the image]   |         "Multi-platform build": true,
+[Build a Docker image/Build and smoke-test the image]   |         "OCI exporter": true
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "labels": {
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.executor": "oci",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.hostname": "edabd65d8104",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.network": "host",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+[Build a Docker image/Build and smoke-test the image]   |         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "gcPolicy": [
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "filter": [
+[Build a Docker image/Build and smoke-test the image]   |             "type==source.local type==exec.cachemount type==source.git.checkout"
+[Build a Docker image/Build and smoke-test the image]   |           ],
+[Build a Docker image/Build and smoke-test the image]   |           "keepDuration": "48h0m0s",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "488.3MiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "keepDuration": "1440h0m0s",
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": false,
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         {
+[Build a Docker image/Build and smoke-test the image]   |           "all": true,
+[Build a Docker image/Build and smoke-test the image]   |           "reservedSpace": "9.313GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "maxUsedSpace": "93.13GiB",
+[Build a Docker image/Build and smoke-test the image]   |           "minFreeSpace": "43.77GiB"
+[Build a Docker image/Build and smoke-test the image]   |         }
+[Build a Docker image/Build and smoke-test the image]   |       ]
+[Build a Docker image/Build and smoke-test the image]   |     }
+[Build a Docker image/Build and smoke-test the image]   |   ],
+[Build a Docker image/Build and smoke-test the image]   |   "name": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c",
+[Build a Docker image/Build and smoke-test the image]   |   "driver": "docker-container",
+[Build a Docker image/Build and smoke-test the image]   |   "lastActivity": "2026-10-08T09:49:11.000Z"
+[Build a Docker image/Build and smoke-test the image]   | }
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --file cicd-learn/Dockerfile --iidfile /tmp/docker-actions-toolkit-AhnFEe/build-iidfile-864b8da0f1.txt --tag cicd-learn:sha-aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a --tag cicd-learn:main --load --metadata-file /tmp/docker-actions-toolkit-AhnFEe/build-metadata-d07d95b8a8.json cicd-learn
+[Build a Docker image/Build and smoke-test the image]   | #0 building with "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c" instance using docker-container driver
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #1 [internal] load build definition from Dockerfile
+[Build a Docker image/Build and smoke-test the image]   | #1 transferring dockerfile: 2.18kB done
+[Build a Docker image/Build and smoke-test the image]   | #1 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+[Build a Docker image/Build and smoke-test the image]   | #2 DONE 2.4s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+[Build a Docker image/Build and smoke-test the image]   | #3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e done
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0B / 14.28MB 0.2s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 1.05MB / 14.28MB 0.5s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 3.15MB / 14.28MB 0.6s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 5.24MB / 14.28MB 0.8s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 6.29MB / 14.28MB 0.9s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 8.39MB / 14.28MB 1.1s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 9.44MB / 14.28MB 1.2s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 10.49MB / 14.28MB 1.4s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 12.58MB / 14.28MB 1.5s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 14.28MB / 14.28MB 1.7s
+[Build a Docker image/Build and smoke-test the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 14.28MB / 14.28MB 1.7s done
+[Build a Docker image/Build and smoke-test the image]   | #3 extracting sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0.1s done
+[Build a Docker image/Build and smoke-test the image]   | #3 DONE 1.9s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #4 [internal] load metadata for docker.io/library/node:22-alpine
+[Build a Docker image/Build and smoke-test the image]   | #4 DONE 1.7s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #5 [internal] load .dockerignore
+[Build a Docker image/Build and smoke-test the image]   | #5 transferring context: 2B done
+[Build a Docker image/Build and smoke-test the image]   | #5 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #6 [internal] load build context
+[Build a Docker image/Build and smoke-test the image]   | #6 transferring context: 93.93kB done
+[Build a Docker image/Build and smoke-test the image]   | #6 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #7 [deps 1/4] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+[Build a Docker image/Build and smoke-test the image]   | #7 resolve docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402 done
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:d39db1cf9caa4f49c5a2e67111fbe6e0d5eea8ede550cb82f3dc2b79712688d6 0B / 447B 0.2s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:d39db1cf9caa4f49c5a2e67111fbe6e0d5eea8ede550cb82f3dc2b79712688d6 447B / 447B 0.3s done
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e554276b05e6306c5ad33cd85bfa7f0693083e21f6114db5abf60a20fb413039 0B / 1.26MB 0.2s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 0B / 55.59MB 0.2s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0B / 3.85MB 0.2s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e554276b05e6306c5ad33cd85bfa7f0693083e21f6114db5abf60a20fb413039 1.26MB / 1.26MB 0.6s done
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 3.15MB / 55.59MB 1.1s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 6.29MB / 55.59MB 1.4s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 9.44MB / 55.59MB 1.7s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 12.58MB / 55.59MB 2.0s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 15.73MB / 55.59MB 2.3s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 18.87MB / 55.59MB 2.7s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 22.02MB / 55.59MB 3.0s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 26.21MB / 55.59MB 3.5s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 1.05MB / 3.85MB 3.3s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 29.36MB / 55.59MB 3.9s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 32.51MB / 55.59MB 4.4s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 2.10MB / 3.85MB 4.2s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 35.65MB / 55.59MB 4.8s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.15MB / 3.85MB 4.7s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.85MB / 3.85MB 4.9s done
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 38.80MB / 55.59MB 5.1s
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.1s done
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 42.99MB / 55.59MB 5.6s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 47.19MB / 55.59MB 6.0s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 50.33MB / 55.59MB 6.3s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 54.53MB / 55.59MB 6.8s
+[Build a Docker image/Build and smoke-test the image]   | #7 sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 55.59MB / 55.59MB 7.0s done
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:f7f2d304681aaa935c9cfd180850cf616ae843efce7682873d6521ded7268937 1.0s done
+[Build a Docker image/Build and smoke-test the image]   | #7 DONE 8.1s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #7 [deps 1/4] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:e554276b05e6306c5ad33cd85bfa7f0693083e21f6114db5abf60a20fb413039 0.0s done
+[Build a Docker image/Build and smoke-test the image]   | #7 extracting sha256:d39db1cf9caa4f49c5a2e67111fbe6e0d5eea8ede550cb82f3dc2b79712688d6 done
+[Build a Docker image/Build and smoke-test the image]   | #7 DONE 8.1s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #8 [deps 2/4] WORKDIR /app
+[Build a Docker image/Build and smoke-test the image]   | #8 DONE 0.5s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #9 [deps 3/4] COPY package.json package-lock.json ./
+[Build a Docker image/Build and smoke-test the image]   | #9 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #10 [deps 4/4] RUN npm ci
+[Build a Docker image/Build and smoke-test the image]   | #10 2.949 
+[Build a Docker image/Build and smoke-test the image]   | #10 2.949 added 127 packages, and audited 128 packages in 3s
+[Build a Docker image/Build and smoke-test the image]   | #10 2.949 
+[Build a Docker image/Build and smoke-test the image]   | #10 2.949 31 packages are looking for funding
+[Build a Docker image/Build and smoke-test the image]   | #10 2.949   run `npm fund` for details
+[Build a Docker image/Build and smoke-test the image]   | #10 2.950 
+[Build a Docker image/Build and smoke-test the image]   | #10 2.950 found 0 vulnerabilities
+[Build a Docker image/Build and smoke-test the image]   | #10 2.951 npm notice
+[Build a Docker image/Build and smoke-test the image]   | #10 2.951 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+[Build a Docker image/Build and smoke-test the image]   | #10 2.951 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+[Build a Docker image/Build and smoke-test the image]   | #10 2.951 npm notice To update run: npm install -g npm@12.2.0
+[Build a Docker image/Build and smoke-test the image]   | #10 2.951 npm notice
+[Build a Docker image/Build and smoke-test the image]   | #10 DONE 3.4s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #11 [runtime 3/7] COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+[Build a Docker image/Build and smoke-test the image]   | #11 DONE 0.4s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #12 [runtime 4/7] COPY --chown=node:node package.json ./
+[Build a Docker image/Build and smoke-test the image]   | #12 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #13 [runtime 5/7] COPY --chown=node:node build.mjs ./
+[Build a Docker image/Build and smoke-test the image]   | #13 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #14 [runtime 6/7] COPY --chown=node:node src ./src
+[Build a Docker image/Build and smoke-test the image]   | #14 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #15 [runtime 7/7] RUN node build.mjs && rm -rf node_modules
+[Build a Docker image/Build and smoke-test the image]   | #15 0.136 built dist/app.js (2887 bytes)
+[Build a Docker image/Build and smoke-test the image]   | #15 DONE 0.3s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #16 exporting to oci image format
+[Build a Docker image/Build and smoke-test the image]   | #16 exporting layers
+[Build a Docker image/Build and smoke-test the image]   | #16 exporting layers 2.6s done
+[Build a Docker image/Build and smoke-test the image]   | #16 exporting manifest sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657 done
+[Build a Docker image/Build and smoke-test the image]   | #16 exporting config sha256:556543198a86e72873d0d74379885281235262f6de6d5d92084ce7ba6222b83b 0.0s done
+[Build a Docker image/Build and smoke-test the image]   | #16 sending tarball
+[Build a Docker image/Build and smoke-test the image]   | #16 sending tarball 1.7s done
+[Build a Docker image/Build and smoke-test the image]   | #16 DONE 4.3s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #17 importing to docker
+[Build a Docker image/Build and smoke-test the image]   | #17 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | #18 resolving provenance for metadata file
+[Build a Docker image/Build and smoke-test the image]   | #18 DONE 0.0s
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::ImageID
+[Build a Docker image/Build and smoke-test the image]   | sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Digest
+[Build a Docker image/Build and smoke-test the image]   | sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Metadata
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::stop-commands::ab63932f-4ec6-4517-8295-bad6f18769a1
+[Build a Docker image/Build and smoke-test the image]   | {
+[Build a Docker image/Build and smoke-test the image]   |   "buildx.build.provenance": {
+[Build a Docker image/Build and smoke-test the image]   |     "builder": {
+[Build a Docker image/Build and smoke-test the image]   |       "id": ""
+[Build a Docker image/Build and smoke-test the image]   |     },
+[Build a Docker image/Build and smoke-test the image]   |     "buildType": "https://mobyproject.org/buildkit@v1",
+[Build a Docker image/Build and smoke-test the image]   |     "materials": [
+[Build a Docker image/Build and smoke-test the image]   |       {
+[Build a Docker image/Build and smoke-test the image]   |         "uri": "pkg:docker/docker/dockerfile@1",
+[Build a Docker image/Build and smoke-test the image]   |         "digest": {
+[Build a Docker image/Build and smoke-test the image]   |           "sha256": "4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e"
+[Build a Docker image/Build and smoke-test the image]   |         }
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       {
+[Build a Docker image/Build and smoke-test the image]   |         "uri": "pkg:docker/node@22-alpine?platform=linux%2Famd64",
+[Build a Docker image/Build and smoke-test the image]   |         "digest": {
+[Build a Docker image/Build and smoke-test the image]   |           "sha256": "0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402"
+[Build a Docker image/Build and smoke-test the image]   |         }
+[Build a Docker image/Build and smoke-test the image]   |       }
+[Build a Docker image/Build and smoke-test the image]   |     ],
+[Build a Docker image/Build and smoke-test the image]   |     "invocation": {
+[Build a Docker image/Build and smoke-test the image]   |       "configSource": {
+[Build a Docker image/Build and smoke-test the image]   |         "entryPoint": "Dockerfile"
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "parameters": {
+[Build a Docker image/Build and smoke-test the image]   |         "frontend": "gateway.v0",
+[Build a Docker image/Build and smoke-test the image]   |         "args": {
+[Build a Docker image/Build and smoke-test the image]   |           "cmdline": "docker/dockerfile:1",
+[Build a Docker image/Build and smoke-test the image]   |           "source": "docker/dockerfile:1"
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         "locals": [
+[Build a Docker image/Build and smoke-test the image]   |           {
+[Build a Docker image/Build and smoke-test the image]   |             "name": "context"
+[Build a Docker image/Build and smoke-test the image]   |           },
+[Build a Docker image/Build and smoke-test the image]   |           {
+[Build a Docker image/Build and smoke-test the image]   |             "name": "dockerfile"
+[Build a Docker image/Build and smoke-test the image]   |           }
+[Build a Docker image/Build and smoke-test the image]   |         ],
+[Build a Docker image/Build and smoke-test the image]   |         "root": {
+[Build a Docker image/Build and smoke-test the image]   |           "configSource": {
+[Build a Docker image/Build and smoke-test the image]   |             "path": "Dockerfile"
+[Build a Docker image/Build and smoke-test the image]   |           },
+[Build a Docker image/Build and smoke-test the image]   |           "request": {
+[Build a Docker image/Build and smoke-test the image]   |             "args": {
+[Build a Docker image/Build and smoke-test the image]   |               "vcs:localdir:context": "cicd-learn",
+[Build a Docker image/Build and smoke-test the image]   |               "vcs:localdir:dockerfile": "cicd-learn",
+[Build a Docker image/Build and smoke-test the image]   |               "vcs:revision": "aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a"
+[Build a Docker image/Build and smoke-test the image]   |             }
+[Build a Docker image/Build and smoke-test the image]   |           }
+[Build a Docker image/Build and smoke-test the image]   |         },
+[Build a Docker image/Build and smoke-test the image]   |         "compatibilityVersion": 30
+[Build a Docker image/Build and smoke-test the image]   |       },
+[Build a Docker image/Build and smoke-test the image]   |       "environment": {
+[Build a Docker image/Build and smoke-test the image]   |         "github_event_name": "push",
+[Build a Docker image/Build and smoke-test the image]   |         "github_event_payload": {},
+[Build a Docker image/Build and smoke-test the image]   |         "platform": "linux/amd64"
+[Build a Docker image/Build and smoke-test the image]   |       }
+[Build a Docker image/Build and smoke-test the image]   |     }
+[Build a Docker image/Build and smoke-test the image]   |   },
+[Build a Docker image/Build and smoke-test the image]   |   "buildx.build.ref": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c/builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0/5fabwa1835642mqxub5lp975a",
+[Build a Docker image/Build and smoke-test the image]   |   "containerimage.descriptor": {
+[Build a Docker image/Build and smoke-test the image]   |     "mediaType": "application/vnd.oci.image.manifest.v1+json",
+[Build a Docker image/Build and smoke-test the image]   |     "digest": "sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657",
+[Build a Docker image/Build and smoke-test the image]   |     "size": 2187,
+[Build a Docker image/Build and smoke-test the image]   |     "annotations": {
+[Build a Docker image/Build and smoke-test the image]   |       "org.opencontainers.image.created": "2026-10-08T09:49:37Z"
+[Build a Docker image/Build and smoke-test the image]   |     },
+[Build a Docker image/Build and smoke-test the image]   |     "platform": {
+[Build a Docker image/Build and smoke-test the image]   |       "architecture": "amd64",
+[Build a Docker image/Build and smoke-test the image]   |       "os": "linux"
+[Build a Docker image/Build and smoke-test the image]   |     }
+[Build a Docker image/Build and smoke-test the image]   |   },
+[Build a Docker image/Build and smoke-test the image]   |   "containerimage.digest": "sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657",
+[Build a Docker image/Build and smoke-test the image]   |   "image.name": "docker.io/library/cicd-learn:sha-aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a,docker.io/library/cicd-learn:main"
+[Build a Docker image/Build and smoke-test the image]   | }
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::ab63932f-4ec6-4517-8295-bad6f18769a1::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Reference
+[Build a Docker image/Build and smoke-test the image]   | builder-21bdd8ef-a0f3-4934-8df6-a4159965544c/builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0/5fabwa1835642mqxub5lp975a
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Check build summary support
+[Build a Docker image/Build and smoke-test the image]   | Build summary supported!
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main Build the image [25.57157126s]
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: imageid=sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: digest=sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657
+[Build a Docker image/Build and smoke-test the image]   ⚙  ::set-output:: metadata={
+  "buildx.build.provenance": {
+    "builder": {
+      "id": ""
+    },
+    "buildType": "https://mobyproject.org/buildkit@v1",
+    "materials": [
+      {
+        "uri": "pkg:docker/docker/dockerfile@1",
+        "digest": {
+          "sha256": "4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e"
+        }
+      },
+      {
+        "uri": "pkg:docker/node@22-alpine?platform=linux%2Famd64",
+        "digest": {
+          "sha256": "0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402"
+        }
+      }
+    ],
+    "invocation": {
+      "configSource": {
+        "entryPoint": "Dockerfile"
+      },
+      "parameters": {
+        "frontend": "gateway.v0",
+        "args": {
+          "cmdline": "docker/dockerfile:1",
+          "source": "docker/dockerfile:1"
+        },
+        "locals": [
+          {
+            "name": "context"
+          },
+          {
+            "name": "dockerfile"
+          }
+        ],
+        "root": {
+          "configSource": {
+            "path": "Dockerfile"
+          },
+          "request": {
+            "args": {
+              "vcs:localdir:context": "cicd-learn",
+              "vcs:localdir:dockerfile": "cicd-learn",
+              "vcs:revision": "aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a"
+            }
+          }
+        },
+        "compatibilityVersion": 30
+      },
+      "environment": {
+        "github_event_name": "push",
+        "github_event_payload": {},
+        "platform": "linux/amd64"
+      }
+    }
+  },
+  "buildx.build.ref": "builder-21bdd8ef-a0f3-4934-8df6-a4159965544c/builder-21bdd8ef-a0f3-4934-8df6-a4159965544c0/5fabwa1835642mqxub5lp975a",
+  "containerimage.descriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657",
+    "size": 2187,
+    "annotations": {
+      "org.opencontainers.image.created": "2026-10-08T09:49:37Z"
+    },
+    "platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  },
+  "containerimage.digest": "sha256:e1252508c7f3f7babf4212144b1fd4386e5b6ebf14f161b83d54db0fec5ce657",
+  "image.name": "docker.io/library/cicd-learn:sha-aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a,docker.io/library/cicd-learn:main"
+}
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main Run the image and check the output
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   | --- images present ---
+[Build a Docker image/Build and smoke-test the image]   | cicd-learn:main 334MB
+[Build a Docker image/Build and smoke-test the image]   | cicd-learn:sha-aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a 334MB
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | --- running it ---
+[Build a Docker image/Build and smoke-test the image]   | {
+[Build a Docker image/Build and smoke-test the image]   |   "message": "HELLO, ADA!",
+[Build a Docker image/Build and smoke-test the image]   |   "total": 10,
+[Build a Docker image/Build and smoke-test the image]   |   "mean": 2.5
+[Build a Docker image/Build and smoke-test the image]   | }
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | the image works
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main Run the image and check the output [641.959389ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main Inspect the image
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   | --- size ---
+[Build a Docker image/Build and smoke-test the image]   | 334MB
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | --- history (each line is a layer) ---
+[Build a Docker image/Build and smoke-test the image]   | 0B	ENTRYPOINT ["node" "dist/app.js"]
+[Build a Docker image/Build and smoke-test the image]   | 0B	USER node
+[Build a Docker image/Build and smoke-test the image]   | 20.5kB	RUN /bin/sh -c node build.mjs && rm -rf node…
+[Build a Docker image/Build and smoke-test the image]   | 24.6kB	COPY --chown=node:node src ./src # buildkit
+[Build a Docker image/Build and smoke-test the image]   | 12.3kB	COPY --chown=node:node build.mjs ./ # buildk…
+[Build a Docker image/Build and smoke-test the image]   | 12.3kB	COPY --chown=node:node package.json ./ # bui…
+[Build a Docker image/Build and smoke-test the image]   | 74.2MB	COPY --chown=node:node /app/node_modules ./n…
+[Build a Docker image/Build and smoke-test the image]   | 8.19kB	WORKDIR /app
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | --- what is actually in there ---
+[Build a Docker image/Build and smoke-test the image]   | total 24
+[Build a Docker image/Build and smoke-test the image]   | drwxr-xr-x    1 root     root          4096 Oct  8 09:49 .
+[Build a Docker image/Build and smoke-test the image]   | drwxr-xr-x    1 root     root          4096 Oct  8 09:49 ..
+[Build a Docker image/Build and smoke-test the image]   | -rw-rw-r--    1 node     node           764 Oct  8 08:48 build.mjs
+[Build a Docker image/Build and smoke-test the image]   | drwxr-xr-x    2 root     root          4096 Oct  8 09:49 dist
+[Build a Docker image/Build and smoke-test the image]   | -rw-rw-r--    1 node     node           627 Oct  8 09:23 package.json
+[Build a Docker image/Build and smoke-test the image]   | drwxr-xr-x    2 node     node          4096 Oct  8 09:49 src
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | who am i:
+[Build a Docker image/Build and smoke-test the image]   | node
+[Build a Docker image/Build and smoke-test the image]   | 
+[Build a Docker image/Build and smoke-test the image]   | node:
+[Build a Docker image/Build and smoke-test the image]   | v22.23.3
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main Inspect the image [396.356369ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Main Confirm it does not run as root
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   | the container runs as a non-root user
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Main Confirm it does not run as root [326.304014ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Post Build the image
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-build-push-action@v7/dist/index.cjs] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Generating build summary
+[Build a Docker image/Build and smoke-test the image]   | exporting build record to /tmp/docker-actions-toolkit-Z62C9y/export
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx history export --builder builder-21bdd8ef-a0f3-4934-8df6-a4159965544c --output /tmp/docker-actions-toolkit-Z62C9y/export/nektos~act~5FABWA.dockerbuild 5fabwa1835642mqxub5lp975a --finalize
+[Build a Docker image/Build and smoke-test the image]   | Build record written to /tmp/docker-actions-toolkit-Z62C9y/export/nektos~act~5FABWA.dockerbuild (34.46 KB)
+[Build a Docker image/Build and smoke-test the image]   | Uploading nektos~act~5FABWA.dockerbuild as an artifact
+[Build a Docker image/Build and smoke-test the image]   | Artifact name is valid!
+[Build a Docker image/Build and smoke-test the image]   | Root directory input is valid!
+[Build a Docker image/Build and smoke-test the image]   🚧  ::warning::Unable to get the ACTIONS_RUNTIME_TOKEN env variable
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Removing temp folder /tmp/docker-actions-toolkit-AhnFEe
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Post cache
+[Build a Docker image/Build and smoke-test the image]   | State not set
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Post Build the image [768.063035ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Post docker/setup-buildx-action@v4
+[Build a Docker image/Build and smoke-test the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-setup-buildx-action@v4/dist/index.cjs] user= workdir=
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Removing builder
+[Build a Docker image/Build and smoke-test the image]   | [command]/usr/bin/docker buildx rm builder-21bdd8ef-a0f3-4934-8df6-a4159965544c
+[Build a Docker image/Build and smoke-test the image]   | builder-21bdd8ef-a0f3-4934-8df6-a4159965544c removed
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Cleaning up certificates
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ❓  ::group::Post cache
+[Build a Docker image/Build and smoke-test the image]   | State not set
+[Build a Docker image/Build and smoke-test the image]   ❓  ::endgroup::
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Post docker/setup-buildx-action@v4 [768.683822ms]
+[Build a Docker image/Build and smoke-test the image] ⭐ Run Complete job
+[Build a Docker image/Build and smoke-test the image] Cleaning up container for job Build and smoke-test the image
+[Build a Docker image/Build and smoke-test the image]   ✅  Success - Complete job
+[Build a Docker image/Build and smoke-test the image] 🏁  Job succeeded
+
+### act exit status: 0

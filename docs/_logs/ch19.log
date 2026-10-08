@@ -1,0 +1,29 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/19-conditionals.yml
+
+time="2026-10-08T15:30:13+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Conditionals/Operators] ⭐ Run Set up job
+[Conditionals/Operators] 🚀  Start image=node:24-bookworm
+[Conditionals/Operators]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Conditionals/Operators]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditionals/Operators]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Conditionals/Operators]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Conditionals/Operators]   ✅  Success - Set up job
+[Conditionals/Operators] ⭐ Run Main Demonstrate the operators
+[Conditionals/Operators]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Conditionals/Operators]   | Expressions are evaluated by GitHub, not by bash.
+[Conditionals/Operators]   | So shell syntax does NOT work in if:.
+[Conditionals/Operators]   ✅  Success - Main Demonstrate the operators [58.445981ms]
+[Conditionals/Operators]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/workflow/hashfiles/index.js] user= workdir=
+[Conditionals/Operators] ⭐ Run Main Not a draft PR, or not a PR at all
+[Conditionals/Operators]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[Conditionals/Operators]   | runs for pushes, and for non-draft PRs
+[Conditionals/Operators]   ✅  Success - Main Not a draft PR, or not a PR at all [58.61299ms]
+[Conditionals/Operators] ⭐ Run Complete job
+[Conditionals/Operators] Cleaning up container for job Operators
+[Conditionals/Operators]   ✅  Success - Complete job
+[Conditionals/Operators] 🏁  Job succeeded
+
+### act exit status: 0

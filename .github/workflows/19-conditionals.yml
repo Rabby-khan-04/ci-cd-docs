@@ -1,0 +1,129 @@
+name: Conditionals
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── if: on a step ─────────────────────────────────────────────────────────
+  step-level:
+    name: Step-level if
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Only on pull requests
+        if: github.event_name == 'pull_request'
+        run: echo "PR only"
+
+      - name: Only on the main branch
+        if: github.ref == 'refs/heads/main'
+        run: echo "main only"
+        # `github.ref` is the full ref: refs/heads/main. `github.ref_name` is
+        # just `main`. Comparing against 'main' with github.ref never matches,
+        # and it fails silently. This is the single most common `if` mistake.
+
+      - name: Always true, written as a bare expression
+        # You do NOT write `if: ${{ ... }}`. The braces are added for you.
+        # `if: ${{ x }}` still works but is noise, and in some positions it
+        # actually breaks.
+        if: true
+        run: echo "ran"
+
+      - name: A string is coerced, so this is truthy
+        # Careful: any non-empty string is truthy, including the string "false".
+        if: 'false'
+        run: echo "this RUNS, which surprises people"
+      # Remove the quotes and it is a boolean, which is what you wanted:
+      #   if: false
+
+      # ── Status functions ──────────────────────────────────────────────────
+      # These are the four you need. Each is a boolean function available in `if`.
+      - name: Always runs
+        if: always()
+        run: echo "always() ignores previous step status"
+
+      - name: Runs only if everything so far succeeded
+        if: success()
+        run: echo "success() so far"
+
+      - name: Runs only if something failed
+        if: failure()
+        run: echo "failure()"
+
+      # ── The classic: report a failure without stopping the job ────────────
+      - name: A step that fails
+        id: fragile
+        continue-on-error: true
+        run: exit 1
+
+      - name: Runs only if the fragile step failed, thanks to always()
+        # Without `always()`, a normal step after a failed step is SKIPPED even
+        # when that step used continue-on-error. `always()` overrides that.
+        if: always()
+        run: |
+          echo "fragile outcome: ${{ steps.fragile.outcome }}"
+          if [ "${{ steps.fragile.outcome }}" = "failure" ]; then
+            echo "::error title=Something broke::reporting without failing the job"
+          fi
+
+  # ── if: on a job ──────────────────────────────────────────────────────────
+  # Same syntax, different position. This is how you skip work on the wrong
+  # branch instead of running it and throwing the result away.
+  deploy-only:
+    name: Only runs on main
+    # A job with no needs: starts immediately, and this if: decides whether it
+    # starts at all.
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: This only appears in the Actions tab on main
+        run: |
+          echo "branch: ${{ github.ref }}"
+          echo "event : ${{ github.event_name }}"
+
+  skip-on-main:
+    name: Skipped on main
+    # The inverse: save minutes by not running a PR-only check on main.
+    if: github.event_name != 'push' || github.ref != 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "runs on pull requests, not on direct pushes to main"
+
+  # ── Operators, all of them ────────────────────────────────────────────────
+  operators:
+    name: Operators
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Demonstrate the operators
+        run: |
+          echo "Expressions are evaluated by GitHub, not by bash."
+          echo "So shell syntax does NOT work in if:."
+        # `&&` and `||`  work (short-circuit)
+        # `!`         works (negation)
+        # `==`, `!=`  work (equality)
+        # `>`, `<`    work but need quoting in expressions
+        # NO: `-f`, `-z`, `&&` as shell tests, pipes, command substitution,
+        #      arithmetic like `$((1+1))`. Shell tests belong in `run:`.
+        #      In `if:` you have no shell, so there is nothing to run a test with.
+
+      - name: A shell test belongs in run, not in if
+        if: hashFiles('package-lock.json') != ''
+        # hashFiles is an expression function, not a shell command. This is how
+        # you test for the existence of files in an `if:`.
+        run: echo "the lock file exists"
+
+      # ── Comparing a string to a number needs quotes on the number ────────
+      - name: Quoting numbers in comparisons
+        if: ${{ github.run_number > 1 }}
+        run: echo "this is run number ${{ github.run_number }}"
+
+      # ── Combining with && and || ─────────────────────────────────────────
+      - name: Not a draft PR, or not a PR at all
+        if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+        run: echo "runs for pushes, and for non-draft PRs"

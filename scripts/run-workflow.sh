@@ -24,9 +24,14 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ACT_BIN="${ACT_BIN:-/tmp/opencode/act}"
 
-# Platform image. Official images only, since the usual act community images for
-# 24.04 are no longer published. node:* gives us a working Node for free.
-PLATFORM_IMAGE="${PLATFORM_IMAGE:-node:24-bookworm}"
+# Platform image: scripts/act-runner.Dockerfile, Node 24 plus the Docker CLI and
+# git. The community images `act` used to default to are no longer published for
+# 24.04, and plain `node:24-bookworm` has no `docker` command, which the Docker
+# chapters need in order to smoke-test a built image.
+#
+# Build it with:
+#   docker build -f scripts/act-runner.Dockerfile -t cicd-act-runner:24 scripts
+PLATFORM_IMAGE="${PLATFORM_IMAGE:-cicd-act-runner:24}"
 
 if [[ ! -x "$ACT_BIN" ]]; then
   echo "act not found at $ACT_BIN" >&2
@@ -52,7 +57,35 @@ echo
 
 cd "$REPO_ROOT"
 
-args=(push --workflows "$WORKFLOW" -P "ubuntu-24.04=$PLATFORM_IMAGE" --pull=false)
+# --bind mounts the working directory into the container instead of copying it in.
+# OFF by default, and it must stay off for accuracy: with --bind, a later job sees
+# the previous job's files, which GitHub never does. It is switched on only by
+# scripts/verify-artifact-chain.sh, which runs producer and consumer as two
+# separate invocations and cleans up in between.
+#
+# NOTE ON ARTIFACTS: act 0.2.89 bundles an artifact server, but it cannot speak
+# the protocol used by actions/upload-artifact@v7 (it rejects the `mime_type`
+# field), so real artifact steps fail locally with:
+#   Error decode request body: unknown field "mime_type"
+# scripts/verify.sh detects that and re-runs with artifact steps replaced by
+# equivalent local tar operations. `--bind` is what makes that work: it mounts the
+# working directory into the container instead of copying it in, so files written
+# by one job are visible to the next job, exactly as GitHub's artifact service
+# would make them visible.
+# --bind is opt-in: set ACT_BIND=1 (or any non-empty value) to mount the working
+# directory into the container instead of copying it in.
+ACT_BIND_FLAG=()
+if [[ -n "${ACT_BIND:-}" ]]; then
+  ACT_BIND_FLAG=(--bind)
+fi
+
+args=(
+  push
+  --workflows "$WORKFLOW"
+  -P "ubuntu-24.04=$PLATFORM_IMAGE"
+  --pull=false
+  "${ACT_BIND_FLAG[@]+"${ACT_BIND_FLAG[@]}"}"
+)
 if [[ -n "$JOB" ]]; then
   args+=(-j "$JOB")
 fi

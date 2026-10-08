@@ -1,0 +1,154 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .tmp/sim-ch20.yml
+
+time="2026-10-08T15:36:09+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T15:36:09+06:00" level=info msg="deleted cache: &{ID:16 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22352326 Complete:true UsedAt:1791451862 CreatedAt:1791451774}" module=artifactcache
+[Artifacts/produce the build] ⭐ Run Set up job
+[Artifacts/produce the build] 🚀  Start image=node:24-bookworm
+[Artifacts/produce the build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Artifacts/produce the build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/produce the build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/produce the build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Artifacts/produce the build]   ✅  Success - Set up job
+[Artifacts/produce the build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Artifacts/produce the build] ⭐ Run Main actions/checkout@v7
+[Artifacts/produce the build]   ✅  Success - Main actions/checkout@v7 [557.882µs]
+[Artifacts/produce the build] ⭐ Run Main actions/setup-node@v7
+[Artifacts/produce the build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Artifacts/produce the build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Artifacts/produce the build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Artifacts/produce the build]   ❓  ::group::Environment details
+[Artifacts/produce the build]   | node: v22.23.3
+[Artifacts/produce the build]   | npm: 10.9.9
+[Artifacts/produce the build]   | yarn: 1.22.22
+[Artifacts/produce the build]   ❓  ::endgroup::
+[Artifacts/produce the build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Artifacts/produce the build]   | /root/.npm
+[Artifacts/produce the build]   ⚙  ***
+[Artifacts/produce the build]   | Cache Size: ~21 MB (22353020 B)
+[Artifacts/produce the build]   | [command]/usr/bin/tar -xf /tmp/dd8aeec4-0d34-44f5-aa9d-64365714ab47/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Artifacts/produce the build]   | Cache restored successfully
+[Artifacts/produce the build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Artifacts/produce the build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Artifacts/produce the build]   ✅  Success - Main actions/setup-node@v7 [1.320342283s]
+[Artifacts/produce the build]   ⚙  ::set-output:: node-version=v22.23.3
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-hit=true
+[Artifacts/produce the build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Artifacts/produce the build] ⭐ Run Main npm ci
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | added 127 packages, and audited 128 packages in 1s
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | 31 packages are looking for funding
+[Artifacts/produce the build]   |   run `npm fund` for details
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | found 0 vulnerabilities
+[Artifacts/produce the build]   ✅  Success - Main npm ci [1.415062161s]
+[Artifacts/produce the build] ⭐ Run Main Build, and produce a coverage report to upload as a second artifact
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | > cicd-learn@1.0.0 build
+[Artifacts/produce the build]   | > node build.mjs
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | built dist/app.js (2887 bytes)
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | > cicd-learn@1.0.0 coverage
+[Artifacts/produce the build]   | > vitest run --coverage
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Artifacts/produce the build]   |       [2mCoverage enabled with [22m[33mv8[39m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Artifacts/produce the build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Artifacts/produce the build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Artifacts/produce the build]   | [2m   Start at [22m 09:36:16
+[Artifacts/produce the build]   | [2m   Duration [22m 215ms[2m (transform 38%, worker 27%, import 24%, tests 11%)[22m
+[Artifacts/produce the build]   | 
+[Artifacts/produce the build]   | [34m % [39m[2mCoverage report from [22m[33mv8[39m
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   | File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   | All files |   93.33 |    71.42 |     100 |    92.3 |                   
+[Artifacts/produce the build]   |  app.js   |   66.66 |     62.5 |     100 |   66.66 | 15                
+[Artifacts/produce the build]   |  greet.js |     100 |       75 |     100 |     100 | 4                 
+[Artifacts/produce the build]   |  sum.js   |     100 |      100 |     100 |     100 |                   
+[Artifacts/produce the build]   | ----------|---------|----------|---------|---------|-------------------
+[Artifacts/produce the build]   ✅  Success - Main Build, and produce a coverage report to upload as a second artifact [1.037575203s]
+[Artifacts/produce the build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Artifacts/produce the build] ⭐ Run Main [simulated upload-artifact: dist]
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/4.sh] user= workdir=.
+[Artifacts/produce the build]   | -rw-r--r-- 1 root root 1468 Oct  8 09:36 .tmp/artifacts/dist.tar
+[Artifacts/produce the build]   | SIMULATED upload of cicd-learn/dist as dist
+[Artifacts/produce the build]   ✅  Success - Main [simulated upload-artifact: dist] [84.096189ms]
+[Artifacts/produce the build] ⭐ Run Main [simulated upload-artifact: coverage]
+[Artifacts/produce the build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/5.sh] user= workdir=.
+[Artifacts/produce the build]   | -rw-r--r-- 1 root root 1231 Oct  8 09:36 .tmp/artifacts/coverage.tar
+[Artifacts/produce the build]   | SIMULATED upload of cicd-learn/coverage/coverage-final.json as coverage
+[Artifacts/produce the build]   ✅  Success - Main [simulated upload-artifact: coverage] [87.928259ms]
+[Artifacts/produce the build] ⭐ Run Post actions/setup-node@v7
+[Artifacts/produce the build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Artifacts/produce the build]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Artifacts/produce the build]   | Cache Size: ~21 MB (22352885 B)
+[Artifacts/produce the build]   | Cache saved successfully
+[Artifacts/produce the build]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Artifacts/produce the build]   ✅  Success - Post actions/setup-node@v7 [939.928886ms]
+[Artifacts/produce the build] ⭐ Run Complete job
+[Artifacts/produce the build] Cleaning up container for job produce the build
+[Artifacts/produce the build]   ✅  Success - Complete job
+[Artifacts/produce the build] 🏁  Job succeeded
+[Artifacts/consume the build] ⭐ Run Set up job
+[Artifacts/consume the build] 🚀  Start image=node:24-bookworm
+[Artifacts/consume the build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Artifacts/consume the build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/consume the build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/consume the build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Artifacts/consume the build]   ✅  Success - Set up job
+[Artifacts/consume the build] ⭐ Run Main [simulated download-artifact: dist]
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0.sh] user= workdir=.
+[Artifacts/consume the build]   | SIMULATED download of dist into dist
+[Artifacts/consume the build]   ✅  Success - Main [simulated download-artifact: dist] [61.698204ms]
+[Artifacts/consume the build] ⭐ Run Main It is really there, and it still runs
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Artifacts/consume the build]   | total 8
+[Artifacts/consume the build]   | drwxr-xr-x 3 root root 4096 Oct  8 09:35 cicd-learn
+[Artifacts/consume the build]   | drwxr-xr-x 2 root root 4096 Oct  8 09:36 dist
+[Artifacts/consume the build]   | node:internal/modules/cjs/loader:1568
+[Artifacts/consume the build]   |   throw err;
+[Artifacts/consume the build]   |   ^
+[Artifacts/consume the build]   | 
+[Artifacts/consume the build]   | Error: Cannot find module '/home/sunny/app/nimo/cicd-docs/dist/app.js'
+[Artifacts/consume the build]   |     at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+[Artifacts/consume the build]   |     at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+[Artifacts/consume the build]   |     at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+[Artifacts/consume the build]   |     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+[Artifacts/consume the build]   |     at Module._load (node:internal/modules/cjs/loader:1341:5)
+[Artifacts/consume the build]   |     at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+[Artifacts/consume the build]   |     at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+[Artifacts/consume the build]   |     at node:internal/main/run_main_module:33:47 {
+[Artifacts/consume the build]   |   code: 'MODULE_NOT_FOUND',
+[Artifacts/consume the build]   |   requireStack: []
+[Artifacts/consume the build]   | }
+[Artifacts/consume the build]   | 
+[Artifacts/consume the build]   | Node.js v24.21.0
+[Artifacts/consume the build]   ❌  Failure - Main It is really there, and it still runs [91.037925ms]
+[Artifacts/consume the build] exitcode '1': failure
+[Artifacts/consume the build] ⭐ Run Complete job
+[Artifacts/consume the build]   ✅  Success - Complete job
+[Artifacts/consume the build] 🏁  Job failed
+Error: Job 'consume the build' failed
+
+### act exit status: 1

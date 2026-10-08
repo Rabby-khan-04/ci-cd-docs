@@ -1,0 +1,95 @@
+name: GITHUB_TOKEN permissions
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# ── Workflow-level default: the ceiling for every job in this file ───────────
+# Naming any permission sets every UNNAMED permission to `none`. So this line
+# does not mean "contents can read"; it means "contents can read and nothing
+# else has any access at all". That is the whole point: subtraction, not addition.
+permissions:
+  contents: read
+
+jobs:
+  # ── Narrowing further for a read-only job ────────────────────────────────
+  read-only:
+    name: read-only job
+    runs-on: ubuntu-24.04
+    # A job-level permissions block REPLACES the workflow-level one for this job.
+    # Job permissions can only ever be equal or narrower. A job cannot widen.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Prove it can read
+        # `gh` is preinstalled on GitHub runners, but it needs a token to make
+        # API calls. Passing GITHUB_TOKEN explicitly is the correct way, and the
+        # `permissions:` block above is what limits what that token can do.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "the token can read the repository"
+          gh api "repos/${{ github.repository }}" --jq '.full_name' \
+            && echo "the token really can read the repository" \
+            || echo "read failed, which would mean permissions: is too narrow"
+
+  # ── Widening for a job that genuinely needs to write ─────────────────────
+  # Example only. This job does NOT write anything; it exists to show the shape.
+  # Anything that writes to the repository belongs in a separate, deliberately
+  # scoped workflow, not in your CI file.
+  can-comment:
+    name: job that may comment (demonstration only)
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      # pull-requests: write is what lets a workflow comment on a PR.
+      # Issues permission is NOT implied by it.
+      pull-requests: write
+    steps:
+      - name: Explain, do not post
+        run: |
+          echo "This job could comment on pull requests."
+          echo "It does not, because posting a comment nobody asked for is noise."
+          echo "The real workflow would be:"
+          echo "  gh pr comment \$PR_NUMBER --body '...' --repo \${{ github.repository }}"
+          echo "and it would need:"
+          echo "  GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}"
+          echo "  GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}"
+          echo "Which is why permissions are declared per job, not per file."
+
+  # ── No permissions at all: the token cannot even read code ───────────────
+  nothing:
+    name: job with no permissions
+    runs-on: ubuntu-24.04
+    # `permissions: {}` means literally nothing is permitted. A job like this
+    # cannot use actions/checkout, because checkout needs `contents: read`.
+    permissions: {}
+    steps:
+      - name: No checkout is possible here
+        run: |
+          echo "This job has an empty permissions block."
+          echo "Try adding actions/checkout to it: it will fail, because the token"
+          echo "cannot read the repository contents."
+
+  # ── Why this matters: pull_request_target ────────────────────────────────
+  # THE most dangerous trigger. Unlike `pull_request`, a `pull_request_target`
+  # workflow runs with the BASE branch's workflow file and the base repository's
+  # secrets, EVEN when the pull request comes from a fork.
+  #
+  # That means: if you check out the fork's code and run it, you have just handed
+  # an anonymous contributor your production secrets.
+  #
+  # The rule: never combine `pull_request_target` with checking out and running
+  # untrusted code. Use `pull_request` for that. Chapter 26 covers the attack.
+  danger:
+    name: what NOT to do
+    runs-on: ubuntu-24.04
+    # This job is guarded off deliberately. Uncomment both lines to see the
+    # shape of the bug this trigger enables.
+    if: false
+    steps:
+      - name: NEVER DO THIS
+        run: |
+          echo "echo NEVER DO THIS"

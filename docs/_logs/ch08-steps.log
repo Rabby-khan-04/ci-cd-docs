@@ -1,0 +1,72 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/08-jobs-and-steps.yml
+
+time="2026-10-08T15:19:21+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Jobs and steps/run versus uses] ⭐ Run Set up job
+[Jobs and steps/run versus uses] 🚀  Start image=node:24-bookworm
+[Jobs and steps/run versus uses]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Jobs and steps/run versus uses]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and steps/run versus uses]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Jobs and steps/run versus uses]   ✅  Success - Set up job
+[Jobs and steps/run versus uses] ⭐ Run Main actions/checkout@v7
+[Jobs and steps/run versus uses]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Jobs and steps/run versus uses]   ✅  Success - Main actions/checkout@v7 [42.215463ms]
+[Jobs and steps/run versus uses] ⭐ Run Main An action with inputs
+[Jobs and steps/run versus uses]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Jobs and steps/run versus uses]   ✅  Success - Main An action with inputs [36.856811ms]
+[Jobs and steps/run versus uses] ⭐ Run Main A run step, with a multi-line script
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | this is a bash script
+[Jobs and steps/run versus uses]   | line count: 3
+[Jobs and steps/run versus uses]   ✅  Success - Main A run step, with a multi-line script [60.9328ms]
+[Jobs and steps/run versus uses] ⭐ Run Main A one-line run step
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | no block scalar needed for one line
+[Jobs and steps/run versus uses]   ✅  Success - Main A one-line run step [58.862633ms]
+[Jobs and steps/run versus uses] ⭐ Run Main Write a file in one step
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   ✅  Success - Main Write a file in one step [66.368828ms]
+[Jobs and steps/run versus uses] ⭐ Run Main Read it in the NEXT step, same job
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | written by step one
+[Jobs and steps/run versus uses]   | steps in one job share a filesystem
+[Jobs and steps/run versus uses]   ✅  Success - Main Read it in the NEXT step, same job [59.504387ms]
+[Jobs and steps/run versus uses] ⭐ Run Main env at step scope, plus override
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | SCOPE   : step
+[Jobs and steps/run versus uses]   | OVERRIDE: from the step
+[Jobs and steps/run versus uses]   ✅  Success - Main env at step scope, plus override [61.505627ms]
+[Jobs and steps/run versus uses] ⭐ Run Main Produce a value for later steps
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/produce] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   ✅  Success - Main Produce a value for later steps [60.808583ms]
+[Jobs and steps/run versus uses]   ⚙  ::set-env:: FROM_ENV=set by an earlier step
+[Jobs and steps/run versus uses]   ⚙  ::set-output:: computed=42
+[Jobs and steps/run versus uses]   ⚙  Summary - hello there
+[Jobs and steps/run versus uses] ⭐ Run Main Use that value
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/8] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | the answer is 42
+[Jobs and steps/run versus uses]   | env value : set by an earlier step
+[Jobs and steps/run versus uses]   ✅  Success - Main Use that value [56.954298ms]
+[Jobs and steps/run versus uses] ⭐ Run Main Fails, but the job survives
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/soft-fail] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | about to exit 1
+[Jobs and steps/run versus uses] Failed but continue next step
+[Jobs and steps/run versus uses]   ❌  Failure - Main Fails, but the job survives [57.114737ms]
+[Jobs and steps/run versus uses] ⭐ Run Main Proof the job continued, and how to read the step's conclusion
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/12] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | previous step conclusion: failure
+[Jobs and steps/run versus uses]   | job status              : success
+[Jobs and steps/run versus uses]   ✅  Success - Main Proof the job continued, and how to read the step's conclusion [63.627413ms]
+[Jobs and steps/run versus uses] ⭐ Run Main A quick step with a generous timeout
+[Jobs and steps/run versus uses]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/13] user= workdir=cicd-learn
+[Jobs and steps/run versus uses]   | a step can have its own timeout too
+[Jobs and steps/run versus uses]   ✅  Success - Main A quick step with a generous timeout [60.380941ms]
+[Jobs and steps/run versus uses] ⭐ Run Complete job
+[Jobs and steps/run versus uses] Cleaning up container for job run versus uses
+[Jobs and steps/run versus uses]   ✅  Success - Complete job
+[Jobs and steps/run versus uses] 🏁  Job succeeded
+
+### act exit status: 0

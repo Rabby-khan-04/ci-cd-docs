@@ -1,0 +1,69 @@
+name: Install step
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  # ── The correct install: npm ci ────────────────────────────────────────────
+  install:
+    name: npm ci
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+
+      # `npm ci` installs exactly what package-lock.json pins, and FAILS if
+      # package.json and the lock file disagree. That is the behaviour you want
+      # in CI: a mismatch means someone committed a change without the lock file
+      # update, and silently picking one of the two would hide it.
+      - name: Install from the lock file
+        run: npm ci
+
+      - name: Prove the tree matches the lock file exactly
+        run: |
+          # `npm ls` exits non-zero if the installed tree disagrees with the
+          # declared dependencies. In CI that is the check, not the output.
+          npm ls --depth=0
+          echo "exit code from npm ls: $?"
+
+      # ── What npm install would have done, shown but not run ───────────────
+      # `npm install` is free to UPDATE package-lock.json. In CI that means your
+      # build is not the build you tested. Never use it in a pipeline.
+      #
+      # Uncomment to see the difference. It rewrites the lock file, which is
+      # exactly the behaviour you do not want.
+      #
+      # - name: What npm install does
+      #   run: |
+      #     cp package-lock.json /tmp/lock.before
+      #     npm install
+      #     diff /tmp/lock.before package-lock.json && echo "lock file unchanged"
+
+      # ── The failure npm ci is designed to catch ───────────────────────────
+      # A hand-edited package.json with a stale lock file:
+      #
+      #   Error: `npm ci` can only install packages when your package.json and
+      #   package-lock.json are in sync. Please update your lock file with
+      #   `npm install` before continuing.
+      #
+      #   npm ci can only install packages when your package.json and
+      #   package-lock.json or npm-shrinkwrap.json are in sync with your
+      #   node_modules. Please update your lock file with `npm install` before
+      #   continuing.
+      #   npm ERR! Exit status 1
+      #
+      # Reproduce it deliberately: add a dependency to package.json without
+      # running npm install, and `npm ci` stops. That is a feature.

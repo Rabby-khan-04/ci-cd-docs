@@ -1,0 +1,70 @@
+name: Reading logs
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  reading:
+    name: Log reading features
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      # ── Writing to the log ────────────────────────────────────────────────
+      - name: Ordinary output
+        run: |
+          echo "this goes to the log as normal output"
+
+      # Grouping. The UI collapses a group into one clickable line. Use it for
+      # verbose output you want available but not staring at you.
+      - name: Grouped output
+        run: |
+          {
+            echo "::group::Installing dependencies"
+            echo "resolved 128 packages"
+            echo "audited 128 packages"
+            echo "::endgroup::"
+            echo "and here is the important part, ungrouped"
+          }
+
+      # ── Annotations: how warnings and errors appear in the PR diff ─────────
+      # The UI turns these into coloured annotations next to the file and line
+      # that produced them. `::error file=...,line=...::message`
+      - name: Emit annotations
+        run: |
+          echo "::warning file=src/greet.js,line=4,title=Empty name::Name is allowed to be empty here"
+          echo "::error file=src/sum.js,line=2,title=Unused function::sum is exported but never called"
+
+      # ── Writing a run summary ─────────────────────────────────────────────
+      # Rendered as markdown under the run. This is the right place for the
+      # "what happened, in one screen" version of your results.
+      - name: Write a run summary
+        run: |
+          {
+            echo "## Log reading demo"
+            echo ""
+            echo "| Field | Value |"
+            echo "| ----- | ----- |"
+            echo "| Node | $(node --version) |"
+            echo "| Branch | \`${{ github.ref_name }}\` |"
+            echo "| Commit | \`${GITHUB_SHA::8}\` |"
+            echo ""
+            echo "This block is markdown, so it renders in the run summary."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ── Exit codes, demonstrated ──────────────────────────────────────────
+      - name: Exit code 1 is a plain failure
+        if: false          # disabled by default; uncomment to see it fail
+        run: exit 1
+
+      - name: Exit code 0 is success
+        run: exit 0

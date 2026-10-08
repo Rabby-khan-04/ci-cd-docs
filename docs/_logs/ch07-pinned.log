@@ -1,0 +1,36 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/07-runners.yml
+
+time="2026-10-08T15:18:30+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Runners/ubuntu-24.04 (pinned)] ⭐ Run Set up job
+[Runners/ubuntu-24.04 (pinned)] 🚀  Start image=node:24-bookworm
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Runners/ubuntu-24.04 (pinned)]   ✅  Success - Set up job
+[Runners/ubuntu-24.04 (pinned)] ⭐ Run Main actions/checkout@v7
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Runners/ubuntu-24.04 (pinned)]   ✅  Success - Main actions/checkout@v7 [45.067683ms]
+[Runners/ubuntu-24.04 (pinned)] ⭐ Run Main What is preinstalled
+[Runners/ubuntu-24.04 (pinned)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=cicd-learn
+[Runners/ubuntu-24.04 (pinned)]   | runner image : ubuntu-24.04
+[Runners/ubuntu-24.04 (pinned)]   | runner os    : Linux
+[Runners/ubuntu-24.04 (pinned)]   | runner arch  : X64
+[Runners/ubuntu-24.04 (pinned)]   | cpus         : 8
+[Runners/ubuntu-24.04 (pinned)]   | memory       : 15Gi
+[Runners/ubuntu-24.04 (pinned)]   | --- preinstalled ---
+[Runners/ubuntu-24.04 (pinned)]   | git version 2.39.5
+[Runners/ubuntu-24.04 (pinned)]   | Python 3.11.2
+[Runners/ubuntu-24.04 (pinned)]   | curl 7.88.1 (x86_64-pc-linux-gnu) libcurl/7.88.1 OpenSSL/3.0.22 zlib/1.2.13 brotli/1.0.9 zstd/1.5.4 libidn2/2.3.3 libpsl/0.21.2 (+libidn2/2.3.3) libssh2/1.10.0 nghttp2/1.52.0 librtmp/2.3 OpenLDAP/2.5.13
+[Runners/ubuntu-24.04 (pinned)]   | v24.21.0
+[Runners/ubuntu-24.04 (pinned)]   | --- from the image, not from our project ---
+[Runners/ubuntu-24.04 (pinned)]   ✅  Success - Main What is preinstalled [81.012104ms]
+[Runners/ubuntu-24.04 (pinned)] ⭐ Run Complete job
+[Runners/ubuntu-24.04 (pinned)] Cleaning up container for job ubuntu-24.04 (pinned)
+[Runners/ubuntu-24.04 (pinned)]   ✅  Success - Complete job
+[Runners/ubuntu-24.04 (pinned)] 🏁  Job succeeded
+
+### act exit status: 0

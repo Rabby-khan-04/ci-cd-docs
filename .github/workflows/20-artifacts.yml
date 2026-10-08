@@ -1,0 +1,109 @@
+name: Artifacts
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  produce:
+    name: produce the build
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - name: Build, and produce a coverage report to upload as a second artifact
+        run: |
+          npm run build
+          npm run coverage
+
+      # ── Upload ────────────────────────────────────────────────────────────
+      # name:  what this artifact is called. Downstream jobs match on it.
+      # path:  relative to the WORKSPACE ROOT, not to working-directory. This is
+      #        the number one artifact bug: `path: dist` silently uploads
+      #        nothing when working-directory is cicd-learn, and with
+      #        if-no-files-found: error you get a confusing failure.
+      # retention-days: default is 90. Lower it for anything large.
+      # if-no-files-found: error | warn | ignore. Default is warn, which means a
+      #        missing path gives you a warning and a green job that produced
+      #        nothing. Use `error`.
+      - name: Upload dist
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: cicd-learn/dist
+          retention-days: 7
+          if-no-files-found: error
+
+      # A second artifact: the report, not the build. Keeping them separate
+      # means a consumer can download just the report.
+      - name: Upload the coverage summary as JSON
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: cicd-learn/coverage/coverage-final.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+  # ── Download on another machine ───────────────────────────────────────────
+  # This job has a brand new workspace. The only way dist/app.js can appear
+  # here is if it is downloaded as an artifact.
+  consume:
+    name: consume the build
+    runs-on: ubuntu-24.04
+    needs: [produce]
+    steps:
+      # No checkout, and no working-directory: both would point at a directory
+      # that does not exist until checkout runs.
+      - name: Download dist
+        uses: actions/download-artifact@v8
+        with:
+          # Which artifact. Omit `name` to get every artifact at once.
+          name: dist
+          # Where to put it. This path is relative to the workspace root.
+          path: dist
+
+      - name: It is really there, and it still runs
+        run: |
+          ls -l dist/
+          node dist/app.js Ada
+
+      - name: Proof it came from the other machine, not from a build here
+        run: |
+          # No checkout and no npm ci in this job, so these cannot have been
+          # produced here.
+          echo "dist/app.js is $(wc -c < dist/app.js) bytes"
+          test -d node_modules && echo "node_modules exists (unexpected)" || echo "no node_modules, as expected"
+
+      # ── The upload_everything: always() case ───────────────────────────────
+      # A normal step is SKIPPED if an earlier step failed. So if you want to
+      # upload a log or a failure report after something breaks, `always()` is
+      # mandatory. Without it, the most useful artifact is the one you lose.
+      - name: Always upload, even after a failure
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: always-present
+          path: cicd-learn/package.json
+          retention-days: 1
+          if-no-files-found: warn
+
+  # ── Why jobs cannot just read each other's files ──────────────────────────
+  # The runner is a fresh machine per job. It is destroyed afterwards. Anything
+  # that must outlive the job has to be saved explicitly: as an artifact (a
+  # build output), as a cache (a download cache), or as a commit (source).
+  #
+  # v4+ of upload-artifact made artifacts IMMUTABLE: a name can only be written
+  # once per run. Two jobs uploading the same name will fail the second one.
+  # Append a unique suffix when several jobs write similar things.

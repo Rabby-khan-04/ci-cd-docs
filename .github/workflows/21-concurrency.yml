@@ -1,0 +1,90 @@
+name: Concurrency
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      group:
+        description: 'Concurrency group suffix, to show two runs colliding'
+        required: false
+        default: 'a'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  # ── One workflow run at a time per branch ─────────────────────────────────
+  # The core idea: a new push makes the in-flight run obsolete, so cancel it.
+  # Without this, five pushes in a minute queue five full CI runs to check
+  # commits nobody cares about any more.
+  ci:
+    name: CI
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+
+    # ── The concurrency block ───────────────────────────────────────────────
+    # group:   a name. Runs sharing a name are mutually exclusive.
+    # cancel-in-progress: what to do when a new run wants the group.
+    #
+    # `github.workflow` and `github.ref` are expressions, so the group name is
+    # built per branch. Without `github.ref`, every branch's CI would queue
+    # behind a single group, and a busy PR branch would block main.
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  # ── The opposite policy for deploys ───────────────────────────────────────
+  # NEVER cancel a deploy. Two concurrent deploys to the same environment is
+  # precisely the failure you are trying to avoid, and cancelling the one that is
+  # halfway through leaves you in a worse state than either finishing.
+  deploy:
+    name: Deploy (never cancelled)
+    runs-on: ubuntu-24.04
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [ci]
+    concurrency:
+      group: deploy-production
+      # false: this run WAITS for the in-flight deploy to finish. Pending runs
+      # queue. There is at most one in-flight production deploy, always.
+      cancel-in-progress: false
+    steps:
+      - name: Report the environment lock
+        run: |
+          echo "This job is serialized behind any in-flight production deploy."
+          echo "A second push waits here rather than cancelling the first."
+          echo "run id: ${{ github.run_id }}"
+          echo "attempt: ${{ github.run_attempt }}"
+
+  # ── Two manual runs colliding, to make the group visible ──────────────────
+  collides:
+    name: Demonstrate a collision
+    runs-on: ubuntu-24.04
+    # The manual input makes the group name different per run, so you can watch
+    # two runs with the SAME suffix queue against each other.
+    concurrency:
+      group: collision-demo-${{ inputs.group || 'a' }}
+      cancel-in-progress: true
+    steps:
+      - name: Hold the group for a moment
+        run: |
+          echo "holding the group 'collision-demo-${{ inputs.group || 'a' }}'"
+          sleep 10
+          echo "released"

@@ -1,0 +1,131 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .tmp/sim-ci15.yml
+
+time="2026-10-08T15:26:23+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[CI/Lint, test, build] ⭐ Run Set up job
+[CI/Lint, test, build] 🚀  Start image=node:24-bookworm
+[CI/Lint, test, build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[CI/Lint, test, build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI/Lint, test, build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI/Lint, test, build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI/Lint, test, build]   ✅  Success - Set up job
+[CI/Lint, test, build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[CI/Lint, test, build] ⭐ Run Main actions/checkout@v7
+[CI/Lint, test, build]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[CI/Lint, test, build]   ✅  Success - Main actions/checkout@v7 [46.452705ms]
+[CI/Lint, test, build] ⭐ Run Main actions/setup-node@v7
+[CI/Lint, test, build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[CI/Lint, test, build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[CI/Lint, test, build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[CI/Lint, test, build]   ❓  ::group::Environment details
+[CI/Lint, test, build]   | node: v22.23.3
+[CI/Lint, test, build]   | npm: 10.9.9
+[CI/Lint, test, build]   | yarn: 1.22.22
+[CI/Lint, test, build]   ❓  ::endgroup::
+[CI/Lint, test, build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[CI/Lint, test, build]   | /root/.npm
+[CI/Lint, test, build]   ⚙  ***
+[CI/Lint, test, build]   | Cache Size: ~21 MB (22346721 B)
+[CI/Lint, test, build]   | [command]/usr/bin/tar -xf /tmp/84cedcc8-2d7c-498e-a1ab-7491f4d4b671/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[CI/Lint, test, build]   | Cache restored successfully
+[CI/Lint, test, build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[CI/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[CI/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[CI/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[CI/Lint, test, build]   ✅  Success - Main actions/setup-node@v7 [1.29852212s]
+[CI/Lint, test, build]   ⚙  ::set-output:: cache-hit=true
+[CI/Lint, test, build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[CI/Lint, test, build]   ⚙  ::set-output:: node-version=v22.23.3
+[CI/Lint, test, build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[CI/Lint, test, build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[CI/Lint, test, build] ⭐ Run Main Install dependencies
+[CI/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | added 127 packages, and audited 128 packages in 1s
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | 31 packages are looking for funding
+[CI/Lint, test, build]   |   run `npm fund` for details
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | found 0 vulnerabilities
+[CI/Lint, test, build]   ✅  Success - Main Install dependencies [1.363436232s]
+[CI/Lint, test, build] ⭐ Run Main 1. Lint
+[CI/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | > cicd-learn@1.0.0 lint
+[CI/Lint, test, build]   | > eslint .
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   ✅  Success - Main 1. Lint [554.276731ms]
+[CI/Lint, test, build] ⭐ Run Main 2. Test
+[CI/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | > cicd-learn@1.0.0 test
+[CI/Lint, test, build]   | > vitest run
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[CI/Lint, test, build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[CI/Lint, test, build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[CI/Lint, test, build]   | [2m   Start at [22m 09:26:30
+[CI/Lint, test, build]   | [2m   Duration [22m 161ms[2m (transform 51%, import 26%, tests 13%, worker 9%)[22m
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   ✅  Success - Main 2. Test [714.244802ms]
+[CI/Lint, test, build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[CI/Lint, test, build] ⭐ Run Main 3. Build
+[CI/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | > cicd-learn@1.0.0 build
+[CI/Lint, test, build]   | > node build.mjs
+[CI/Lint, test, build]   | 
+[CI/Lint, test, build]   | built dist/app.js (2887 bytes)
+[CI/Lint, test, build]   ✅  Success - Main 3. Build [246.093875ms]
+[CI/Lint, test, build] ⭐ Run Main [simulated upload-artifact: dist]
+[CI/Lint, test, build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/6.sh] user= workdir=.
+[CI/Lint, test, build]   | -rw-r--r-- 1 root root 1478 Oct  8 09:26 /home/sunny/app/nimo/cicd-docs/.tmp/artifacts/dist.tar
+[CI/Lint, test, build]   | SIMULATED upload of cicd-learn/dist as dist
+[CI/Lint, test, build]   ✅  Success - Main [simulated upload-artifact: dist] [81.974886ms]
+[CI/Lint, test, build] ⭐ Run Post actions/setup-node@v7
+[CI/Lint, test, build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[CI/Lint, test, build]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[CI/Lint, test, build]   | Cache Size: ~21 MB (22346750 B)
+[CI/Lint, test, build]   | Cache saved successfully
+[CI/Lint, test, build]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[CI/Lint, test, build]   ✅  Success - Post actions/setup-node@v7 [960.458058ms]
+[CI/Lint, test, build] ⭐ Run Complete job
+[CI/Lint, test, build] Cleaning up container for job Lint, test, build
+[CI/Lint, test, build]   ✅  Success - Complete job
+[CI/Lint, test, build] 🏁  Job succeeded
+[CI/Release ready    ] ⭐ Run Set up job
+[CI/Release ready    ] 🚀  Start image=node:24-bookworm
+[CI/Release ready    ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[CI/Release ready    ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI/Release ready    ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CI/Release ready    ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CI/Release ready    ]   ✅  Success - Set up job
+[CI/Release ready    ] ⭐ Run Main Everything passed
+[CI/Release ready    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[CI/Release ready    ]   | quality gate passed
+[CI/Release ready    ]   | commit  : aa4fe9e164daa8cb6ac189d751ca2a0e15ab0b5a
+[CI/Release ready    ]   | branch  : main
+[CI/Release ready    ]   | event   : push
+[CI/Release ready    ]   ✅  Success - Main Everything passed [58.272322ms]
+[CI/Release ready    ]   ⚙  Summary - ### CI passed
+
+This job does no work. It exists so that 'everything is green'
+is a thing you can attach other things to.
+[CI/Release ready    ] ⭐ Run Complete job
+[CI/Release ready    ] Cleaning up container for job Release ready
+[CI/Release ready    ]   ✅  Success - Complete job
+[CI/Release ready    ] 🏁  Job succeeded
+
+### act exit status: 0

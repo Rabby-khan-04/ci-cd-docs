@@ -1,0 +1,68 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/25-token-permissions.yml
+
+time="2026-10-08T15:41:30+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T15:41:30+06:00" level=info msg="deleted cache: &{ID:19 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22353020 Complete:true UsedAt:1791452173 CreatedAt:1791452146}" module=artifactcache
+[GITHUB_TOKEN permissions/job with no permissions                  ] ⭐ Run Set up job
+[GITHUB_TOKEN permissions/read-only job                            ] ⭐ Run Set up job
+[GITHUB_TOKEN permissions/job with no permissions                  ] 🚀  Start image=node:24-bookworm
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] ⭐ Run Set up job
+[GITHUB_TOKEN permissions/read-only job                            ] 🚀  Start image=node:24-bookworm
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] 🚀  Start image=node:24-bookworm
+[GITHUB_TOKEN permissions/job with no permissions                  ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/job with no permissions                  ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/job with no permissions                  ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   ✅  Success - Set up job
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[GITHUB_TOKEN permissions/job with no permissions                  ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] ⭐ Run Main Explain, do not post
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[GITHUB_TOKEN permissions/read-only job                            ]   ✅  Success - Set up job
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   | This job could comment on pull requests.
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   | It does not, because posting a comment nobody asked for is noise.
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   | The real workflow would be:
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   |   gh pr comment $PR_NUMBER --body '...' --repo \nektos/act
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   | and it would need:
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   |   GITHUB_TOKEN: \***
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   |   GH_TOKEN: \***
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   | Which is why permissions are declared per job, not per file.
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   ✅  Success - Main Explain, do not post [64.292094ms]
+[GITHUB_TOKEN permissions/job with no permissions                  ]   ✅  Success - Set up job
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] ⭐ Run Complete job
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] Cleaning up container for job job that may comment (demonstration only)
+[GITHUB_TOKEN permissions/read-only job                            ] ⭐ Run Main actions/checkout@v7
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[GITHUB_TOKEN permissions/job with no permissions                  ] ⭐ Run Main No checkout is possible here
+[GITHUB_TOKEN permissions/job with no permissions                  ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[GITHUB_TOKEN permissions/read-only job                            ]   ✅  Success - Main actions/checkout@v7 [59.215875ms]
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)]   ✅  Success - Complete job
+[GITHUB_TOKEN permissions/job that may comment (demonstration only)] 🏁  Job succeeded
+[GITHUB_TOKEN permissions/job with no permissions                  ]   | This job has an empty permissions block.
+[GITHUB_TOKEN permissions/job with no permissions                  ]   | Try adding actions/checkout to it: it will fail, because the token
+[GITHUB_TOKEN permissions/job with no permissions                  ]   | cannot read the repository contents.
+[GITHUB_TOKEN permissions/job with no permissions                  ]   ✅  Success - Main No checkout is possible here [65.102458ms]
+[GITHUB_TOKEN permissions/job with no permissions                  ] ⭐ Run Complete job
+[GITHUB_TOKEN permissions/job with no permissions                  ] Cleaning up container for job job with no permissions
+[GITHUB_TOKEN permissions/read-only job                            ] ⭐ Run Main Prove it can read
+[GITHUB_TOKEN permissions/read-only job                            ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[GITHUB_TOKEN permissions/read-only job                            ]   | the token can read the repository
+[GITHUB_TOKEN permissions/read-only job                            ]   | /var/run/act/workflow/1: line 3: gh: command not found
+[GITHUB_TOKEN permissions/read-only job                            ]   | read failed, which would mean permissions: is too narrow
+[GITHUB_TOKEN permissions/read-only job                            ]   ✅  Success - Main Prove it can read [60.149184ms]
+[GITHUB_TOKEN permissions/read-only job                            ] ⭐ Run Complete job
+[GITHUB_TOKEN permissions/read-only job                            ] Cleaning up container for job read-only job
+[GITHUB_TOKEN permissions/job with no permissions                  ]   ✅  Success - Complete job
+[GITHUB_TOKEN permissions/job with no permissions                  ] 🏁  Job succeeded
+[GITHUB_TOKEN permissions/read-only job                            ]   ✅  Success - Complete job
+[GITHUB_TOKEN permissions/read-only job                            ] 🏁  Job succeeded
+
+### act exit status: 0

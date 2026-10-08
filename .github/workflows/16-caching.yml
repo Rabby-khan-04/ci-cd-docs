@@ -1,0 +1,106 @@
+name: Caching
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── The simple path: setup-node's built-in npm cache ──────────────────────
+  # `cache: 'npm'` caches the npm *download* cache (~/.npm), NOT node_modules.
+  # Paired with `npm ci`, the lock file is hashed into the cache key, so a
+  # dependency change means a new key and therefore a fresh install.
+  with-cache:
+    name: Install with cache
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          # Required when the lock file is not at the repo root. Without it:
+          #   ::error::Dependencies lock file is not found in <repo>
+          cache-dependency-path: cicd-learn/package-lock.json
+
+      - name: Show what the cache key is made of
+        run: |
+          echo "npm cache dir: $(npm config get cache)"
+          echo "lock file    : $(wc -c < package-lock.json) bytes"
+          # The key is OS + arch + package manager + hash of the lock file.
+          # Change the lock file, change the key, lose the cache. That is the
+          # design: it is impossible to restore a cache built for other
+          # dependencies.
+
+      - name: Install (first run populates the cache, later runs restore it)
+        run: npm ci
+
+      - name: Time it
+        run: |
+          echo "install finished; see the step timing in the Actions tab"
+
+  # ── What the cache does NOT do ────────────────────────────────────────────
+  # Caching node_modules directly is a common and unwise idea: it breaks when the
+  # OS, Node version or libc differs, and it silently ships stale build artifacts
+  # and native modules. npm's own download cache is content-addressed, so it is
+  # safe. Cache downloads, not installed trees.
+
+  # ── The manual version, for other ecosystems ──────────────────────────────
+  manual:
+    name: Manual cache with actions/cache
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+
+      # actions/cache is the general-purpose version. You supply two things:
+      #   path    what to store
+      #   key     the name it is stored under, which must change when the
+      #           contents would differ
+      #
+      # Here we cache the build output, keyed on the lock file, so a rebuild
+      # triggered only by a source change can skip work that did not change.
+      - name: Restore the esbuild cache
+        id: esbuild-cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            cicd-learn/node_modules/.cache/esbuild
+            cicd-learn/.build-cache
+          # `${{ runner.os }}` and `${{ hashFiles(...) }}` are both expressions.
+          # hashFiles is the important one: it is what makes the key content-based
+          # instead of time-based.
+          key: esbuild-${{ runner.os }}-${{ hashFiles('cicd-learn/package-lock.json') }}
+
+      # A cache-hit is a boolean output, so you can branch on it.
+      - name: Report the hit or miss
+        run: |
+          echo "cache hit: ${{ steps.esbuild-cache.outputs.cache-hit }}"
+          echo "cache key: ${{ steps.esbuild-cache.outputs.cache-key }}"
+          if [ "${{ steps.esbuild-cache.outputs.cache-hit }}" = "true" ]; then
+            echo "restored from a previous run"
+          else
+            echo "cold cache; this run will populate it"
+          fi
+
+      - run: npm ci
+      - name: Build, warming the cache
+        run: |
+          mkdir -p .build-cache
+          npm run build
+          # Stand-in for a real expensive build step's intermediate output.
+          cp dist/app.js .build-cache/
+          du -sh .build-cache

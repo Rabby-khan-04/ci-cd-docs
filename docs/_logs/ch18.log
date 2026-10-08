@@ -1,0 +1,291 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .tmp/sim-ch18.yml
+
+time="2026-10-08T15:29:24+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T15:29:24+06:00" level=info msg="deleted cache: &{ID:2 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22348597 Complete:true UsedAt:1791451456 CreatedAt:1791451440}" module=artifactcache
+[Job dependencies and parallelism/lint  ] ⭐ Run Set up job
+[Job dependencies and parallelism/bundle] ⭐ Run Set up job
+[Job dependencies and parallelism/test  ] ⭐ Run Set up job
+[Job dependencies and parallelism/bundle] 🚀  Start image=node:24-bookworm
+[Job dependencies and parallelism/lint  ] 🚀  Start image=node:24-bookworm
+[Job dependencies and parallelism/test  ] 🚀  Start image=node:24-bookworm
+[Job dependencies and parallelism/test  ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Job dependencies and parallelism/lint  ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Job dependencies and parallelism/bundle]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Job dependencies and parallelism/test  ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/lint  ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/test  ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/lint  ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/bundle]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/test  ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Job dependencies and parallelism/lint  ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Job dependencies and parallelism/bundle]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/test  ]   ✅  Success - Set up job
+[Job dependencies and parallelism/test  ]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Job dependencies and parallelism/lint  ]   ✅  Success - Set up job
+[Job dependencies and parallelism/lint  ]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Job dependencies and parallelism/bundle]   ✅  Success - Set up job
+[Job dependencies and parallelism/bundle]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Job dependencies and parallelism/test  ] ⭐ Run Main actions/checkout@v7
+[Job dependencies and parallelism/test  ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Job dependencies and parallelism/test  ]   ✅  Success - Main actions/checkout@v7 [57.005324ms]
+[Job dependencies and parallelism/test  ] ⭐ Run Main actions/setup-node@v7
+[Job dependencies and parallelism/test  ]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Job dependencies and parallelism/test  ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Job dependencies and parallelism/test  ]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Job dependencies and parallelism/test  ]   ❓  ::group::Environment details
+[Job dependencies and parallelism/lint  ] ⭐ Run Main actions/checkout@v7
+[Job dependencies and parallelism/lint  ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Job dependencies and parallelism/lint  ]   ✅  Success - Main actions/checkout@v7 [68.901898ms]
+[Job dependencies and parallelism/lint  ] ⭐ Run Main actions/setup-node@v7
+[Job dependencies and parallelism/lint  ]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Job dependencies and parallelism/test  ]   | node: v22.23.3
+[Job dependencies and parallelism/test  ]   | npm: 10.9.9
+[Job dependencies and parallelism/test  ]   | yarn: 1.22.22
+[Job dependencies and parallelism/test  ]   ❓  ::endgroup::
+[Job dependencies and parallelism/test  ]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Job dependencies and parallelism/test  ]   | /root/.npm
+[Job dependencies and parallelism/test  ]   ⚙  ***
+[Job dependencies and parallelism/test  ]   | Cache Size: ~21 MB (22344997 B)
+[Job dependencies and parallelism/test  ]   | [command]/usr/bin/tar -xf /tmp/80a42f6e-28e0-4994-8df3-c430ac003a1a/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Job dependencies and parallelism/lint  ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Job dependencies and parallelism/test  ]   | Cache restored successfully
+[Job dependencies and parallelism/test  ]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/test  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Job dependencies and parallelism/test  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Job dependencies and parallelism/test  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Job dependencies and parallelism/test  ]   ✅  Success - Main actions/setup-node@v7 [1.868320102s]
+[Job dependencies and parallelism/test  ]   ⚙  ::set-output:: node-version=v22.23.3
+[Job dependencies and parallelism/test  ]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/test  ]   ⚙  ::set-output:: cache-hit=true
+[Job dependencies and parallelism/test  ]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/test  ]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Job dependencies and parallelism/test  ] ⭐ Run Main npm ci
+[Job dependencies and parallelism/test  ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Job dependencies and parallelism/bundle] ⭐ Run Main actions/checkout@v7
+[Job dependencies and parallelism/bundle]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Job dependencies and parallelism/lint  ]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Job dependencies and parallelism/lint  ]   ❓  ::group::Environment details
+[Job dependencies and parallelism/bundle]   ✅  Success - Main actions/checkout@v7 [69.496432ms]
+[Job dependencies and parallelism/bundle] ⭐ Run Main actions/setup-node@v7
+[Job dependencies and parallelism/bundle]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Job dependencies and parallelism/lint  ]   | node: v22.23.3
+[Job dependencies and parallelism/lint  ]   | npm: 10.9.9
+[Job dependencies and parallelism/lint  ]   | yarn: 1.22.22
+[Job dependencies and parallelism/lint  ]   ❓  ::endgroup::
+[Job dependencies and parallelism/lint  ]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Job dependencies and parallelism/lint  ]   | /root/.npm
+[Job dependencies and parallelism/lint  ]   ⚙  ***
+[Job dependencies and parallelism/lint  ]   | Cache Size: ~21 MB (22344997 B)
+[Job dependencies and parallelism/lint  ]   | [command]/usr/bin/tar -xf /tmp/02a5f615-eab8-45ca-a2f9-317b8be2828b/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Job dependencies and parallelism/lint  ]   | Cache restored successfully
+[Job dependencies and parallelism/lint  ]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/lint  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Job dependencies and parallelism/lint  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Job dependencies and parallelism/lint  ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Job dependencies and parallelism/lint  ]   ✅  Success - Main actions/setup-node@v7 [1.970187612s]
+[Job dependencies and parallelism/lint  ]   ⚙  ::set-output:: node-version=v22.23.3
+[Job dependencies and parallelism/lint  ]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/lint  ]   ⚙  ::set-output:: cache-hit=true
+[Job dependencies and parallelism/lint  ]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/lint  ]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Job dependencies and parallelism/lint  ] ⭐ Run Main npm ci
+[Job dependencies and parallelism/lint  ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Job dependencies and parallelism/bundle]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Job dependencies and parallelism/bundle]   ❓  ::group::Environment details
+[Job dependencies and parallelism/bundle]   | node: v22.23.3
+[Job dependencies and parallelism/bundle]   | npm: 10.9.9
+[Job dependencies and parallelism/bundle]   | yarn: 1.22.22
+[Job dependencies and parallelism/bundle]   ❓  ::endgroup::
+[Job dependencies and parallelism/bundle]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | added 127 packages, and audited 128 packages in 2s
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | 31 packages are looking for funding
+[Job dependencies and parallelism/test  ]   |   run `npm fund` for details
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | found 0 vulnerabilities
+[Job dependencies and parallelism/bundle]   | /root/.npm
+[Job dependencies and parallelism/bundle]   ⚙  ***
+[Job dependencies and parallelism/test  ]   ✅  Success - Main npm ci [1.886939504s]
+[Job dependencies and parallelism/test  ] ⭐ Run Main npm test
+[Job dependencies and parallelism/bundle]   | Cache Size: ~21 MB (22344997 B)
+[Job dependencies and parallelism/bundle]   | [command]/usr/bin/tar -xf /tmp/e5f83f9d-43cd-4e07-a15f-b4dd79778c32/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Job dependencies and parallelism/test  ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Job dependencies and parallelism/bundle]   | Cache restored successfully
+[Job dependencies and parallelism/bundle]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/bundle]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Job dependencies and parallelism/bundle]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Job dependencies and parallelism/bundle]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Job dependencies and parallelism/bundle]   ✅  Success - Main actions/setup-node@v7 [1.906646089s]
+[Job dependencies and parallelism/bundle]   ⚙  ::set-output:: node-version=v22.23.3
+[Job dependencies and parallelism/bundle]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/bundle]   ⚙  ::set-output:: cache-hit=true
+[Job dependencies and parallelism/bundle]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/bundle]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | > cicd-learn@1.0.0 test
+[Job dependencies and parallelism/test  ]   | > vitest run
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/bundle] ⭐ Run Main npm ci
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Job dependencies and parallelism/test  ]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Job dependencies and parallelism/test  ]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Job dependencies and parallelism/test  ]   | [2m   Start at [22m 09:29:30
+[Job dependencies and parallelism/test  ]   | [2m   Duration [22m 211ms[2m (transform 54%, import 25%, tests 12%, worker 10%)[22m
+[Job dependencies and parallelism/test  ]   | 
+[Job dependencies and parallelism/test  ]   ✅  Success - Main npm test [887.889515ms]
+[Job dependencies and parallelism/test  ]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Job dependencies and parallelism/test  ] ⭐ Run Post actions/setup-node@v7
+[Job dependencies and parallelism/lint  ]   | 
+[Job dependencies and parallelism/lint  ]   | added 127 packages, and audited 128 packages in 2s
+[Job dependencies and parallelism/lint  ]   | 
+[Job dependencies and parallelism/lint  ]   | 31 packages are looking for funding
+[Job dependencies and parallelism/lint  ]   |   run `npm fund` for details
+[Job dependencies and parallelism/lint  ]   | 
+[Job dependencies and parallelism/lint  ]   | found 0 vulnerabilities
+[Job dependencies and parallelism/test  ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Job dependencies and parallelism/lint  ]   ✅  Success - Main npm ci [1.783533457s]
+[Job dependencies and parallelism/lint  ] ⭐ Run Main npm run lint
+[Job dependencies and parallelism/lint  ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Job dependencies and parallelism/test  ]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Job dependencies and parallelism/lint  ]   | 
+[Job dependencies and parallelism/lint  ]   | > cicd-learn@1.0.0 lint
+[Job dependencies and parallelism/lint  ]   | > eslint .
+[Job dependencies and parallelism/lint  ]   | 
+[Job dependencies and parallelism/lint  ]   ✅  Success - Main npm run lint [703.474376ms]
+[Job dependencies and parallelism/lint  ] ⭐ Run Post actions/setup-node@v7
+[Job dependencies and parallelism/lint  ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | added 127 packages, and audited 128 packages in 2s
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | 31 packages are looking for funding
+[Job dependencies and parallelism/bundle]   |   run `npm fund` for details
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | found 0 vulnerabilities
+[Job dependencies and parallelism/bundle]   ✅  Success - Main npm ci [1.745403862s]
+[Job dependencies and parallelism/lint  ]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Job dependencies and parallelism/bundle] ⭐ Run Main Test first, so we never bundle code that fails tests
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Job dependencies and parallelism/test  ]   | Cache Size: ~21 MB (22352339 B)
+[Job dependencies and parallelism/test  ]   | Cache saved successfully
+[Job dependencies and parallelism/test  ]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/test  ]   ✅  Success - Post actions/setup-node@v7 [1.216381195s]
+[Job dependencies and parallelism/test  ] ⭐ Run Complete job
+[Job dependencies and parallelism/test  ] Cleaning up container for job test
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | > cicd-learn@1.0.0 test
+[Job dependencies and parallelism/bundle]   | > vitest run
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Job dependencies and parallelism/bundle]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Job dependencies and parallelism/bundle]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Job dependencies and parallelism/bundle]   | [2m   Start at [22m 09:29:32
+[Job dependencies and parallelism/bundle]   | [2m   Duration [22m 189ms[2m (transform 51%, import 25%, tests 14%, worker 10%)[22m
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   ✅  Success - Main Test first, so we never bundle code that fails tests [780.615737ms]
+[Job dependencies and parallelism/bundle]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Job dependencies and parallelism/bundle] ⭐ Run Main Build and report the size
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/build] user= workdir=cicd-learn
+[Job dependencies and parallelism/lint  ]   | Cache Size: ~21 MB (22352274 B)
+[Job dependencies and parallelism/lint  ]   | Cache saved successfully
+[Job dependencies and parallelism/lint  ]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/lint  ]   ✅  Success - Post actions/setup-node@v7 [1.30477405s]
+[Job dependencies and parallelism/lint  ] ⭐ Run Complete job
+[Job dependencies and parallelism/lint  ] Cleaning up container for job lint
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | > cicd-learn@1.0.0 build
+[Job dependencies and parallelism/bundle]   | > node build.mjs
+[Job dependencies and parallelism/bundle]   | 
+[Job dependencies and parallelism/bundle]   | built dist/app.js (2887 bytes)
+[Job dependencies and parallelism/bundle]   ✅  Success - Main Build and report the size [512.422819ms]
+[Job dependencies and parallelism/bundle]   ⚙  ::set-output:: bytes=525
+[Job dependencies and parallelism/bundle] ⭐ Run Main [simulated upload-artifact: dist]
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/5.sh] user= workdir=.
+[Job dependencies and parallelism/bundle]   | -rw-r--r-- 1 root root 1478 Oct  8 09:29 /home/sunny/app/nimo/cicd-docs/.tmp/artifacts/dist.tar
+[Job dependencies and parallelism/bundle]   | SIMULATED upload of cicd-learn/dist as dist
+[Job dependencies and parallelism/bundle]   ✅  Success - Main [simulated upload-artifact: dist] [84.286898ms]
+[Job dependencies and parallelism/bundle] ⭐ Run Post actions/setup-node@v7
+[Job dependencies and parallelism/bundle]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Job dependencies and parallelism/bundle]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Job dependencies and parallelism/lint  ]   ✅  Success - Complete job
+[Job dependencies and parallelism/lint  ] 🏁  Job succeeded
+[Job dependencies and parallelism/test  ]   ✅  Success - Complete job
+[Job dependencies and parallelism/test  ] 🏁  Job succeeded
+[Job dependencies and parallelism/bundle]   | Cache Size: ~21 MB (22352326 B)
+[Job dependencies and parallelism/bundle]   | Cache saved successfully
+[Job dependencies and parallelism/bundle]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Job dependencies and parallelism/bundle]   ✅  Success - Post actions/setup-node@v7 [982.611701ms]
+[Job dependencies and parallelism/bundle] ⭐ Run Complete job
+[Job dependencies and parallelism/bundle] Cleaning up container for job bundle
+[Job dependencies and parallelism/bundle]   ✅  Success - Complete job
+[Job dependencies and parallelism/bundle] 🏁  Job succeeded
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] ⭐ Run Set up job
+[Job dependencies and parallelism/report                                   ] ⭐ Run Set up job
+[Job dependencies and parallelism/report                                   ] 🚀  Start image=node:24-bookworm
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] 🚀  Start image=node:24-bookworm
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Job dependencies and parallelism/report                                   ]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/report                                   ]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/report                                   ]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Job dependencies and parallelism/report                                   ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   ✅  Success - Set up job
+[Job dependencies and parallelism/report                                   ]   ✅  Success - Set up job
+[Job dependencies and parallelism/report                                   ] ⭐ Run Main Everything that could fail, succeeded
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] ⭐ Run Main Runs either way
+[Job dependencies and parallelism/report                                   ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   | lint result: success
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   | Possible values: success, failure, skipped, cancelled
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   ✅  Success - Main Runs either way [60.011683ms]
+[Job dependencies and parallelism/report                                   ]   | lint   : ok
+[Job dependencies and parallelism/report                                   ]   | test   : ok
+[Job dependencies and parallelism/report                                   ]   | bundle : ok, dist/app.js is 525 bytes
+[Job dependencies and parallelism/report                                   ]   | 
+[Job dependencies and parallelism/report                                   ]   | needs.lint.result  = success
+[Job dependencies and parallelism/report                                   ]   | needs.test.result  = success
+[Job dependencies and parallelism/report                                   ]   | needs.bundle.result= success
+[Job dependencies and parallelism/report                                   ]   ✅  Success - Main Everything that could fail, succeeded [64.348468ms]
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] ⭐ Run Complete job
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] Cleaning up container for job optional-report (runs even if lint fails)
+[Job dependencies and parallelism/report                                   ]   ⚙  Summary - ### Parallelism
+
+- `lint`, `test`, `bundle` ran in parallel
+- `report` waited for all three
+- bundle's output crossed the job boundary: `525` bytes
+[Job dependencies and parallelism/report                                   ] ⭐ Run Complete job
+[Job dependencies and parallelism/report                                   ] Cleaning up container for job report
+[Job dependencies and parallelism/report                                   ]   ✅  Success - Complete job
+[Job dependencies and parallelism/report                                   ] 🏁  Job succeeded
+[Job dependencies and parallelism/optional-report (runs even if lint fails)]   ✅  Success - Complete job
+[Job dependencies and parallelism/optional-report (runs even if lint fails)] 🏁  Job succeeded
+
+### act exit status: 0

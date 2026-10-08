@@ -1,0 +1,90 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/22-secrets.yml
+
+time="2026-10-08T15:40:57+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-08T15:40:57+06:00" level=info msg="deleted cache: &{ID:18 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22352874 Complete:true UsedAt:1791452143 CreatedAt:1791451904}" module=artifactcache
+[Secrets and variables/Secrets and variables] ⭐ Run Set up job
+[Secrets and variables/Secrets and variables] 🚀  Start image=node:24-bookworm
+[Secrets and variables/Secrets and variables]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Secrets and variables/Secrets and variables]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secrets and variables/Secrets and variables]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Secrets and variables/Secrets and variables]   ✅  Success - Set up job
+[Secrets and variables/Secrets and variables]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Secrets and variables/Secrets and variables] ⭐ Run Main actions/checkout@v7
+[Secrets and variables/Secrets and variables]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Secrets and variables/Secrets and variables]   ✅  Success - Main actions/checkout@v7 [54.011011ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Main actions/setup-node@v7
+[Secrets and variables/Secrets and variables]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Secrets and variables/Secrets and variables]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Secrets and variables/Secrets and variables]   ❓  ::group::Environment details
+[Secrets and variables/Secrets and variables]   | node: v22.23.3
+[Secrets and variables/Secrets and variables]   | npm: 10.9.9
+[Secrets and variables/Secrets and variables]   | yarn: 1.22.22
+[Secrets and variables/Secrets and variables]   ❓  ::endgroup::
+[Secrets and variables/Secrets and variables]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Secrets and variables/Secrets and variables]   | /root/.npm
+[Secrets and variables/Secrets and variables]   ⚙  ***
+[Secrets and variables/Secrets and variables]   | Cache Size: ~21 MB (22346740 B)
+[Secrets and variables/Secrets and variables]   | [command]/usr/bin/tar -xf /tmp/078bef04-634f-49f2-a568-9735eae6be2f/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Secrets and variables/Secrets and variables]   | Cache restored successfully
+[Secrets and variables/Secrets and variables]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secrets and variables/Secrets and variables]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Secrets and variables/Secrets and variables]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Secrets and variables/Secrets and variables]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Secrets and variables/Secrets and variables]   ✅  Success - Main actions/setup-node@v7 [1.435480145s]
+[Secrets and variables/Secrets and variables]   ⚙  ::set-output:: cache-hit=true
+[Secrets and variables/Secrets and variables]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secrets and variables/Secrets and variables]   ⚙  ::set-output:: node-version=v22.23.3
+[Secrets and variables/Secrets and variables]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secrets and variables/Secrets and variables]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Secrets and variables/Secrets and variables] ⭐ Run Main npm ci
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Secrets and variables/Secrets and variables]   | 
+[Secrets and variables/Secrets and variables]   | added 127 packages, and audited 128 packages in 1s
+[Secrets and variables/Secrets and variables]   | 
+[Secrets and variables/Secrets and variables]   | 31 packages are looking for funding
+[Secrets and variables/Secrets and variables]   |   run `npm fund` for details
+[Secrets and variables/Secrets and variables]   | 
+[Secrets and variables/Secrets and variables]   | found 0 vulnerabilities
+[Secrets and variables/Secrets and variables]   ✅  Success - Main npm ci [1.529311481s]
+[Secrets and variables/Secrets and variables] ⭐ Run Main Variables are visible in logs
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Secrets and variables/Secrets and variables]   | APP_ENV    : <not set>
+[Secrets and variables/Secrets and variables]   | vars are for config: environment names, URLs, feature flags
+[Secrets and variables/Secrets and variables]   ✅  Success - Main Variables are visible in logs [71.914022ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Main Secrets are masked in the log
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Secrets and variables/Secrets and variables]   | DEMO_TOKEN is not set; skipping the masked demo.
+[Secrets and variables/Secrets and variables]   | Add it in Settings -> Secrets and variables -> Actions -> Secrets.
+[Secrets and variables/Secrets and variables]   ✅  Success - Main Secrets are masked in the log [76.42135ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Main The right way to pass a secret to a tool
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Secrets and variables/Secrets and variables]   | if NPM_TOKEN were set, this step would authenticate without printing it.
+[Secrets and variables/Secrets and variables]   | set: no
+[Secrets and variables/Secrets and variables]   ✅  Success - Main The right way to pass a secret to a tool [73.293284ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Main What a secret is NOT
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Secrets and variables/Secrets and variables]   | secrets are not environment variables you set yourself
+[Secrets and variables/Secrets and variables]   | secrets are not in the repository
+[Secrets and variables/Secrets and variables]   | secrets are not readable by a forked pull request
+[Secrets and variables/Secrets and variables]   | secrets are not printed in plaintext by the Actions UI
+[Secrets and variables/Secrets and variables]   | secrets ARE available to any job in any workflow in this repo
+[Secrets and variables/Secrets and variables]   |   -> which is why you scope jobs, not secrets (chapter 25)
+[Secrets and variables/Secrets and variables]   ✅  Success - Main What a secret is NOT [75.617685ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Post actions/setup-node@v7
+[Secrets and variables/Secrets and variables]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Secrets and variables/Secrets and variables]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Secrets and variables/Secrets and variables]   | Cache Size: ~21 MB (22353198 B)
+[Secrets and variables/Secrets and variables]   | Cache saved successfully
+[Secrets and variables/Secrets and variables]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secrets and variables/Secrets and variables]   ✅  Success - Post actions/setup-node@v7 [935.807699ms]
+[Secrets and variables/Secrets and variables] ⭐ Run Complete job
+[Secrets and variables/Secrets and variables] Cleaning up container for job Secrets and variables
+[Secrets and variables/Secrets and variables]   ✅  Success - Complete job
+[Secrets and variables/Secrets and variables] 🏁  Job succeeded
+
+### act exit status: 0

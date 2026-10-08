@@ -1,0 +1,136 @@
+name: Job dependencies and parallelism
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── Three independent jobs: they run at the same time ─────────────────────
+  # No `needs:` anywhere means "I do not depend on anything", so all three start
+  # the instant the workflow starts. Total wall time = the slowest one.
+  lint:
+    name: lint
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+
+  test:
+    name: test
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  # ── A job that waits, and takes an input from the job it waits for ────────
+  # `needs:` has two jobs: it waits, and it grants access to the `needs` context.
+  # Crucially it does NOT grant access to the FILES. Chapter 02.
+  bundle:
+    name: bundle
+    runs-on: ubuntu-24.04
+    # Job-level outputs live HERE, beside runs-on, NOT between steps. The keys
+    # legal inside a `steps:` list are only name, uses, run, with, if, id, env,
+    # shell, working-directory and continue-on-error. Putting `outputs:` between
+    # two steps is a YAML error, and a confusing one:
+    #   expected <block end>, but found '?'
+    outputs:
+      bytes: ${{ steps.build.outputs.bytes }}
+    # Block style, matching the other jobs. A one-line flow mapping
+    # (`defaults: { run: { ... } }`) is legal YAML, but mixing it with block
+    # style in one file is how indentation bugs hide.
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+
+      - name: Test first, so we never bundle code that fails tests
+        run: npm test
+
+      - name: Build and report the size
+        id: build
+        run: |
+          npm run build
+          echo "bytes=$(wc -c < dist/app.js)" >> "$GITHUB_OUTPUT"
+
+      - name: Save it for other jobs
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: cicd-learn/dist
+          retention-days: 7
+
+  # ── Waiting for ALL of several jobs ───────────────────────────────────────
+  report:
+    name: report
+    # Needs all three. This job is skipped if ANY of them fails or is skipped.
+    needs: [lint, test, bundle]
+    runs-on: ubuntu-24.04
+    steps:
+      # No checkout needed, and no `defaults.run.working-directory`: a
+      # subdirectory that does not exist yet would break every step. Chapter 15
+      # shows the failure this avoids.
+      - name: Everything that could fail, succeeded
+        run: |
+          echo "lint   : ok"
+          echo "test   : ok"
+          echo "bundle : ok, dist/app.js is ${{ needs.bundle.outputs.bytes }} bytes"
+          echo
+          echo "needs.lint.result  = ${{ needs.lint.result }}"
+          echo "needs.test.result  = ${{ needs.test.result }}"
+          echo "needs.bundle.result= ${{ needs.bundle.result }}"
+          {
+            echo "### Parallelism"
+            echo ""
+            echo "- \`lint\`, \`test\`, \`bundle\` ran in parallel"
+            echo "- \`report\` waited for all three"
+            echo "- bundle's output crossed the job boundary: \`${{ needs.bundle.outputs.bytes }}\` bytes"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # ── Waiting for ONE job but tolerating its failure ────────────────────────
+  optional-report:
+    name: optional-report (runs even if lint fails)
+    # Without `if`, a job whose dependency failed is SKIPPED. This is the most
+    # common surprise in Actions: `needs: [lint]` does not mean "after lint",
+    # it means "after lint, and only if lint passed".
+    needs: [lint]
+    # `always()` runs the job regardless of whether the dependencies succeeded,
+    # were skipped, or failed. `!cancelled()` is the gentler version: it runs
+    # unless someone cancelled the whole run.
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Runs either way
+        run: |
+          echo "lint result: ${{ needs.lint.result }}"
+          echo "Possible values: success, failure, skipped, cancelled"
+          # needs.lint.result is a string you can branch on, which is how you
+          # write "post a comment when CI fails".

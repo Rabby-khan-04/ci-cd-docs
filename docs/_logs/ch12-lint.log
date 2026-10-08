@@ -1,0 +1,109 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/12-lint-step.yml
+
+time="2026-10-08T15:23:52+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Lint step/Lint] ⭐ Run Set up job
+[Lint step/Lint] 🚀  Start image=node:24-bookworm
+[Lint step/Lint]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Lint step/Lint]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Lint step/Lint]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Lint step/Lint]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Lint step/Lint]   ✅  Success - Set up job
+[Lint step/Lint]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Lint step/Lint] ⭐ Run Main actions/checkout@v7
+[Lint step/Lint]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Lint step/Lint]   ✅  Success - Main actions/checkout@v7 [45.143344ms]
+[Lint step/Lint] ⭐ Run Main actions/setup-node@v7
+[Lint step/Lint]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Lint step/Lint]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Lint step/Lint]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Lint step/Lint]   ❓  ::group::Environment details
+[Lint step/Lint]   | node: v22.23.3
+[Lint step/Lint]   | npm: 10.9.9
+[Lint step/Lint]   | yarn: 1.22.22
+[Lint step/Lint]   ❓  ::endgroup::
+[Lint step/Lint]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Lint step/Lint]   | /root/.npm
+[Lint step/Lint]   ⚙  ***
+[Lint step/Lint]   | Cache Size: ~21 MB (22341621 B)
+[Lint step/Lint]   | [command]/usr/bin/tar -xf /tmp/0853162f-149a-4a07-bcd1-cc2b9efd3366/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Lint step/Lint]   | Cache restored successfully
+[Lint step/Lint]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Lint step/Lint]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Lint step/Lint]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Lint step/Lint]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Lint step/Lint]   ✅  Success - Main actions/setup-node@v7 [1.3458686s]
+[Lint step/Lint]   ⚙  ::set-output:: cache-hit=true
+[Lint step/Lint]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Lint step/Lint]   ⚙  ::set-output:: node-version=v22.23.3
+[Lint step/Lint]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Lint step/Lint]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Lint step/Lint] ⭐ Run Main npm ci
+[Lint step/Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Lint step/Lint]   | 
+[Lint step/Lint]   | added 127 packages, and audited 128 packages in 1s
+[Lint step/Lint]   | 
+[Lint step/Lint]   | 31 packages are looking for funding
+[Lint step/Lint]   |   run `npm fund` for details
+[Lint step/Lint]   | 
+[Lint step/Lint]   | found 0 vulnerabilities
+[Lint step/Lint]   ✅  Success - Main npm ci [1.350000249s]
+[Lint step/Lint] ⭐ Run Main Lint
+[Lint step/Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/lint] user= workdir=cicd-learn
+[Lint step/Lint]   | 
+[Lint step/Lint]   | > cicd-learn@1.0.0 lint
+[Lint step/Lint]   | > eslint .
+[Lint step/Lint]   | 
+[Lint step/Lint]   ✅  Success - Main Lint [560.048517ms]
+[Lint step/Lint] ⭐ Run Main Lint annotations on the PR diff
+[Lint step/Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Lint step/Lint]   ❓  ::notice title=Lint summary::0 error(s), 0 warning(s)
+[Lint step/Lint]   ✅  Success - Main Lint annotations on the PR diff [692.314141ms]
+[Lint step/Lint] ⭐ Run Main Lint report as a table
+[Lint step/Lint]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Lint step/Lint]   | | file                         | errors | warnings |
+[Lint step/Lint]   | | ---------------------------- | -----: | -------: |
+[Lint step/Lint]   | | build.mjs                    |      0 |        0 |
+[Lint step/Lint]   | | eslint.config.js             |      0 |        0 |
+[Lint step/Lint]   | | scripts/lint-annotations.mjs |      0 |        0 |
+[Lint step/Lint]   | | scripts/lint-summary.mjs     |      0 |        0 |
+[Lint step/Lint]   | | src/app.js                   |      0 |        0 |
+[Lint step/Lint]   | | src/greet.js                 |      0 |        0 |
+[Lint step/Lint]   | | src/sum.js                   |      0 |        0 |
+[Lint step/Lint]   | | test/greet.test.js           |      0 |        0 |
+[Lint step/Lint]   | | test/sum.test.js             |      0 |        0 |
+[Lint step/Lint]   | | vitest.config.js             |      0 |        0 |
+[Lint step/Lint]   | 
+[Lint step/Lint]   | **Total: 0 error(s), 0 warning(s)**
+[Lint step/Lint]   | 
+[Lint step/Lint]   ✅  Success - Main Lint report as a table [660.952525ms]
+[Lint step/Lint]   ⚙  Summary - | file                         | errors | warnings |
+| ---------------------------- | -----: | -------: |
+| build.mjs                    |      0 |        0 |
+| eslint.config.js             |      0 |        0 |
+| scripts/lint-annotations.mjs |      0 |        0 |
+| scripts/lint-summary.mjs     |      0 |        0 |
+| src/app.js                   |      0 |        0 |
+| src/greet.js                 |      0 |        0 |
+| src/sum.js                   |      0 |        0 |
+| test/greet.test.js           |      0 |        0 |
+| test/sum.test.js             |      0 |        0 |
+| vitest.config.js             |      0 |        0 |
+
+**Total: 0 error(s), 0 warning(s)**
+
+[Lint step/Lint] ⭐ Run Post actions/setup-node@v7
+[Lint step/Lint]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Lint step/Lint]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Lint step/Lint]   | Cache Size: ~21 MB (22348597 B)
+[Lint step/Lint]   | Cache saved successfully
+[Lint step/Lint]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Lint step/Lint]   ✅  Success - Post actions/setup-node@v7 [939.33723ms]
+[Lint step/Lint] ⭐ Run Complete job
+[Lint step/Lint] Cleaning up container for job Lint
+[Lint step/Lint]   ✅  Success - Complete job
+[Lint step/Lint] 🏁  Job succeeded
+
+### act exit status: 0

@@ -1,0 +1,50 @@
+name: Build a Docker image
+'on':
+  push:
+    branches:
+    - main
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  build:
+    name: Build and smoke-test the image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@v7
+    - uses: docker/setup-buildx-action@v4
+    - name: Build the image
+      id: build
+      uses: docker/build-push-action@v7
+      with:
+        context: cicd-learn
+        file: cicd-learn/Dockerfile
+        tags: 'cicd-learn:sha-${{ github.sha }}
+
+          cicd-learn:main
+
+          '
+        load: true
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    - name: Run the image and check the output
+      run: "echo \"--- images present ---\"\ndocker images cicd-learn --format '{{.Repository}}:{{.Tag}}\
+        \ {{.Size}}'\necho\necho \"--- running it ---\"\noutput=$(docker run --rm\
+        \ cicd-learn:sha-${{ github.sha }} Ada)\necho \"$output\"\necho\n# Assert,\
+        \ do not eyeball. Grep the expected line and fail if absent.\necho \"$output\"\
+        \ | grep -q 'HELLO, ADA!' || {\n  echo \"::error::the image did not produce\
+        \ the expected output\"\n  exit 1\n}\necho \"the image works\"\n"
+    - name: Inspect the image
+      run: "echo \"--- size ---\"\ndocker images cicd-learn:sha-${{ github.sha }}\
+        \ --format '{{.Size}}'\necho\necho \"--- history (each line is a layer) ---\"\
+        \ndocker history cicd-learn:sha-${{ github.sha }} --format '{{.Size}}\\t{{.CreatedBy}}'\
+        \ | head -8\necho\necho \"--- what is actually in there ---\"\ndocker run\
+        \ --rm --entrypoint sh cicd-learn:sha-${{ github.sha }} -c \\\n  'ls -la /app;\
+        \ echo; echo \"who am i:\"; whoami; echo; echo \"node:\"; node --version'\n"
+    - name: Confirm it does not run as root
+      run: "# Running as root inside a container is a real, if small, risk. A\n# dedicated\
+        \ unprivileged user costs one line.\nif docker run --rm --entrypoint sh cicd-learn:sha-${{\
+        \ github.sha }} -c 'test \"$(id -u)\" = \"0\"'; then\n  echo \"::warning title=Container\
+        \ runs as root::Add a USER instruction to the Dockerfile\"\nelse\n  echo \"\
+        the container runs as a non-root user\"\nfi\n"

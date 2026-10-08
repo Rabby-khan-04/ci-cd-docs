@@ -1,0 +1,129 @@
+name: Jobs and steps
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  # ── run: versus uses: ─────────────────────────────────────────────────────
+  both:
+    name: run versus uses
+    runs-on: ubuntu-24.04
+    steps:
+      # Always first. On a real runner the workspace exists before this, but the
+      # habit matters: `act` only materialises the checkout directory when this
+      # step runs, so a `run:` step before it cannot find its working directory.
+      - uses: actions/checkout@v7
+      - name: An action with inputs
+        uses: actions/checkout@v7
+        with:
+          # fetch-depth 1 is the default: one commit. This workflow needs no
+          # history, so the default is correct and cheapest.
+          fetch-depth: 1
+
+      # `run:` sends a string to the runner's default shell. On a Linux runner
+      # that is `bash -e {0}`, so the step aborts on the first non-zero exit.
+      - name: A run step, with a multi-line script
+        run: |
+          set -euo pipefail
+          echo "this is a bash script"
+          echo "line count: $(echo one two three | wc -w)"
+
+      # Single-line `run:` needs no block scalar.
+      - name: A one-line run step
+        run: echo "no block scalar needed for one line"
+
+      # ── Steps share a filesystem; order is the only ordering guarantee ─────
+      - name: Write a file in one step
+        run: echo "written by step one" > shared-proof.txt
+
+      - name: Read it in the NEXT step, same job
+        # This works. No artifact needed, because it is the same machine.
+        run: |
+          cat shared-proof.txt
+          echo "steps in one job share a filesystem"
+
+      # ── env: three scopes ──────────────────────────────────────────────────
+      - name: env at step scope, plus override
+        env:
+          SCOPE: 'step'
+          OVERRIDE: 'from the step'
+        run: |
+          echo "SCOPE   : $SCOPE"
+          echo "OVERRIDE: $OVERRIDE"
+
+      # ── id: makes a step's outputs addressable ─────────────────────────────
+      - name: Produce a value for later steps
+        id: produce
+        run: |
+          echo "computed=42" >> "$GITHUB_OUTPUT"
+          echo "hello there" >> "$GITHUB_STEP_SUMMARY"
+          # $GITHUB_ENV affects later steps, not this one.
+          echo "FROM_ENV=set by an earlier step" >> "$GITHUB_ENV"
+
+      - name: Use that value
+        # Addressable because the producing step has `id: produce`.
+        run: |
+          echo "the answer is ${{ steps.produce.outputs.computed }}"
+          # This variable was written by the previous step.
+          echo "env value : $FROM_ENV"
+
+      # ── if: skips a step ──────────────────────────────────────────────────
+      # A colon-space inside an unquoted scalar breaks YAML. `proving if: works`
+      # parses as a mapping, so it must be quoted: 'proving if: works'.
+      - name: 'Skipped step, proving if: works'
+        if: false
+        run: echo "you will not see this"
+
+      - name: Skipped because a variable is unset
+        if: env.NEVER_SET == 'yes'
+        run: echo "nor this"
+
+      # ── continue-on-error ──────────────────────────────────────────────────
+      - name: Fails, but the job survives
+        id: soft-fail
+        continue-on-error: true
+        run: |
+          echo "about to exit 1"
+          exit 1
+
+      - name: Proof the job continued, and how to read the step's conclusion
+        # Without `if: always()`, a normal step after a failed step would be
+        # skipped. `always()` means run regardless of previous status.
+        if: always()
+        run: |
+          echo "previous step conclusion: ${{ steps.soft-fail.outcome }}"
+          echo "job status              : ${{ job.status }}"
+
+      # ── timeout-minutes ────────────────────────────────────────────────────
+      - name: A quick step with a generous timeout
+        timeout-minutes: 5
+        run: echo "a step can have its own timeout too"
+
+  # ── Jobs do not share a filesystem: proven, not asserted ──────────────────
+  writer:
+    name: Writer job
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Create a file
+        run: echo "written by the writer job" > job-proof.txt
+      - name: Show it exists here
+        run: ls -l job-proof.txt
+
+  reader:
+    name: Reader job (cannot see the file)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Look for the file, with no checkout at all
+        # Fails on GitHub with exit 2. `act` will not reproduce this, because it
+        # bind-mounts your working directory. Chapter 02 explains why.
+        run: ls -l job-proof.txt

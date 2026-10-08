@@ -1,0 +1,104 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/26-secret-safety.yml
+
+time="2026-10-08T15:42:06+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Secret safety/Secret safety checks] ⭐ Run Set up job
+[Secret safety/Secret safety checks] 🚀  Start image=node:24-bookworm
+[Secret safety/Secret safety checks]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Secret safety/Secret safety checks]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secret safety/Secret safety checks]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Secret safety/Secret safety checks]   ✅  Success - Set up job
+[Secret safety/Secret safety checks]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Secret safety/Secret safety checks] ⭐ Run Main actions/checkout@v7
+[Secret safety/Secret safety checks]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Secret safety/Secret safety checks]   ✅  Success - Main actions/checkout@v7 [47.634615ms]
+[Secret safety/Secret safety checks] ⭐ Run Main actions/setup-node@v7
+[Secret safety/Secret safety checks]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Secret safety/Secret safety checks]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Secret safety/Secret safety checks]   ❓  ::group::Environment details
+[Secret safety/Secret safety checks]   | node: v22.23.3
+[Secret safety/Secret safety checks]   | npm: 10.9.9
+[Secret safety/Secret safety checks]   | yarn: 1.22.22
+[Secret safety/Secret safety checks]   ❓  ::endgroup::
+[Secret safety/Secret safety checks]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Secret safety/Secret safety checks]   | /root/.npm
+[Secret safety/Secret safety checks]   ⚙  ***
+[Secret safety/Secret safety checks]   | Cache Size: ~21 MB (22353198 B)
+[Secret safety/Secret safety checks]   | [command]/usr/bin/tar -xf /tmp/1e2576b1-d1db-409f-b3f9-5630497f8489/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Secret safety/Secret safety checks]   | Cache restored successfully
+[Secret safety/Secret safety checks]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secret safety/Secret safety checks]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Secret safety/Secret safety checks]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Secret safety/Secret safety checks]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Secret safety/Secret safety checks]   ✅  Success - Main actions/setup-node@v7 [1.257687614s]
+[Secret safety/Secret safety checks]   ⚙  ::set-output:: node-version=v22.23.3
+[Secret safety/Secret safety checks]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secret safety/Secret safety checks]   ⚙  ::set-output:: cache-hit=true
+[Secret safety/Secret safety checks]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secret safety/Secret safety checks]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Secret safety/Secret safety checks] ⭐ Run Main npm ci
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | 
+[Secret safety/Secret safety checks]   | added 127 packages, and audited 128 packages in 1s
+[Secret safety/Secret safety checks]   | 
+[Secret safety/Secret safety checks]   | 31 packages are looking for funding
+[Secret safety/Secret safety checks]   |   run `npm fund` for details
+[Secret safety/Secret safety checks]   | 
+[Secret safety/Secret safety checks]   | found 0 vulnerabilities
+[Secret safety/Secret safety checks]   ✅  Success - Main npm ci [1.529049542s]
+[Secret safety/Secret safety checks] ⭐ Run Main Scan tracked files for credential shapes
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | no private keys in tracked files
+[Secret safety/Secret safety checks]   | no GitHub tokens in tracked files
+[Secret safety/Secret safety checks]   | no npm auth tokens in tracked files
+[Secret safety/Secret safety checks]   | no AWS access key ids in tracked files
+[Secret safety/Secret safety checks]   | no hardcoded credential assignments
+[Secret safety/Secret safety checks]   | clean
+[Secret safety/Secret safety checks]   ✅  Success - Main Scan tracked files for credential shapes [87.530311ms]
+[Secret safety/Secret safety checks] ⭐ Run Main Check .gitignore
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | ok: .gitignore contains .env
+[Secret safety/Secret safety checks]   | ok: .gitignore contains node_modules
+[Secret safety/Secret safety checks]   | ok: .gitignore contains dist
+[Secret safety/Secret safety checks]   ✅  Success - Main Check .gitignore [73.001612ms]
+[Secret safety/Secret safety checks] ⭐ Run Main Show why transformations leak
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | This token is NOT a secret. It is a hardcoded string.
+[Secret safety/Secret safety checks]   | 
+[Secret safety/Secret safety checks]   | Direct print        : demo-token-abcdef123456        <- GitHub would mask this
+[Secret safety/Secret safety checks]   | Length              : 23 chars <- NOT masked
+[Secret safety/Secret safety checks]   | Reversed            : 654321fedcba-nekot-omed <- NOT masked
+[Secret safety/Secret safety checks]   | Base64              : ZGVtby10b2tlbi1hYmNkZWYxMjM0NTY= <- NOT masked
+[Secret safety/Secret safety checks]   | As JSON             : {"t":"demo-token-abcdef123456"} <- NOT masked
+[Secret safety/Secret safety checks]   | URL-encoded         : demo%2Dtoken%2Dabcdef123456 <- NOT masked
+[Secret safety/Secret safety checks]   | 
+[Secret safety/Secret safety checks]   | GitHub's masking is a literal string replacement in the log stream.
+[Secret safety/Secret safety checks]   | Anything derived from the secret does not match, so it is printed.
+[Secret safety/Secret safety checks]   ✅  Success - Main Show why transformations leak [77.745595ms]
+[Secret safety/Secret safety checks] ⭐ Run Main Why set -x is dangerous in a secret-handling step
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | set -x echoes every expanded command, credentials included.
+[Secret safety/Secret safety checks]   | Never enable it in a step that reads a secret.
+[Secret safety/Secret safety checks]   ✅  Success - Main Why set -x is dangerous in a secret-handling step [77.189584ms]
+[Secret safety/Secret safety checks] ⭐ Run Main Fork safety is a feature
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Secret safety/Secret safety checks]   | PRs from forks run with no secrets and a read-only token.
+[Secret safety/Secret safety checks]   | That is why you never deploy from an untrusted pull request.
+[Secret safety/Secret safety checks]   ✅  Success - Main Fork safety is a feature [72.628972ms]
+[Secret safety/Secret safety checks] ⭐ Run Post actions/setup-node@v7
+[Secret safety/Secret safety checks]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Secret safety/Secret safety checks]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Secret safety/Secret safety checks]   | Cache Size: ~21 MB (22353186 B)
+[Secret safety/Secret safety checks]   | Cache saved successfully
+[Secret safety/Secret safety checks]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Secret safety/Secret safety checks]   ✅  Success - Post actions/setup-node@v7 [912.969207ms]
+[Secret safety/Secret safety checks] ⭐ Run Complete job
+[Secret safety/Secret safety checks] Cleaning up container for job Secret safety checks
+[Secret safety/Secret safety checks]   ✅  Success - Complete job
+[Secret safety/Secret safety checks] 🏁  Job succeeded
+
+### act exit status: 0

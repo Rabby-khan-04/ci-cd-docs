@@ -1,0 +1,9 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  ci15
+### file   .github/workflows/15-ci-pipeline-order.yml
+
+time="2026-10-08T15:24:31+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+Error: Could not find any stages to run. View the valid jobs with `act --list`. Use `act --help` to find how to filter by Job ID/Workflow/Event Name
+
+### act exit status: 1

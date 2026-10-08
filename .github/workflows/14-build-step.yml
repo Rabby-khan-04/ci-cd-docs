@@ -1,0 +1,67 @@
+name: Build step
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+
+      # A build that only runs when tests pass. `needs:` does not run the tests;
+      # it waits for them, and skips this job if they failed.
+      - name: Lint first, because it is fastest
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        id: build
+        run: |
+          npm run build
+          # Record the output size so the next job and the summary can use it.
+          bytes=$(wc -c < dist/app.js)
+          mapbytes=$(wc -c < dist/app.js.map)
+          echo "dist/app.js is $bytes bytes, sourcemap is $mapbytes bytes"
+          echo "bytes=$bytes" >> "$GITHUB_OUTPUT"
+          echo "mapbytes=$mapbytes" >> "$GITHUB_OUTPUT"
+
+      # Prove the artifact is not just present but runnable. A build step that
+      # produces output nobody executes is how a broken build ships.
+      - name: Run the built output
+        run: |
+          node dist/app.js Ada
+          node dist/app.js Grace
+
+      - name: List what was produced
+        run: ls -l dist/
+
+      - name: Summary
+        run: |
+          {
+            echo "### Build"
+            echo ""
+            echo "| file | bytes |"
+            echo "| ---- | ----: |"
+            echo "| \`dist/app.js\` | ${{ steps.build.outputs.bytes }} |"
+            echo "| \`dist/app.js.map\` | ${{ steps.build.outputs.mapbytes }} |"
+          } >> "$GITHUB_STEP_SUMMARY"

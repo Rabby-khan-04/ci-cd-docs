@@ -1,0 +1,95 @@
+name: Using actions
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  # ── setup-node with an explicit version and the npm cache ─────────────────
+  # The single most valuable action in a Node pipeline. It does two things:
+  # installs the exact Node version your project declares, and caches the npm
+  # download cache. Chapter 16 covers the caching in detail.
+  actions:
+    name: checkout and setup-node
+    runs-on: ubuntu-24.04
+    steps:
+      # `path` is not set, so the repo lands in the workspace root and
+      # working-directory: cicd-learn still applies to run: steps.
+      - name: Check out the repository
+        uses: actions/checkout@v7
+        with:
+          # 1 is the default and correct when you only need current files.
+          # Set 0 for a full history, which matters for changelog generation
+          # and for `git describe`.
+          fetch-depth: 1
+          # Skip downloading the submodules. Left true by default; shown because
+          # it is the setting most often changed for no reason.
+          submodules: false
+          # Clean the workspace of any leftovers. True is the default and is
+          # what keeps a self-hosted runner from carrying state between runs.
+          clean: true
+
+      # The important one. `node-version` is not guessed from package.json; you
+      # state it. `node-version-file` reads .nvmrc instead, which is a better
+      # single source of truth once you have one.
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          # Caches the npm *download* cache (~/.npm), not node_modules. This is
+          # the correct pairing with `npm ci`: the lock file is the cache key, so
+          # a changed dependency means a changed key and therefore a fresh
+          # restore.
+          cache: 'npm'
+          # REQUIRED here. With `cache: npm`, setup-node hashes a lock file to
+          # build the cache key, and it looks for it at the *repository root*.
+          # Our lock file is cicd-learn/package-lock.json, so without this line
+          # the step fails with:
+          #   ::error::Dependencies lock file is not found in <repo>.
+          # This is not an act quirk: it fails the same way on GitHub.
+          cache-dependency-path: cicd-learn/package-lock.json
+          # Do not let a stray .npmrc in the repo redirect the registry.
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Prove the versions
+        run: |
+          echo "node : $(node --version)"
+          echo "npm  : $(npm --version)"
+          echo "cache dir: $(npm config get cache)"
+
+      # `npm ci` needs the lock file, which is why checkout must come first.
+      - name: Install exactly what the lock file pins
+        run: npm ci
+
+      - name: Run the real checks with the pinned Node
+        run: |
+          npm run lint
+          npm test
+          npm run build
+
+  # ── What an action actually is ─────────────────────────────────────────────
+  # A JavaScript action is a directory with an action.yml. This job reads one,
+  # to show the anatomy without needing the Marketplace.
+  anatomy:
+    name: Anatomy of an action
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Show that an action is just files
+        run: |
+          echo "--- a JavaScript action looks like this ---"
+          find .github/actions -type f | sort
+          echo
+          echo "--- action.yml is the manifest ---"
+          cat .github/actions/setup-node/action.yml
+          echo
+          echo "--- and its implementation ---"
+          sed -n '1,20p' .github/actions/setup-node/run.sh

@@ -1,0 +1,95 @@
+name: CI
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# One permission for the whole file: read the code, change nothing. Individual
+# jobs can only ever narrow this, never widen it.
+permissions:
+  contents: read
+
+jobs:
+  # ── Stage 1: the fast checks, in one job, cheapest first ──────────────────
+  # Lint fails in about a second, tests in two, build in one. Putting them in
+  # ONE job means one machine and one `npm ci` instead of three. Chapter 18
+  # explains when to split them instead.
+  quality:
+    name: Lint, test, build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # Scoped to this job, not the whole file. `defaults.run.working-directory`
+    # that points into a subdirectory only exists after `checkout` has run, so a
+    # job WITHOUT a checkout (like the gate below) fails immediately with:
+    #   OCI runtime exec failed: chdir to cwd (".../cicd-learn") failed
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Order matters, and it is cheapest-first.
+      #
+      #   1. lint   ~1s   catches syntax errors, so later steps do not crash on
+      #                     a file that cannot even parse
+      #   2. test   ~2s   catches behaviour errors, the most valuable signal
+      #   3. build  ~1s   catches bundling errors, which only show up here
+      #
+      # If test ran before lint, a syntax error would surface as a confusing
+      # test failure in an unrelated file. If build ran before test, you would
+      # spend time bundling code that is about to fail its tests.
+      - name: 1. Lint
+        run: npm run lint
+
+      - name: 2. Test
+        run: npm test
+
+      - name: 3. Build
+        run: npm run build
+
+      # ── Keep the output ───────────────────────────────────────────────────
+      # The machine is destroyed when this job ends. If anything later needs
+      # dist/, it has to be saved now. Chapter 20.
+      - name: Upload the build output
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: cicd-learn/dist
+          retention-days: 7
+          if-no-files-found: error
+
+  # ── Stage 2: the gate ──────────────────────────────────────────────────────
+  # This job does no work. Its only job is to not exist unless stage 1 passed,
+  # which makes it the natural place to hang anything that must only happen on
+  # green: a deploy, a comment, a release.
+  release-ready:
+    name: Release ready
+    # `needs:` makes this job wait, and skip if the needed job failed. That is
+    # the gate, and it is one line.
+    needs: [quality]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Everything passed
+        run: |
+          echo "quality gate passed"
+          echo "commit  : ${{ github.sha }}"
+          echo "branch  : ${{ github.ref_name }}"
+          echo "event   : ${{ github.event_name }}"
+          {
+            echo "### CI passed"
+            echo ""
+            echo "This job does no work. It exists so that 'everything is green'"
+            echo "is a thing you can attach other things to."
+          } >> "$GITHUB_STEP_SUMMARY"

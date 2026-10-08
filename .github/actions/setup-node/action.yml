@@ -1,0 +1,43 @@
+# A composite action: several steps packaged under one name, written in YAML.
+# Chapter 41 covers composite actions in full; this file is the sample used
+# there, and it is used here so the `uses:` anatomy is real rather than invented.
+name: 'Set up cicd-learn'
+description: 'Checkout, install the pinned Node, then npm ci.'
+inputs:
+  node-version:
+    description: 'Node.js version to install'
+    required: false
+    default: '22'
+  run-checks:
+    description: 'Whether to run lint, test and build after installing'
+    required: false
+    default: 'true'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        fetch-depth: 1
+
+    - name: Set up Node ${{ inputs.node-version }}
+      uses: actions/setup-node@v7
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      shell: bash
+      working-directory: cicd-learn
+      run: npm ci
+
+    # A conditional step inside a composite action. `inputs.*` are strings, so
+    # compare them as strings.
+    - name: Run checks
+      if: inputs.run-checks == 'true'
+      shell: bash
+      working-directory: cicd-learn
+      run: |
+        npm run lint
+        npm test
+        npm run build

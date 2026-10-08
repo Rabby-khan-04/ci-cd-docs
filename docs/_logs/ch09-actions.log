@@ -1,0 +1,101 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/09-using-actions.yml
+
+time="2026-10-08T15:20:55+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Using actions/checkout and setup-node] ⭐ Run Set up job
+[Using actions/checkout and setup-node] 🚀  Start image=node:24-bookworm
+[Using actions/checkout and setup-node]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Using actions/checkout and setup-node]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Using actions/checkout and setup-node]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Using actions/checkout and setup-node]   ✅  Success - Set up job
+[Using actions/checkout and setup-node]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Using actions/checkout and setup-node] ⭐ Run Main Check out the repository
+[Using actions/checkout and setup-node]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Using actions/checkout and setup-node]   ✅  Success - Main Check out the repository [43.125777ms]
+[Using actions/checkout and setup-node] ⭐ Run Main Set up Node.js
+[Using actions/checkout and setup-node]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Using actions/checkout and setup-node]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Using actions/checkout and setup-node]   ❓  ::group::Environment details
+[Using actions/checkout and setup-node]   | node: v22.23.3
+[Using actions/checkout and setup-node]   | npm: 10.9.9
+[Using actions/checkout and setup-node]   | yarn: 1.22.22
+[Using actions/checkout and setup-node]   ❓  ::endgroup::
+[Using actions/checkout and setup-node]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Using actions/checkout and setup-node]   | /root/.npm
+[Using actions/checkout and setup-node]   | npm cache is not found
+[Using actions/checkout and setup-node]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Using actions/checkout and setup-node]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Using actions/checkout and setup-node]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Using actions/checkout and setup-node]   ✅  Success - Main Set up Node.js [1.110368113s]
+[Using actions/checkout and setup-node]   ⚙  ::set-env:: NPM_CONFIG_USERCONFIG=/tmp/.npmrc
+[Using actions/checkout and setup-node]   ⚙  ::set-output:: node-version=v22.23.3
+[Using actions/checkout and setup-node]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Using actions/checkout and setup-node]   ⚙  ::set-output:: cache-hit=false
+[Using actions/checkout and setup-node]   ⚙  ::set-output:: cache-matched-key=
+[Using actions/checkout and setup-node]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Using actions/checkout and setup-node] ⭐ Run Main Prove the versions
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Using actions/checkout and setup-node]   | node : v22.23.3
+[Using actions/checkout and setup-node]   | npm  : 10.9.9
+[Using actions/checkout and setup-node]   | cache dir: /root/.npm
+[Using actions/checkout and setup-node]   ✅  Success - Main Prove the versions [267.159491ms]
+[Using actions/checkout and setup-node] ⭐ Run Main Install exactly what the lock file pins
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | added 127 packages, and audited 128 packages in 3s
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | 31 packages are looking for funding
+[Using actions/checkout and setup-node]   |   run `npm fund` for details
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | found 0 vulnerabilities
+[Using actions/checkout and setup-node]   ✅  Success - Main Install exactly what the lock file pins [3.081763902s]
+[Using actions/checkout and setup-node] ⭐ Run Main Run the real checks with the pinned Node
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | > cicd-learn@1.0.0 lint
+[Using actions/checkout and setup-node]   | > eslint .
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | > cicd-learn@1.0.0 test
+[Using actions/checkout and setup-node]   | > vitest run
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Using actions/checkout and setup-node]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Using actions/checkout and setup-node]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Using actions/checkout and setup-node]   | [2m   Start at [22m 09:21:03
+[Using actions/checkout and setup-node]   | [2m   Duration [22m 176ms[2m (transform 57%, import 25%, tests 10%, worker 7%)[22m
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | > cicd-learn@1.0.0 build
+[Using actions/checkout and setup-node]   | > node build.mjs
+[Using actions/checkout and setup-node]   | 
+[Using actions/checkout and setup-node]   | built dist/app.js (2887 bytes)
+[Using actions/checkout and setup-node]   ✅  Success - Main Run the real checks with the pinned Node [1.370033614s]
+[Using actions/checkout and setup-node]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Using actions/checkout and setup-node] ⭐ Run Post Set up Node.js
+[Using actions/checkout and setup-node]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Using actions/checkout and setup-node]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Using actions/checkout and setup-node]   | Cache Size: ~21 MB (22341621 B)
+[Using actions/checkout and setup-node]   | Cache saved successfully
+[Using actions/checkout and setup-node]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Using actions/checkout and setup-node]   ✅  Success - Post Set up Node.js [966.606734ms]
+[Using actions/checkout and setup-node] ⭐ Run Complete job
+[Using actions/checkout and setup-node] Cleaning up container for job checkout and setup-node
+[Using actions/checkout and setup-node]   ✅  Success - Complete job
+[Using actions/checkout and setup-node] 🏁  Job succeeded
+
+### act exit status: 0

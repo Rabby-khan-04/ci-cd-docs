@@ -1,0 +1,44 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .tmp/chain-ch20.yml
+
+time="2026-10-08T15:40:16+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Artifacts/consume the build] ⭐ Run Set up job
+[Artifacts/consume the build] 🚀  Start image=node:24-bookworm
+[Artifacts/consume the build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Artifacts/consume the build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/consume the build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Artifacts/consume the build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Artifacts/consume the build]   ✅  Success - Set up job
+[Artifacts/consume the build] ⭐ Run Main [simulated download-artifact: dist]
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0.sh] user= workdir=.
+[Artifacts/consume the build]   | SIMULATED download of dist into dist
+[Artifacts/consume the build]   ✅  Success - Main [simulated download-artifact: dist] [64.534265ms]
+[Artifacts/consume the build] ⭐ Run Main It is really there, and it still runs
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Artifacts/consume the build]   | total 8
+[Artifacts/consume the build]   | -rw-r--r-- 1 node node  525 Oct  8 09:40 app.js
+[Artifacts/consume the build]   | -rw-r--r-- 1 node node 2362 Oct  8 09:40 app.js.map
+[Artifacts/consume the build]   | {
+[Artifacts/consume the build]   |   "message": "HELLO, ADA!",
+[Artifacts/consume the build]   |   "total": 10,
+[Artifacts/consume the build]   |   "mean": 2.5
+[Artifacts/consume the build]   | }
+[Artifacts/consume the build]   ✅  Success - Main It is really there, and it still runs [96.499145ms]
+[Artifacts/consume the build] ⭐ Run Main Proof it came from the other machine, not from a build here
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=
+[Artifacts/consume the build]   | dist/app.js is 525 bytes
+[Artifacts/consume the build]   | no node_modules, as expected
+[Artifacts/consume the build]   ✅  Success - Main Proof it came from the other machine, not from a build here [57.232627ms]
+[Artifacts/consume the build] ⭐ Run Main [simulated upload-artifact: always-present]
+[Artifacts/consume the build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/3.sh] user= workdir=.
+[Artifacts/consume the build]   | -rw-r--r-- 1 root root 443 Oct  8 09:40 .tmp/artifacts/always-present.tar
+[Artifacts/consume the build]   | SIMULATED upload of cicd-learn/package.json as always-present
+[Artifacts/consume the build]   ✅  Success - Main [simulated upload-artifact: always-present] [62.989713ms]
+[Artifacts/consume the build] ⭐ Run Complete job
+[Artifacts/consume the build] Cleaning up container for job consume the build
+[Artifacts/consume the build]   ✅  Success - Complete job
+[Artifacts/consume the build] 🏁  Job succeeded
+
+### act exit status: 0

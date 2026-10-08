@@ -1,0 +1,64 @@
+name: Lint step
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+
+      # Plain run. The whole contract is that the exit code is the verdict:
+      # ESLint exits 0 when clean, 1 when it found problems. No parsing of the
+      # output, no `grep`, no check of whether the words "error" appear.
+      - name: Lint
+        id: lint
+        run: npm run lint
+
+      # ── Annotations on the PR diff ───────────────────────────────────────
+      # Older tutorials say to use `--format github`. That formatter was REMOVED
+      # from ESLint's built-in formatters in ESLint 10. It now lives in the
+      # separate `eslint-formatter-github` package, and that package uploads
+      # results through a GitHub App instead of emitting workflow commands, so it
+      # is the wrong tool inside Actions.
+      #
+      # The modern approach: read ESLint's JSON and print workflow commands
+      # yourself. cicd-learn/scripts/lint-annotations.mjs does that in ~30 lines
+      # with no dependencies, and problems then appear on the PR diff next to the
+      # offending line instead of only in a log nobody scrolls to.
+      - name: Lint annotations on the PR diff
+        run: |
+          npx eslint . --format json > /tmp/lint.json || true
+          node scripts/lint-annotations.mjs /tmp/lint.json
+
+
+      # ── Writing the report into the run summary ──────────────────────────
+      # `--format json` gives structured output; a small script turns it into a
+      # markdown table. The script lives in cicd-learn/scripts/lint-summary.mjs
+      # rather than inline, because shell-quoting JavaScript inside a YAML run:
+      # block is a trap that costs an afternoon.
+      #
+      # Note the `|| true`: without it, `bash -e` would abort the step the
+      # moment eslint exits non-zero, and you would never see the table. The
+      # step's verdict still comes from the earlier lint step.
+      - name: Lint report as a table
+        run: |
+          npx eslint . --format json > /tmp/lint.json || true
+          node scripts/lint-summary.mjs /tmp/lint.json | tee -a "$GITHUB_STEP_SUMMARY"

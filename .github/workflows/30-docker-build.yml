@@ -1,0 +1,83 @@
+name: Build a Docker image
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and smoke-test the image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      # buildx is the modern builder. It supports multi-stage builds, better
+      # cache control, and building for architectures other than the host's.
+      - uses: docker/setup-buildx-action@v4
+
+      # Build and load into the local daemon, so the NEXT step can run it.
+      # `load:` is what makes `docker run` possible afterwards. Without it the
+      # image exists only inside the builder's cache and never becomes a local
+      # image. This is the single most common confusion with buildx.
+      - name: Build the image
+        id: build
+        uses: docker/build-push-action@v7
+        with:
+          context: cicd-learn
+          file: cicd-learn/Dockerfile
+          # A tag that describes what was built. `sha` is immutable and
+          # traceable; `latest` is a moving target with no history.
+          tags: |
+            cicd-learn:sha-${{ github.sha }}
+            cicd-learn:main
+          load: true
+          # The cache source. `gha` uses GitHub's own Actions cache, which is
+          # what makes the second build much faster than the first.
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # The point of the whole chapter: prove the image actually runs. A build
+      # that produces an image nobody executes is not a test.
+      - name: Run the image and check the output
+        run: |
+          echo "--- images present ---"
+          docker images cicd-learn --format '{{.Repository}}:{{.Tag}} {{.Size}}'
+          echo
+          echo "--- running it ---"
+          output=$(docker run --rm cicd-learn:sha-${{ github.sha }} Ada)
+          echo "$output"
+          echo
+          # Assert, do not eyeball. Grep the expected line and fail if absent.
+          echo "$output" | grep -q 'HELLO, ADA!' || {
+            echo "::error::the image did not produce the expected output"
+            exit 1
+          }
+          echo "the image works"
+
+      # Inspect the image: layers, size, and what is inside it.
+      - name: Inspect the image
+        run: |
+          echo "--- size ---"
+          docker images cicd-learn:sha-${{ github.sha }} --format '{{.Size}}'
+          echo
+          echo "--- history (each line is a layer) ---"
+          docker history cicd-learn:sha-${{ github.sha }} --format '{{.Size}}\t{{.CreatedBy}}' | head -8
+          echo
+          echo "--- what is actually in there ---"
+          docker run --rm --entrypoint sh cicd-learn:sha-${{ github.sha }} -c \
+            'ls -la /app; echo; echo "who am i:"; whoami; echo; echo "node:"; node --version'
+
+      - name: Confirm it does not run as root
+        run: |
+          # Running as root inside a container is a real, if small, risk. A
+          # dedicated unprivileged user costs one line.
+          if docker run --rm --entrypoint sh cicd-learn:sha-${{ github.sha }} -c 'test "$(id -u)" = "0"'; then
+            echo "::warning title=Container runs as root::Add a USER instruction to the Dockerfile"
+          else
+            echo "the container runs as a non-root user"
+          fi

@@ -1,0 +1,62 @@
+name: Test step
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: ubuntu-24.04
+    # A hung test suite should fail, not sit here for the default six hours.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+
+      # `vitest run` means run once and exit. Without `run` it would watch for
+      # file changes forever and never finish the step.
+      - name: Run tests
+        id: tests
+        run: npm test
+
+      # ── Reading a failure ─────────────────────────────────────────────────
+      # The reporter that matters in CI is one that prints the diff and the
+      # actual value, not just "expected X to be Y". Vitest's default reporter
+      # does this. The flag that helps most in CI is a verbose reporter, so each
+      # test is listed by name.
+      #
+      # Real output from a deliberately broken assertion (see section 4):
+      #
+      #   FAIL  test/greet.test.js > greet > greets by name
+      #   AssertionError: expected 'Hello, Ada!' to be 'Hello, Grace!'
+      #     Expected: "Hello, Grace!"
+      #     Received: "Hello, Ada!"
+      #
+      # Read it as: expected [what I asked for], received [what the code did].
+      # In a real bug, the "received" value is the truth about the world and the
+      # "expected" value is your belief about it. Usually your belief is wrong.
+
+      # ── Non-zero exit is the whole contract ───────────────────────────────
+      # Vitest exits 1 when any test fails. `bash -e` turns that into a red step,
+      # and a red step skips everything after it. There is no parsing of output
+      # anywhere in this job, and there should not be.
+
+      # ── Do not deploy or publish from a failing run ───────────────────────
+      # Chapter 34 explains required status checks: this job's name becomes a
+      # check that a branch protection rule can require, so `main` cannot be
+      # merged into while this is red. That is where the "gate" actually lives,
+      # not in this workflow file.

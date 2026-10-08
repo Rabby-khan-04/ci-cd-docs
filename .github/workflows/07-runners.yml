@@ -1,0 +1,68 @@
+name: Runners
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: nothing here writes to the repository.
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  # ── The same job on two different runner labels ────────────────────────────
+  # Compare the "What is preinstalled" step. This is the whole chapter.
+  pinned:
+    name: ubuntu-24.04 (pinned)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: What is preinstalled
+        run: |
+          echo "runner image : ubuntu-24.04"
+          echo "runner os    : ${{ runner.os }}"
+          echo "runner arch  : ${{ runner.arch }}"
+          echo "cpus         : $(nproc)"
+          echo "memory       : $(free -h | awk '/^Mem:/{print $2}')"
+          echo "--- preinstalled ---"
+          git --version
+          python3 --version
+          curl --version | head -1
+          node --version
+          # Not installed without setup-node matching a project version.
+          echo "--- from the image, not from our project ---"
+
+  latest:
+    name: ubuntu-latest (moving)
+    # This label can change at any time without warning. Chapter 07 is about why
+    # you should not ship with it.
+    runs-on: ubuntu-latest
+    steps:
+      - name: What is preinstalled
+        run: |
+          echo "runner image : ubuntu-latest"
+          echo "cpus         : $(nproc)"
+          git --version
+          python3 --version
+          node --version
+
+  # ── ubuntu-slim: cheap, but limited ───────────────────────────────────────
+  slim:
+    name: ubuntu-slim (cheap, limited)
+    runs-on: ubuntu-slim
+    steps:
+      - name: Show the constraint
+        run: |
+          echo "cpus: $(nproc)"
+          # This is the trade-off of the slim image, demonstrated rather than
+          # described. Docker-in-Docker is not available in an unprivileged
+          # container.
+          if docker info >/dev/null 2>&1; then
+            echo "docker works here"
+          else
+            echo "docker NOT available on ubuntu-slim"
+          fi

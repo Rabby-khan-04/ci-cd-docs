@@ -1,0 +1,135 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/14-build-step.yml
+
+time="2026-10-08T15:24:13+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Build step/Build] ⭐ Run Set up job
+[Build step/Build] 🚀  Start image=node:24-bookworm
+[Build step/Build]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Build step/Build]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Build step/Build]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Build step/Build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Build step/Build]   ✅  Success - Set up job
+[Build step/Build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Build step/Build] ⭐ Run Main actions/checkout@v7
+[Build step/Build]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Build step/Build]   ✅  Success - Main actions/checkout@v7 [49.025061ms]
+[Build step/Build] ⭐ Run Main actions/setup-node@v7
+[Build step/Build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Build step/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Build step/Build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Build step/Build]   ❓  ::group::Environment details
+[Build step/Build]   | node: v22.23.3
+[Build step/Build]   | npm: 10.9.9
+[Build step/Build]   | yarn: 1.22.22
+[Build step/Build]   ❓  ::endgroup::
+[Build step/Build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Build step/Build]   | /root/.npm
+[Build step/Build]   ⚙  ***
+[Build step/Build]   | Cache Size: ~21 MB (22348597 B)
+[Build step/Build]   | [command]/usr/bin/tar -xf /tmp/a9db29b5-53f9-4e20-9b28-61430b82b93f/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Build step/Build]   | Cache restored successfully
+[Build step/Build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Build step/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Build step/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Build step/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Build step/Build]   ✅  Success - Main actions/setup-node@v7 [1.344611773s]
+[Build step/Build]   ⚙  ::set-output:: cache-hit=true
+[Build step/Build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Build step/Build]   ⚙  ::set-output:: node-version=v22.23.3
+[Build step/Build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Build step/Build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Build step/Build] ⭐ Run Main npm ci
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Build step/Build]   | 
+[Build step/Build]   | added 127 packages, and audited 128 packages in 1s
+[Build step/Build]   | 
+[Build step/Build]   | 31 packages are looking for funding
+[Build step/Build]   |   run `npm fund` for details
+[Build step/Build]   | 
+[Build step/Build]   | found 0 vulnerabilities
+[Build step/Build]   ✅  Success - Main npm ci [1.400995438s]
+[Build step/Build] ⭐ Run Main Lint first, because it is fastest
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Build step/Build]   | 
+[Build step/Build]   | > cicd-learn@1.0.0 lint
+[Build step/Build]   | > eslint .
+[Build step/Build]   | 
+[Build step/Build]   ✅  Success - Main Lint first, because it is fastest [573.496126ms]
+[Build step/Build] ⭐ Run Main Test
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Build step/Build]   | 
+[Build step/Build]   | > cicd-learn@1.0.0 test
+[Build step/Build]   | > vitest run
+[Build step/Build]   | 
+[Build step/Build]   | 
+[Build step/Build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Build step/Build]   | 
+[Build step/Build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Build step/Build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[Build step/Build]   | 
+[Build step/Build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Build step/Build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Build step/Build]   | [2m   Start at [22m 09:24:19
+[Build step/Build]   | [2m   Duration [22m 170ms[2m (transform 50%, import 28%, tests 13%, worker 9%)[22m
+[Build step/Build]   | 
+[Build step/Build]   ✅  Success - Main Test [765.979346ms]
+[Build step/Build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Build step/Build] ⭐ Run Main Build
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/build] user= workdir=cicd-learn
+[Build step/Build]   | 
+[Build step/Build]   | > cicd-learn@1.0.0 build
+[Build step/Build]   | > node build.mjs
+[Build step/Build]   | 
+[Build step/Build]   | built dist/app.js (2887 bytes)
+[Build step/Build]   | dist/app.js is 525 bytes, sourcemap is 2362 bytes
+[Build step/Build]   ✅  Success - Main Build [263.945094ms]
+[Build step/Build]   ⚙  ::set-output:: bytes=525
+[Build step/Build]   ⚙  ::set-output:: mapbytes=2362
+[Build step/Build] ⭐ Run Main Run the built output
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Build step/Build]   | {
+[Build step/Build]   |   "message": "HELLO, ADA!",
+[Build step/Build]   |   "total": 10,
+[Build step/Build]   |   "mean": 2.5
+[Build step/Build]   | }
+[Build step/Build]   | {
+[Build step/Build]   |   "message": "HELLO, GRACE!",
+[Build step/Build]   |   "total": 10,
+[Build step/Build]   |   "mean": 2.5
+[Build step/Build]   | }
+[Build step/Build]   ✅  Success - Main Run the built output [148.036607ms]
+[Build step/Build] ⭐ Run Main List what was produced
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Build step/Build]   | total 8
+[Build step/Build]   | -rw-r--r-- 1 root root  525 Oct  8 09:24 app.js
+[Build step/Build]   | -rw-r--r-- 1 root root 2362 Oct  8 09:24 app.js.map
+[Build step/Build]   ✅  Success - Main List what was produced [73.940194ms]
+[Build step/Build] ⭐ Run Main Summary
+[Build step/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/8] user= workdir=cicd-learn
+[Build step/Build]   ✅  Success - Main Summary [76.988188ms]
+[Build step/Build]   ⚙  Summary - ### Build
+
+| file | bytes |
+| ---- | ----: |
+| `dist/app.js` | 525 |
+| `dist/app.js.map` | 2362 |
+[Build step/Build] ⭐ Run Post actions/setup-node@v7
+[Build step/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Build step/Build]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Build step/Build]   | Cache Size: ~21 MB (22346719 B)
+[Build step/Build]   | Cache saved successfully
+[Build step/Build]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Build step/Build]   ✅  Success - Post actions/setup-node@v7 [930.775765ms]
+[Build step/Build] ⭐ Run Complete job
+[Build step/Build] Cleaning up container for job Build
+[Build step/Build]   ✅  Success - Complete job
+[Build step/Build] 🏁  Job succeeded
+
+### act exit status: 0

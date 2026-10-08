@@ -1,0 +1,121 @@
+name: Events and triggers demo
+
+# The quote on `on:` matters: YAML 1.1 parses bare `on:` as the boolean True,
+# which breaks every non-GitHub tool that reads this file. Chapter 05.
+"on":
+  # ── 1. push ────────────────────────────────────────────────────────────────
+  # Fires on a push to a branch or a tag.
+  push:
+    # `branches` filters on the branch being pushed TO. A push to feature/x does
+    # not match `branches: [main]`, even if it will merge into main tomorrow.
+    branches: [main]
+    # `tags` filters on tags. If you specify only tags, branch pushes do not run
+    # this workflow; if you specify only branches, tag pushes do not. Specify
+    # neither and both fire.
+    # tags: ['v*']
+    # Filter on which files changed. Cheapest way to stop docs-only commits from
+    # burning a full CI run. Paths are NOT evaluated for tag pushes.
+    # paths:
+    #   - 'cicd-learn/**'
+    #   - '.github/workflows/**'
+    #   - '!**/*.md'          # negative patterns come after positive ones
+
+  # ── 2. pull_request ────────────────────────────────────────────────────────
+  # Fires on PR activity. This is the trigger that reads the workflow file from
+  # the PR's own branch, which is why it works before the file reaches main.
+  pull_request:
+    # Which branches the PR is TARGETING. Default: all branches.
+    branches: [main]
+    # `types` limits which PR activities fire. Default when omitted:
+    # [opened, synchronize, reopened]. Note that `closed` is NOT in the default.
+    types: [opened, synchronize, reopened]
+
+  # ── 3. schedule ────────────────────────────────────────────────────────────
+  # POSIX cron, always UTC. Runs on the latest commit on the DEFAULT branch only.
+  # Not 03:17 for the reason given in the comment.
+  schedule:
+    - cron: '17 3 * * *'
+
+  # ── 4. workflow_dispatch ───────────────────────────────────────────────────
+  # The "Run workflow" button. Works only once the file is on the default branch.
+  # This is the escape hatch: re-run, or run on demand with different inputs.
+  workflow_dispatch:
+    inputs:
+      greeting:
+        description: 'What to print'
+        required: false
+        default: 'hello'
+        type: string
+      shout:
+        description: 'Uppercase it'
+        required: false
+        default: false
+        type: boolean
+      target:
+        description: 'Environment selector'
+        required: false
+        type: choice
+        options: [staging, production]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: cicd-learn
+
+jobs:
+  # Prints which trigger actually fired. This single job is the fastest way to
+  # answer "why did / why didn't my workflow run?".
+  which-event:
+    name: Which event fired
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - name: Report the trigger
+        run: |
+          echo "event name : ${{ github.event_name }}"
+          echo "ref name   : ${{ github.ref_name }}"
+          echo "ref type   : ${{ github.ref_type }}"
+          echo "actor      : ${{ github.actor }}"
+          echo "run id     : ${{ github.run_id }}"
+          echo "attempt    : ${{ github.run_attempt }}"
+          echo "event path : $GITHUB_EVENT_PATH"
+          echo "triggering schedule: ${{ github.event.schedule || 'not a schedule' }}"
+
+      # Only true on pull_request events. Proves which branch is being targeted.
+      - name: Pull request detail, if any
+        run: |
+          echo "PR number  : ${{ github.event.number || 'none' }}"
+          echo "PR title   : ${{ github.event.pull_request.title || 'none' }}"
+          echo "PR draft   : ${{ github.event.pull_request.draft }}"
+          echo "base branch: ${{ github.event.pull_request.base.ref || 'none' }}"
+
+      # Manual inputs. The `||` fallback covers "input was not supplied".
+      - name: Manual inputs, if any
+        run: |
+          echo "greeting: ${{ inputs.greeting || 'not supplied' }}"
+          echo "shout   : ${{ inputs.shout || false }}"
+          echo "target  : ${{ inputs.target || 'not supplied' }}"
+
+      # Gate one job on the event, so the Actions tab shows only relevant work.
+      - name: PR-only step, skipped elsewhere
+        if: github.event_name == 'pull_request'
+        run: echo "this only runs for pull requests"
+
+      - name: main-only step, skipped on PRs
+        if: github.ref_name == 'main'
+        run: echo "this only runs when the branch is main"
+
+      # A job summary: rendered as a markdown table at the bottom of the run.
+      - name: Write a run summary
+        run: |
+          {
+            echo "### Trigger report"
+            echo ""
+            echo "| Field | Value |"
+            echo "| ----- | ----- |"
+            echo "| event | \`${{ github.event_name }}\` |"
+            echo "| branch | \`${{ github.ref_name }}\` |"
+            echo "| actor | @${{ github.actor }} |"
+          } >> "$GITHUB_STEP_SUMMARY"

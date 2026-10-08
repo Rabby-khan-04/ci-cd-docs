@@ -1,0 +1,104 @@
+### act act version 0.2.89
+### image  node:24-bookworm
+### event  push
+### file   .github/workflows/21-concurrency.yml
+
+time="2026-10-08T15:40:34+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Concurrency/CI] ⭐ Run Set up job
+[Concurrency/CI] 🚀  Start image=node:24-bookworm
+[Concurrency/CI]   🐳  docker pull image=node:24-bookworm platform= username= forcePull=false
+[Concurrency/CI]   🐳  docker create image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Concurrency/CI]   🐳  docker run image=node:24-bookworm platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Concurrency/CI]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Concurrency/CI]   ✅  Success - Set up job
+[Concurrency/CI]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Concurrency/CI] ⭐ Run Main actions/checkout@v7
+[Concurrency/CI]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Concurrency/CI]   ✅  Success - Main actions/checkout@v7 [49.550073ms]
+[Concurrency/CI] ⭐ Run Main actions/setup-node@v7
+[Concurrency/CI]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Concurrency/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Concurrency/CI]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Concurrency/CI]   ❓  ::group::Environment details
+[Concurrency/CI]   | node: v22.23.3
+[Concurrency/CI]   | npm: 10.9.9
+[Concurrency/CI]   | yarn: 1.22.22
+[Concurrency/CI]   ❓  ::endgroup::
+[Concurrency/CI]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Concurrency/CI]   | /root/.npm
+[Concurrency/CI]   ⚙  ***
+[Concurrency/CI]   | Cache Size: ~21 MB (22353051 B)
+[Concurrency/CI]   | [command]/usr/bin/tar -xf /tmp/fa119927-254c-4c17-8697-7500bae5fe82/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Concurrency/CI]   | Cache restored successfully
+[Concurrency/CI]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Concurrency/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Concurrency/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Concurrency/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Concurrency/CI]   ✅  Success - Main actions/setup-node@v7 [1.297592423s]
+[Concurrency/CI]   ⚙  ::set-output:: cache-hit=true
+[Concurrency/CI]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Concurrency/CI]   ⚙  ::set-output:: node-version=v22.23.3
+[Concurrency/CI]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Concurrency/CI]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Concurrency/CI] ⭐ Run Main npm ci
+[Concurrency/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Concurrency/CI]   | 
+[Concurrency/CI]   | added 127 packages, and audited 128 packages in 1s
+[Concurrency/CI]   | 
+[Concurrency/CI]   | 31 packages are looking for funding
+[Concurrency/CI]   |   run `npm fund` for details
+[Concurrency/CI]   | 
+[Concurrency/CI]   | found 0 vulnerabilities
+[Concurrency/CI]   ✅  Success - Main npm ci [1.348954464s]
+[Concurrency/CI] ⭐ Run Main npm run lint
+[Concurrency/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Concurrency/CI]   | 
+[Concurrency/CI]   | > cicd-learn@1.0.0 lint
+[Concurrency/CI]   | > eslint .
+[Concurrency/CI]   | 
+[Concurrency/CI]   ✅  Success - Main npm run lint [559.89034ms]
+[Concurrency/CI] ⭐ Run Main npm test
+[Concurrency/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Concurrency/CI]   | 
+[Concurrency/CI]   | > cicd-learn@1.0.0 test
+[Concurrency/CI]   | > vitest run
+[Concurrency/CI]   | 
+[Concurrency/CI]   | 
+[Concurrency/CI]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Concurrency/CI]   | 
+[Concurrency/CI]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Concurrency/CI]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[Concurrency/CI]   | 
+[Concurrency/CI]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Concurrency/CI]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Concurrency/CI]   | [2m   Start at [22m 09:40:40
+[Concurrency/CI]   | [2m   Duration [22m 167ms[2m (transform 52%, import 25%, tests 12%, worker 11%)[22m
+[Concurrency/CI]   | 
+[Concurrency/CI]   ✅  Success - Main npm test [724.172779ms]
+[Concurrency/CI]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Concurrency/CI] ⭐ Run Main npm run build
+[Concurrency/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Concurrency/CI]   | 
+[Concurrency/CI]   | > cicd-learn@1.0.0 build
+[Concurrency/CI]   | > node build.mjs
+[Concurrency/CI]   | 
+[Concurrency/CI]   | built dist/app.js (2887 bytes)
+[Concurrency/CI]   ✅  Success - Main npm run build [269.932246ms]
+[Concurrency/CI] ⭐ Run Post actions/setup-node@v7
+[Concurrency/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Concurrency/CI]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Concurrency/CI]   | Cache Size: ~21 MB (22346740 B)
+[Concurrency/CI]   | Cache saved successfully
+[Concurrency/CI]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Concurrency/CI]   ✅  Success - Post actions/setup-node@v7 [912.979466ms]
+[Concurrency/CI] ⭐ Run Complete job
+[Concurrency/CI] Cleaning up container for job CI
+[Concurrency/CI]   ✅  Success - Complete job
+[Concurrency/CI] 🏁  Job succeeded
+
+### act exit status: 0

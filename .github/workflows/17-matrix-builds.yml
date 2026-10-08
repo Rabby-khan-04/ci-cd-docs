@@ -1,0 +1,93 @@
+name: Matrix builds
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── Several Node versions, one workflow, N jobs ───────────────────────────
+  # One job definition becomes one job per combination of the matrix axes.
+  # 3 node versions x 2 operating systems = 6 jobs, from the definition below.
+  matrix:
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      # When one combination fails, cancel the rest. Default is true.
+      # Turn it off when you want to see the full picture of what broke, e.g.
+      # when upgrading Node across versions and you want all the failures.
+      fail-fast: false
+      matrix:
+        # The axes. `node` x `os` = the cross product.
+        node: ['20', '22', '24']
+        os: [ubuntu-24.04]
+        # `include` ADDS jobs or extends existing ones. An entry that only
+        # partially matches an existing combination extends it rather than
+        # duplicating it, which is how you give one combination a different
+        # config.
+        include:
+          # Node 24 on arm64: a 4th job, testing Apple-silicon-class hardware.
+          - node: '24'
+            os: ubuntu-24.04-arm
+          # Extends the existing `node: '24', os: ubuntu-24.04` combination
+          # because both keys already match; adds `experimental: true`.
+          - node: '24'
+            os: ubuntu-24.04
+            experimental: true
+
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+
+      # `node-version: ${{ matrix.node }}` is how the axis value reaches the step.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+
+      - name: Report the combination
+        run: |
+          echo "node        : $(node --version)"
+          echo "npm         : $(npm --version)"
+          echo "os label    : ${{ matrix.os }}"
+          echo "experimental: ${{ matrix.experimental || 'no' }}"
+
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
+
+      - name: Summary row
+        run: |
+          {
+            echo "| node | npm | os | experimental |"
+            echo "| ---- | --- | -- | ------------ |"
+            echo "| ${{ matrix.node }} | $(npm --version) | ${{ matrix.os }} | ${{ matrix.experimental || 'no' }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # ── The cross product, made explicit ──────────────────────────────────────
+  # To test Node 20/22 on Linux and Windows, you do NOT write four entries.
+  # You write two axes and get four jobs:
+  #
+  #   matrix:
+  #     node: ['20', '22']
+  #     os: [ubuntu-24.04, windows-2025]
+  #
+  # That is 4 jobs. Windows is billed at 2x Linux, so think before you add it
+  # to a matrix. Chapter 49.
+  #
+  # `exclude:` removes combinations from the cross product:
+  #
+  #   exclude:
+  #     - node: '20'        # Node 20 is EOL, do not test it on Windows
+  #       os: windows-2025
