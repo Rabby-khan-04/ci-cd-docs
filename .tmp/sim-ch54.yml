@@ -1,0 +1,90 @@
+name: Staging and production
+'on':
+  push:
+    branches:
+    - main
+  workflow_dispatch: null
+permissions:
+  contents: read
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-node@v7
+      with:
+        node-version: '22'
+        cache: npm
+        cache-dependency-path: cicd-learn/package-lock.json
+    - run: npm ci
+    - run: npm run lint
+    - run: npm test
+    - run: npm run build
+    - name: '[simulated upload-artifact: dist]'
+      shell: bash
+      working-directory: .
+      run: "mkdir -p .tmp/artifacts\ntest -e cicd-learn/dist || { echo \"::error::no\
+        \ files at cicd-learn/dist\"; exit 1; }\nif [ -e cicd-learn/dist ]; then\n\
+        \  tar czf .tmp/artifacts/dist.tar -C cicd-learn dist\n  ls -l \".tmp/artifacts/dist.tar\"\
+        \n  echo \"SIMULATED upload of cicd-learn/dist as dist\"\nelse\n  echo \"\
+        SIMULATED upload of cicd-learn/dist as dist: nothing to upload\"\nfi"
+  deploy-staging:
+    name: Deploy to staging
+    runs-on: ubuntu-24.04
+    needs:
+    - ci
+    environment:
+      name: staging
+      url: https://staging.example.com
+    steps:
+    - name: '[simulated download-artifact: dist]'
+      shell: bash
+      working-directory: .
+      run: 'mkdir -p "dist"
+
+        test -f .tmp/artifacts/dist.tar || { echo "::error::artifact dist not found";
+        exit 1; }
+
+        tar xzf ".tmp/artifacts/dist.tar" -C "dist"
+
+        echo "SIMULATED download of dist into dist"'
+    - name: Deploy (simulated)
+      run: 'echo "deploying $(wc -c < dist/app.js) bytes to staging"
+
+        echo "url: https://staging.example.com"
+
+        '
+  deploy-production:
+    name: Deploy to production
+    runs-on: ubuntu-24.04
+    needs:
+    - ci
+    - deploy-staging
+    environment:
+      name: production
+      url: https://example.com
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+    - name: '[simulated download-artifact: dist]'
+      shell: bash
+      working-directory: .
+      run: 'mkdir -p "dist"
+
+        test -f .tmp/artifacts/dist.tar || { echo "::error::artifact dist not found";
+        exit 1; }
+
+        tar xzf ".tmp/artifacts/dist.tar" -C "dist"
+
+        echo "SIMULATED download of dist into dist"'
+    - name: Deploy (simulated)
+      run: 'echo "deploying $(wc -c < dist/app.js) bytes to production"
+
+        echo "url: https://example.com"
+
+        '

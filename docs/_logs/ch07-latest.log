@@ -1,0 +1,17 @@
+time="2026-10-08T15:52:04+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Runners/ubuntu-latest (moving)] ⭐ Run Set up job
+[Runners/ubuntu-latest (moving)] 🚀  Start image=node:16-buster-slim
+[Runners/ubuntu-latest (moving)]   🐳  docker pull image=node:16-buster-slim platform= username= forcePull=false
+[Runners/ubuntu-latest (moving)]   🐳  docker create image=node:16-buster-slim platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Runners/ubuntu-latest (moving)]   🐳  docker run image=node:16-buster-slim platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Runners/ubuntu-latest (moving)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Runners/ubuntu-latest (moving)]   ✅  Success - Set up job
+[Runners/ubuntu-latest (moving)] ⭐ Run Main What is preinstalled
+[Runners/ubuntu-latest (moving)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=cicd-learn
+[Runners/ubuntu-latest (moving)]   | OCI runtime exec failed: exec failed: unable to start container process: chdir to cwd ("/home/sunny/app/nimo/cicd-docs/cicd-learn") set in config.json failed: no such file or directory
+[Runners/ubuntu-latest (moving)]   ❌  Failure - Main What is preinstalled [64.362112ms]
+[Runners/ubuntu-latest (moving)] exitcode '127': command not found, please refer to https://github.com/nektos/act/issues/107 for more information
+[Runners/ubuntu-latest (moving)] ⭐ Run Complete job
+[Runners/ubuntu-latest (moving)]   ✅  Success - Complete job
+[Runners/ubuntu-latest (moving)] 🏁  Job failed
+Error: Job 'ubuntu-latest (moving)' failed

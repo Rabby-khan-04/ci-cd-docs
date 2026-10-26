@@ -1,0 +1,121 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/40-reusable-workflows.yml
+
+time="2026-10-26T18:34:19+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-26T18:34:19+06:00" level=info msg="deleted cache: &{ID:25 Key:buildx-dl-bin-0.38.0-linux-x64 Version:b3b16141c98355fd87e45b1f0c42111df495240328d58f25febcb77cdc850e84 Size:23433320 Complete:true UsedAt:1791452735 CreatedAt:1791452735}" module=artifactcache
+time="2026-10-26T18:34:19+06:00" level=info msg="deleted cache: &{ID:27 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22359787 Complete:true UsedAt:1791453738 CreatedAt:1791453075}" module=artifactcache
+time="2026-10-26T18:34:19+06:00" level=info msg="deleted cache: &{ID:28 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22353131 Complete:true UsedAt:1791453743 CreatedAt:1791453742}" module=artifactcache
+time="2026-10-26T18:34:19+06:00" level=info msg="deleted cache: &{ID:6 Key:esbuild-linux-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:b13e2bbe9cba47f358d14e182bf3fed077d24d55c681d2fb99000eea567e34c8 Size:629 Complete:true UsedAt:1791451663 CreatedAt:1791451663}" module=artifactcache
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Set up job
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] 🚀  Start image=cicd-act-runner:24
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Set up job
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main actions/checkout@v7
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main actions/checkout@v7 [149.838482ms]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main actions/setup-node@v7
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ❓  ::group::Environment details
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | node: v22.23.3
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | npm: 10.9.9
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | yarn: 1.22.22
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ❓  ::endgroup::
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | /root/.npm
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | npm cache is not found
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main actions/setup-node@v7 [2.342652698s]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::set-output:: node-version=v22.23.3
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::set-output:: cache-hit=false
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::set-output:: cache-matched-key=
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main npm ci
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | added 127 packages, and audited 128 packages in 4s
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 31 packages are looking for funding
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   |   run `npm fund` for details
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | found 0 vulnerabilities
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main npm ci [3.939718854s]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main npm run lint
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > cicd-learn@1.0.0 lint
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > eslint .
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main npm run lint [879.997052ms]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main npm test
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > cicd-learn@1.0.0 test
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > vitest run
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [2m   Start at [22m 12:34:32
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [2m   Duration [22m 414ms[2m (transform 78%, import 12%, tests 6%, worker 4%)[22m
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main npm test [1.118170047s]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Main Build
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/build] user= workdir=cicd-learn
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > cicd-learn@1.0.0 build
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | > node build.mjs
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | 
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | built dist/app.js (2887 bytes)
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Main Build [412.812976ms]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ⚙  ::set-output:: bytes=525
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Post actions/setup-node@v7
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | Cache Size: ~21 MB (22342929 B)
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | Cache saved successfully
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Post actions/setup-node@v7 [1.026674115s]
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] ⭐ Run Complete job
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] Cleaning up container for job Lint, test, build
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build]   ✅  Success - Complete job
+[Call the reusable quality workflow/Reusable quality checks/Lint, test, build] 🏁  Job succeeded
+[Reusable workflows demo/Report the reusable result        ] ⭐ Run Set up job
+[Reusable workflows demo/Report the reusable result        ] 🚀  Start image=cicd-act-runner:24
+[Reusable workflows demo/Report the reusable result        ]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Reusable workflows demo/Report the reusable result        ]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Reusable workflows demo/Report the reusable result        ]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Reusable workflows demo/Report the reusable result        ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Reusable workflows demo/Report the reusable result        ]   ✅  Success - Set up job
+[Reusable workflows demo/Report the reusable result        ] ⭐ Run Main Use the reusable workflow's output
+[Reusable workflows demo/Report the reusable result        ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Reusable workflows demo/Report the reusable result        ]   | reusable workflow reported:  bytes
+[Reusable workflows demo/Report the reusable result        ]   | conclusion: success
+[Reusable workflows demo/Report the reusable result        ]   ✅  Success - Main Use the reusable workflow's output [103.12038ms]
+[Reusable workflows demo/Report the reusable result        ] ⭐ Run Complete job
+[Reusable workflows demo/Report the reusable result        ] Cleaning up container for job Report the reusable result
+[Reusable workflows demo/Report the reusable result        ]   ✅  Success - Complete job
+[Reusable workflows demo/Report the reusable result        ] 🏁  Job succeeded
+
+### act exit status: 0

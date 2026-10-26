@@ -1,0 +1,53 @@
+time="2026-10-08T15:51:47+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Events and triggers demo/Which event fired] ⭐ Run Set up job
+[Events and triggers demo/Which event fired] 🚀  Start image=cicd-act-runner:24
+[Events and triggers demo/Which event fired]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Events and triggers demo/Which event fired]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Events and triggers demo/Which event fired]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Events and triggers demo/Which event fired]   ✅  Success - Set up job
+[Events and triggers demo/Which event fired] ⭐ Run Main actions/checkout@v7
+[Events and triggers demo/Which event fired]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Events and triggers demo/Which event fired]   ✅  Success - Main actions/checkout@v7 [94.401877ms]
+[Events and triggers demo/Which event fired] ⭐ Run Main Report the trigger
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=cicd-learn
+[Events and triggers demo/Which event fired]   | event name : pull_request
+[Events and triggers demo/Which event fired]   | ref name   : %!f(<nil>)/merge
+[Events and triggers demo/Which event fired]   | ref type   : 
+[Events and triggers demo/Which event fired]   | actor      : nektos/act
+[Events and triggers demo/Which event fired]   | run id     : 1
+[Events and triggers demo/Which event fired]   | attempt    : 1
+[Events and triggers demo/Which event fired]   | event path : /var/run/act/workflow/event.json
+[Events and triggers demo/Which event fired]   | triggering schedule: not a schedule
+[Events and triggers demo/Which event fired]   ✅  Success - Main Report the trigger [60.214423ms]
+[Events and triggers demo/Which event fired] ⭐ Run Main Pull request detail, if any
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Events and triggers demo/Which event fired]   | PR number  : none
+[Events and triggers demo/Which event fired]   | PR title   : none
+[Events and triggers demo/Which event fired]   | PR draft   : 
+[Events and triggers demo/Which event fired]   | base branch: none
+[Events and triggers demo/Which event fired]   ✅  Success - Main Pull request detail, if any [59.54682ms]
+[Events and triggers demo/Which event fired] ⭐ Run Main Manual inputs, if any
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Events and triggers demo/Which event fired]   | greeting: not supplied
+[Events and triggers demo/Which event fired]   | shout   : false
+[Events and triggers demo/Which event fired]   | target  : not supplied
+[Events and triggers demo/Which event fired]   ✅  Success - Main Manual inputs, if any [59.443488ms]
+[Events and triggers demo/Which event fired] ⭐ Run Main PR-only step, skipped elsewhere
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Events and triggers demo/Which event fired]   | this only runs for pull requests
+[Events and triggers demo/Which event fired]   ✅  Success - Main PR-only step, skipped elsewhere [65.97733ms]
+[Events and triggers demo/Which event fired] ⭐ Run Main Write a run summary
+[Events and triggers demo/Which event fired]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Events and triggers demo/Which event fired]   ✅  Success - Main Write a run summary [66.079227ms]
+[Events and triggers demo/Which event fired]   ⚙  Summary - ### Trigger report
+
+| Field | Value |
+| ----- | ----- |
+| event | `pull_request` |
+| branch | `%!f(<nil>)/merge` |
+| actor | @nektos/act |
+[Events and triggers demo/Which event fired] ⭐ Run Complete job
+[Events and triggers demo/Which event fired] Cleaning up container for job Which event fired
+[Events and triggers demo/Which event fired]   ✅  Success - Complete job
+[Events and triggers demo/Which event fired] 🏁  Job succeeded

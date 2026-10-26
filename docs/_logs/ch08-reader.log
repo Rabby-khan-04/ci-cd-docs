@@ -1,0 +1,24 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/08-jobs-and-steps.yml
+
+time="2026-10-08T15:51:06+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Jobs and steps/Reader job (cannot see the file)] ⭐ Run Set up job
+[Jobs and steps/Reader job (cannot see the file)] 🚀  Start image=cicd-act-runner:24
+[Jobs and steps/Reader job (cannot see the file)]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Jobs and steps/Reader job (cannot see the file)]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and steps/Reader job (cannot see the file)]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Jobs and steps/Reader job (cannot see the file)]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Jobs and steps/Reader job (cannot see the file)]   ✅  Success - Set up job
+[Jobs and steps/Reader job (cannot see the file)] ⭐ Run Main Look for the file, with no checkout at all
+[Jobs and steps/Reader job (cannot see the file)]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=cicd-learn
+[Jobs and steps/Reader job (cannot see the file)]   | OCI runtime exec failed: exec failed: unable to start container process: chdir to cwd ("/home/sunny/app/nimo/cicd-docs/cicd-learn") set in config.json failed: no such file or directory
+[Jobs and steps/Reader job (cannot see the file)]   ❌  Failure - Main Look for the file, with no checkout at all [67.473646ms]
+[Jobs and steps/Reader job (cannot see the file)] exitcode '127': command not found, please refer to https://github.com/nektos/act/issues/107 for more information
+[Jobs and steps/Reader job (cannot see the file)] ⭐ Run Complete job
+[Jobs and steps/Reader job (cannot see the file)]   ✅  Success - Complete job
+[Jobs and steps/Reader job (cannot see the file)] 🏁  Job failed
+Error: Job 'Reader job (cannot see the file)' failed
+
+### act exit status: 1

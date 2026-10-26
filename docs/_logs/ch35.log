@@ -1,0 +1,112 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch35.yml
+
+time="2026-10-26T18:48:34+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Code coverage/Test with coverage] ⭐ Run Set up job
+[Code coverage/Test with coverage] 🚀  Start image=cicd-act-runner:24
+[Code coverage/Test with coverage]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Code coverage/Test with coverage]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Code coverage/Test with coverage]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Code coverage/Test with coverage]   ✅  Success - Set up job
+[Code coverage/Test with coverage]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Code coverage/Test with coverage] ⭐ Run Main actions/checkout@v7
+[Code coverage/Test with coverage]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Code coverage/Test with coverage]   ✅  Success - Main actions/checkout@v7 [106.629978ms]
+[Code coverage/Test with coverage] ⭐ Run Main actions/setup-node@v7
+[Code coverage/Test with coverage]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Code coverage/Test with coverage]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Code coverage/Test with coverage]   ❓  ::group::Environment details
+[Code coverage/Test with coverage]   | node: v22.23.3
+[Code coverage/Test with coverage]   | npm: 10.9.9
+[Code coverage/Test with coverage]   | yarn: 1.22.22
+[Code coverage/Test with coverage]   ❓  ::endgroup::
+[Code coverage/Test with coverage]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Code coverage/Test with coverage]   | /root/.npm
+[Code coverage/Test with coverage]   ⚙  ***
+[Code coverage/Test with coverage]   | Cache Size: ~21 MB (22353345 B)
+[Code coverage/Test with coverage]   | [command]/usr/bin/tar -xf /tmp/e782c18c-55a9-4e22-8373-d5be5ecc0710/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Code coverage/Test with coverage]   | Cache restored successfully
+[Code coverage/Test with coverage]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Code coverage/Test with coverage]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Code coverage/Test with coverage]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Code coverage/Test with coverage]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Code coverage/Test with coverage]   ✅  Success - Main actions/setup-node@v7 [1.483190854s]
+[Code coverage/Test with coverage]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Code coverage/Test with coverage]   ⚙  ::set-output:: cache-hit=true
+[Code coverage/Test with coverage]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Code coverage/Test with coverage]   ⚙  ::set-output:: node-version=v22.23.3
+[Code coverage/Test with coverage]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Code coverage/Test with coverage] ⭐ Run Main npm ci
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | added 127 packages, and audited 128 packages in 1s
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | 31 packages are looking for funding
+[Code coverage/Test with coverage]   |   run `npm fund` for details
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | found 0 vulnerabilities
+[Code coverage/Test with coverage]   ✅  Success - Main npm ci [1.6362258s]
+[Code coverage/Test with coverage] ⭐ Run Main Run tests with coverage
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/cov] user= workdir=cicd-learn
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | > cicd-learn@1.0.0 coverage
+[Code coverage/Test with coverage]   | > vitest run --coverage
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Code coverage/Test with coverage]   |       [2mCoverage enabled with [22m[33mv8[39m
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Code coverage/Test with coverage]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Code coverage/Test with coverage]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Code coverage/Test with coverage]   | [2m   Start at [22m 12:48:42
+[Code coverage/Test with coverage]   | [2m   Duration [22m 229ms[2m (transform 39%, worker 26%, import 25%, tests 9%)[22m
+[Code coverage/Test with coverage]   | 
+[Code coverage/Test with coverage]   | [34m % [39m[2mCoverage report from [22m[33mv8[39m
+[Code coverage/Test with coverage]   | ----------|---------|----------|---------|---------|-------------------
+[Code coverage/Test with coverage]   | File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+[Code coverage/Test with coverage]   | ----------|---------|----------|---------|---------|-------------------
+[Code coverage/Test with coverage]   | All files |   93.33 |    71.42 |     100 |    92.3 |                   
+[Code coverage/Test with coverage]   |  app.js   |   66.66 |     62.5 |     100 |   66.66 | 15                
+[Code coverage/Test with coverage]   |  greet.js |     100 |       75 |     100 |     100 | 4                 
+[Code coverage/Test with coverage]   |  sum.js   |     100 |      100 |     100 |     100 |                   
+[Code coverage/Test with coverage]   | ----------|---------|----------|---------|---------|-------------------
+[Code coverage/Test with coverage]   ✅  Success - Main Run tests with coverage [1.008045243s]
+[Code coverage/Test with coverage]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Code coverage/Test with coverage] ⭐ Run Main [simulated upload-artifact: coverage-report]
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/4.sh] user= workdir=.
+[Code coverage/Test with coverage]   | -rw-r--r-- 1 root root 17578 Oct 26 12:48 .tmp/artifacts/coverage-report.tar
+[Code coverage/Test with coverage]   | SIMULATED upload of cicd-learn/coverage as coverage-report
+[Code coverage/Test with coverage]   ✅  Success - Main [simulated upload-artifact: coverage-report] [90.892852ms]
+[Code coverage/Test with coverage] ⭐ Run Main What the text report actually shows
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Code coverage/Test with coverage]   | On CI the text table hides 100%-covered files (skipFull is true
+[Code coverage/Test with coverage]   | /var/run/act/workflow/5: line 3: sum.js: command not found
+[Code coverage/Test with coverage]   | when Vitest detects a CI agent). So , which is 100%
+[Code coverage/Test with coverage]   | covered on every metric, does not appear in the printed table even
+[Code coverage/Test with coverage]   | though it is in coverage-final.json. That is expected, not a bug.
+[Code coverage/Test with coverage]   ✅  Success - Main What the text report actually shows [87.284522ms]
+[Code coverage/Test with coverage] ⭐ Run Post actions/setup-node@v7
+[Code coverage/Test with coverage]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Code coverage/Test with coverage]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Code coverage/Test with coverage]   | Cache Size: ~21 MB (22353550 B)
+[Code coverage/Test with coverage]   | Cache saved successfully
+[Code coverage/Test with coverage]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Code coverage/Test with coverage]   ✅  Success - Post actions/setup-node@v7 [1.04072624s]
+[Code coverage/Test with coverage] ⭐ Run Complete job
+[Code coverage/Test with coverage] Cleaning up container for job Test with coverage
+[Code coverage/Test with coverage]   ✅  Success - Complete job
+[Code coverage/Test with coverage] 🏁  Job succeeded
+
+### act exit status: 0

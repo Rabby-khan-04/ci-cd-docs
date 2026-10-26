@@ -1,0 +1,77 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/11-install-step.yml
+
+time="2026-10-08T15:50:57+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Install step/npm ci] ⭐ Run Set up job
+[Install step/npm ci] 🚀  Start image=cicd-act-runner:24
+[Install step/npm ci]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Install step/npm ci]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Install step/npm ci]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Install step/npm ci]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Install step/npm ci]   ✅  Success - Set up job
+[Install step/npm ci]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Install step/npm ci] ⭐ Run Main actions/checkout@v7
+[Install step/npm ci]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Install step/npm ci]   ✅  Success - Main actions/checkout@v7 [95.885328ms]
+[Install step/npm ci] ⭐ Run Main actions/setup-node@v7
+[Install step/npm ci]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Install step/npm ci]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Install step/npm ci]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Install step/npm ci]   ❓  ::group::Environment details
+[Install step/npm ci]   | node: v22.23.3
+[Install step/npm ci]   | npm: 10.9.9
+[Install step/npm ci]   | yarn: 1.22.22
+[Install step/npm ci]   ❓  ::endgroup::
+[Install step/npm ci]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Install step/npm ci]   | /root/.npm
+[Install step/npm ci]   ⚙  ***
+[Install step/npm ci]   | Cache Size: ~21 MB (22353186 B)
+[Install step/npm ci]   | [command]/usr/bin/tar -xf /tmp/8458724c-a4a5-4d8d-9577-ca0974e4c219/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Install step/npm ci]   | Cache restored successfully
+[Install step/npm ci]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Install step/npm ci]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Install step/npm ci]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Install step/npm ci]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Install step/npm ci]   ✅  Success - Main actions/setup-node@v7 [2.111535353s]
+[Install step/npm ci]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Install step/npm ci]   ⚙  ::set-output:: cache-hit=true
+[Install step/npm ci]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Install step/npm ci]   ⚙  ::set-output:: node-version=v22.23.3
+[Install step/npm ci]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Install step/npm ci] ⭐ Run Main Install from the lock file
+[Install step/npm ci]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Install step/npm ci]   | 
+[Install step/npm ci]   | added 127 packages, and audited 128 packages in 2s
+[Install step/npm ci]   | 
+[Install step/npm ci]   | 31 packages are looking for funding
+[Install step/npm ci]   |   run `npm fund` for details
+[Install step/npm ci]   | 
+[Install step/npm ci]   | found 0 vulnerabilities
+[Install step/npm ci]   ✅  Success - Main Install from the lock file [1.89179593s]
+[Install step/npm ci] ⭐ Run Main Prove the tree matches the lock file exactly
+[Install step/npm ci]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Install step/npm ci]   | cicd-learn@1.0.0 /home/sunny/app/nimo/cicd-docs/cicd-learn
+[Install step/npm ci]   | ├── @eslint/js@10.0.1
+[Install step/npm ci]   | ├── @vitest/coverage-v8@5.0.3
+[Install step/npm ci]   | ├── esbuild@0.28.2
+[Install step/npm ci]   | ├── eslint@10.12.0
+[Install step/npm ci]   | ├── globals@17.13.0
+[Install step/npm ci]   | └── vitest@5.0.3
+[Install step/npm ci]   | 
+[Install step/npm ci]   | exit code from npm ls: 0
+[Install step/npm ci]   ✅  Success - Main Prove the tree matches the lock file exactly [470.237161ms]
+[Install step/npm ci] ⭐ Run Post actions/setup-node@v7
+[Install step/npm ci]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Install step/npm ci]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Install step/npm ci]   | Cache Size: ~21 MB (22359622 B)
+[Install step/npm ci]   | Cache saved successfully
+[Install step/npm ci]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Install step/npm ci]   ✅  Success - Post actions/setup-node@v7 [1.097358892s]
+[Install step/npm ci] ⭐ Run Complete job
+[Install step/npm ci] Cleaning up container for job npm ci
+[Install step/npm ci]   ✅  Success - Complete job
+[Install step/npm ci] 🏁  Job succeeded
+
+### act exit status: 0

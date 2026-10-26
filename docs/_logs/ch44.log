@@ -1,0 +1,28 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/44-monorepo.yml
+
+time="2026-10-26T19:01:26+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Monorepo pipelines/Detect changed packages] ⭐ Run Set up job
+[Monorepo pipelines/Detect changed packages] 🚀  Start image=cicd-act-runner:24
+[Monorepo pipelines/Detect changed packages]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Monorepo pipelines/Detect changed packages]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Monorepo pipelines/Detect changed packages]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Monorepo pipelines/Detect changed packages]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Monorepo pipelines/Detect changed packages]   ✅  Success - Set up job
+[Monorepo pipelines/Detect changed packages] ⭐ Run Main actions/checkout@v7
+[Monorepo pipelines/Detect changed packages]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Monorepo pipelines/Detect changed packages]   ✅  Success - Main actions/checkout@v7 [122.014144ms]
+[Monorepo pipelines/Detect changed packages] ⭐ Run Main Detect which packages changed
+[Monorepo pipelines/Detect changed packages]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/detect] user= workdir=
+[Monorepo pipelines/Detect changed packages]   | changed packages: ["Dockerfile,README.md,build.mjs,eslint.config.js,package-lock.json,package.json,scripts,src,test,vitest.config.js,"]
+[Monorepo pipelines/Detect changed packages]   ✅  Success - Main Detect which packages changed [107.556594ms]
+[Monorepo pipelines/Detect changed packages]   ⚙  ::set-output:: packages=["Dockerfile,README.md,build.mjs,eslint.config.js,package-lock.json,package.json,scripts,src,test,vitest.config.js,"]
+[Monorepo pipelines/Detect changed packages]   ⚙  ::set-output:: any=true
+[Monorepo pipelines/Detect changed packages] ⭐ Run Complete job
+[Monorepo pipelines/Detect changed packages] Cleaning up container for job Detect changed packages
+[Monorepo pipelines/Detect changed packages]   ✅  Success - Complete job
+[Monorepo pipelines/Detect changed packages] 🏁  Job succeeded
+
+### act exit status: 0

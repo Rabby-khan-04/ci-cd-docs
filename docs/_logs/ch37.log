@@ -1,0 +1,17 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/37-codeql.yml
+
+time="2026-10-26T19:04:55+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[CodeQL/Analyse with CodeQL] ⭐ Run Set up job
+[CodeQL/Analyse with CodeQL] 🚀  Start image=cicd-act-runner:24
+[CodeQL/Analyse with CodeQL]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[CodeQL/Analyse with CodeQL]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CodeQL/Analyse with CodeQL]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[CodeQL/Analyse with CodeQL]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[CodeQL/Analyse with CodeQL]   ✅  Success - Set up job
+[CodeQL/Analyse with CodeQL]   ☁  git clone 'https://github.com/github/codeql-action' # ref=v4
+./scripts/run-workflow.sh: line 94: 219413 Killed                     "$ACT_BIN" "${args[@]}"
+
+### act exit status: 137

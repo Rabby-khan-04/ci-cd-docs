@@ -1,0 +1,38 @@
+name: CodeQL
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '17 3 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyse with CodeQL
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      # Initialize CodeQL. `languages` is the list of languages to analyse.
+      # Auto-detect only works when there is one language; for a pure JS repo,
+      # naming it explicitly removes a class of surprising failures.
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+          # queries: security-extended   # more rules, slower; good for a security review
+
+      # CodeQL builds a database of your code; the database is what gets queried.
+      - uses: github/codeql-action/autobuild@v4
+
+      # Run the queries and upload the results. The results appear under the
+      # repository's Security tab, not in the Actions log.
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:javascript-typescript"

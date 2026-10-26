@@ -1,0 +1,105 @@
+name: Monorepo pipelines
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── Path filtering: only run when relevant files change ───────────────────
+  # `paths` at the trigger level is the cheapest form of monorepo awareness.
+  # It is evaluated by GitHub before the run starts, so a docs-only commit
+  # never consumes a single minute.
+  #
+  # See 06-events-and-triggers for the full filter syntax.
+  #
+  # Trigger-level paths are not enough for a real monorepo: they can say
+  # "something in packages/* changed" but not WHICH package. For that you need
+  # a step that detects the changed packages and fans out.
+
+  changed:
+    name: Detect changed packages
+    runs-on: ubuntu-24.04
+    # outputs: read by the downstream matrix job via needs.changed.outputs
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+      any: ${{ steps.detect.outputs.any }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0   # the diff needs history, not just the tip
+
+      - name: Detect which packages changed
+        id: detect
+        run: |
+          # Compare this commit against its parent. On a push event that is the
+          # commit we just pushed; on a pull_request it is the merge commit.
+          base="${{ github.event.before || github.event.pull_request.base.sha }}"
+          # If there is no parent (first commit), treat everything as changed.
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            changed=$(ls cicd-learn | tr '\n' ',')
+          else
+            changed=$(git diff --name-only "$base" HEAD 2>/dev/null \
+                      | sed -n 's|^cicd-learn/.*|cicd-learn|p' | sort -u)
+          fi
+
+          # Build a JSON array for the matrix. This is the part that makes the
+          # matrix dynamic instead of hard-coded.
+          if [ -z "$changed" ]; then
+            echo "packages=[]" >> "$GITHUB_OUTPUT"
+            echo "any=false" >> "$GITHUB_OUTPUT"
+            echo "no packages changed"
+          else
+            json=$(printf '%s\n' "$changed" | jq -R -s -c 'split("\n") | map(select(length>0))')
+            echo "packages=$json" >> "$GITHUB_OUTPUT"
+            echo "any=true" >> "$GITHUB_OUTPUT"
+            echo "changed packages: $json"
+          fi
+
+  # ── A matrix that consumes the changed list ──────────────────────────────
+  # `fromJSON` turns the string back into a matrix axis. If `changed` was empty,
+  # the matrix has zero entries and the job is SKIPPED, not failed.
+  build:
+    name: Build ${{ matrix.package }}
+    runs-on: ubuntu-24.04
+    needs: [changed]
+    if: needs.changed.outputs.any == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.changed.outputs.packages) }}
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Report which package this job built
+        run: |
+          echo "package: ${{ matrix.package }}"
+          echo "commit: ${{ github.sha }}"
+
+  # ── Caching per package ───────────────────────────────────────────────────
+  # The cache key must include the package name, otherwise package A's cache is
+  # restored for package B. `hashFiles` takes a glob that covers every package.
+  cache-note:
+    name: Per-package cache keys
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Show the key shape
+        run: |
+          echo "key: build-\${{ runner.os }}-\${{ matrix.package }}-\${{ hashFiles('**/package-lock.json') }}"
+          echo "The matrix.package token is what keeps the packages apart."

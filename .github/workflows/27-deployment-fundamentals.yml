@@ -1,0 +1,61 @@
+name: Deployment fundamentals
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── CI and deploy are separate concerns ───────────────────────────────────
+  # This workflow shows the shape: CI runs on every push; deploy runs only on
+  # main, only after CI is green, and only for the code that CI tested.
+  ci:
+    name: CI
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: cicd-learn/dist
+          retention-days: 7
+          if-no-files-found: error
+
+  # ── The deploy job: gated, serialized, environment-bound ──────────────────
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-24.04
+    needs: [ci]
+    # A deployment only happens for code that passed CI on main. A PR never
+    # deploys, because github.ref_name is not 'main' on a pull_request event.
+    if: github.ref_name == 'main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://example.com
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Deploy (simulated)
+        run: |
+          echo "deploying $(wc -c < dist/app.js) bytes"
+          echo "this is where the real deploy command goes"

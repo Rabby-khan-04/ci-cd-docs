@@ -1,0 +1,84 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/probe-anatomy.yml
+
+time="2026-10-08T15:51:29+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[probe anatomy/Anatomy of an action] ⭐ Run Set up job
+[probe anatomy/Anatomy of an action] 🚀  Start image=cicd-act-runner:24
+[probe anatomy/Anatomy of an action]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[probe anatomy/Anatomy of an action]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[probe anatomy/Anatomy of an action]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[probe anatomy/Anatomy of an action]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[probe anatomy/Anatomy of an action]   ✅  Success - Set up job
+[probe anatomy/Anatomy of an action] ⭐ Run Main actions/checkout@v7
+[probe anatomy/Anatomy of an action]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[probe anatomy/Anatomy of an action]   ✅  Success - Main actions/checkout@v7 [90.843795ms]
+[probe anatomy/Anatomy of an action] ⭐ Run Main Show that an action is just files
+[probe anatomy/Anatomy of an action]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=cicd-learn
+[probe anatomy/Anatomy of an action]   | --- a JavaScript action looks like this ---
+[probe anatomy/Anatomy of an action]   | ../.github/actions/setup-node/action.yml
+[probe anatomy/Anatomy of an action]   | ../.github/actions/setup-node/run.sh
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   | --- action.yml is the manifest ---
+[probe anatomy/Anatomy of an action]   | # A composite action: several steps packaged under one name, written in YAML.
+[probe anatomy/Anatomy of an action]   | # Chapter 41 covers composite actions in full; this file is the sample used
+[probe anatomy/Anatomy of an action]   | # there, and it is used here so the `uses:` anatomy is real rather than invented.
+[probe anatomy/Anatomy of an action]   | name: 'Set up cicd-learn'
+[probe anatomy/Anatomy of an action]   | description: 'Checkout, install the pinned Node, then npm ci.'
+[probe anatomy/Anatomy of an action]   | inputs:
+[probe anatomy/Anatomy of an action]   |   node-version:
+[probe anatomy/Anatomy of an action]   |     description: 'Node.js version to install'
+[probe anatomy/Anatomy of an action]   |     required: false
+[probe anatomy/Anatomy of an action]   |     default: '22'
+[probe anatomy/Anatomy of an action]   |   run-checks:
+[probe anatomy/Anatomy of an action]   |     description: 'Whether to run lint, test and build after installing'
+[probe anatomy/Anatomy of an action]   |     required: false
+[probe anatomy/Anatomy of an action]   |     default: 'true'
+[probe anatomy/Anatomy of an action]   | runs:
+[probe anatomy/Anatomy of an action]   |   using: 'composite'
+[probe anatomy/Anatomy of an action]   |   steps:
+[probe anatomy/Anatomy of an action]   |     - name: Checkout
+[probe anatomy/Anatomy of an action]   |       uses: actions/checkout@v7
+[probe anatomy/Anatomy of an action]   |       with:
+[probe anatomy/Anatomy of an action]   |         fetch-depth: 1
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   |     - name: Set up Node ${{ inputs.node-version }}
+[probe anatomy/Anatomy of an action]   |       uses: actions/setup-node@v7
+[probe anatomy/Anatomy of an action]   |       with:
+[probe anatomy/Anatomy of an action]   |         node-version: ${{ inputs.node-version }}
+[probe anatomy/Anatomy of an action]   |         cache: 'npm'
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   |     - name: Install dependencies
+[probe anatomy/Anatomy of an action]   |       shell: bash
+[probe anatomy/Anatomy of an action]   |       working-directory: cicd-learn
+[probe anatomy/Anatomy of an action]   |       run: npm ci
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   |     # A conditional step inside a composite action. `inputs.*` are strings, so
+[probe anatomy/Anatomy of an action]   |     # compare them as strings.
+[probe anatomy/Anatomy of an action]   |     - name: Run checks
+[probe anatomy/Anatomy of an action]   |       if: inputs.run-checks == 'true'
+[probe anatomy/Anatomy of an action]   |       shell: bash
+[probe anatomy/Anatomy of an action]   |       working-directory: cicd-learn
+[probe anatomy/Anatomy of an action]   |       run: |
+[probe anatomy/Anatomy of an action]   |         npm run lint
+[probe anatomy/Anatomy of an action]   |         npm test
+[probe anatomy/Anatomy of an action]   |         npm run build
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   | --- and its implementation ---
+[probe anatomy/Anatomy of an action]   | #!/usr/bin/env bash
+[probe anatomy/Anatomy of an action]   | # The script half of a composite action. This particular action delegates to
+[probe anatomy/Anatomy of an action]   | # other actions, so there is not much logic here; a real composite action with
+[probe anatomy/Anatomy of an action]   | # its own logic would put it here.
+[probe anatomy/Anatomy of an action]   | set -euo pipefail
+[probe anatomy/Anatomy of an action]   | 
+[probe anatomy/Anatomy of an action]   | echo "composite action invoked"
+[probe anatomy/Anatomy of an action]   | echo "  node-version: ${1:-22}"
+[probe anatomy/Anatomy of an action]   | echo "  run-checks  : ${2:-true}"
+[probe anatomy/Anatomy of an action]   ✅  Success - Main Show that an action is just files [63.852981ms]
+[probe anatomy/Anatomy of an action] ⭐ Run Complete job
+[probe anatomy/Anatomy of an action] Cleaning up container for job Anatomy of an action
+[probe anatomy/Anatomy of an action]   ✅  Success - Complete job
+[probe anatomy/Anatomy of an action] 🏁  Job succeeded
+
+### act exit status: 0

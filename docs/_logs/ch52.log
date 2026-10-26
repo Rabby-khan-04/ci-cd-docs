@@ -1,0 +1,831 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch52.yml
+
+time="2026-10-26T18:36:03+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Containerized service/Build and verify the image] ⭐ Run Set up job
+[Containerized service/Build and verify the image] 🚀  Start image=cicd-act-runner:24
+[Containerized service/Build and verify the image]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Containerized service/Build and verify the image]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Containerized service/Build and verify the image]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Containerized service/Build and verify the image]   ✅  Success - Set up job
+[Containerized service/Build and verify the image]   ☁  git clone 'https://github.com/docker/setup-buildx-action' # ref=v4
+[Containerized service/Build and verify the image]   ☁  git clone 'https://github.com/docker/build-push-action' # ref=v7
+[Containerized service/Build and verify the image] ⭐ Run Main actions/checkout@v7
+[Containerized service/Build and verify the image]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Containerized service/Build and verify the image]   ✅  Success - Main actions/checkout@v7 [165.798568ms]
+[Containerized service/Build and verify the image] ⭐ Run Main docker/setup-buildx-action@v4
+[Containerized service/Build and verify the image]   🐳  docker cp src=/home/sunny/.cache/act/docker-setup-buildx-action@v4/ dst=/var/run/act/actions/docker-setup-buildx-action@v4/
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-setup-buildx-action@v4/dist/index.cjs] user= workdir=
+[Containerized service/Build and verify the image]   ❓  ::group::Docker info
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker version
+[Containerized service/Build and verify the image]   | Client: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Version:           29.8.2
+[Containerized service/Build and verify the image]   |  API version:       1.56
+[Containerized service/Build and verify the image]   |  Go version:        go1.26.8
+[Containerized service/Build and verify the image]   |  Git commit:        7fc2dff
+[Containerized service/Build and verify the image]   |  Built:             Wed Sep 30 19:32:25 2026
+[Containerized service/Build and verify the image]   |  OS/Arch:           linux/amd64
+[Containerized service/Build and verify the image]   |  Context:           default
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | Server: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Engine:
+[Containerized service/Build and verify the image]   |   Version:          29.9.2
+[Containerized service/Build and verify the image]   |   API version:      1.56 (minimum version 1.40)
+[Containerized service/Build and verify the image]   |   Go version:       go1.26.10
+[Containerized service/Build and verify the image]   |   Git commit:       0367cbe
+[Containerized service/Build and verify the image]   |   Built:            Tue Oct 20 18:45:12 2026
+[Containerized service/Build and verify the image]   |   OS/Arch:          linux/amd64
+[Containerized service/Build and verify the image]   |   Experimental:     false
+[Containerized service/Build and verify the image]   |  containerd:
+[Containerized service/Build and verify the image]   |   Version:          v2.4.2
+[Containerized service/Build and verify the image]   |   GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+[Containerized service/Build and verify the image]   |  runc:
+[Containerized service/Build and verify the image]   |   Version:          1.5.2
+[Containerized service/Build and verify the image]   |   GitCommit:        v1.5.2-0-g29dd3dc2
+[Containerized service/Build and verify the image]   |  docker-init:
+[Containerized service/Build and verify the image]   |   Version:          0.19.0
+[Containerized service/Build and verify the image]   |   GitCommit:        de40ad0
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker info
+[Containerized service/Build and verify the image]   | Client: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Version:    29.8.2
+[Containerized service/Build and verify the image]   |  Context:    default
+[Containerized service/Build and verify the image]   |  Debug Mode: false
+[Containerized service/Build and verify the image]   |  Plugins:
+[Containerized service/Build and verify the image]   |   buildx: Docker Buildx (Docker Inc.)
+[Containerized service/Build and verify the image]   |     Version:  v0.37.1
+[Containerized service/Build and verify the image]   |     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | Server:
+[Containerized service/Build and verify the image]   |  Containers: 19
+[Containerized service/Build and verify the image]   |   Running: 7
+[Containerized service/Build and verify the image]   |   Paused: 0
+[Containerized service/Build and verify the image]   |   Stopped: 12
+[Containerized service/Build and verify the image]   |  Images: 29
+[Containerized service/Build and verify the image]   |  Server Version: 29.9.2
+[Containerized service/Build and verify the image]   |  Storage Driver: overlayfs
+[Containerized service/Build and verify the image]   |   driver-type: io.containerd.snapshotter.v1
+[Containerized service/Build and verify the image]   |  Logging Driver: json-file
+[Containerized service/Build and verify the image]   |  Cgroup Driver: systemd
+[Containerized service/Build and verify the image]   |  Cgroup Version: 2
+[Containerized service/Build and verify the image]   |  Plugins:
+[Containerized service/Build and verify the image]   |   Volume: local
+[Containerized service/Build and verify the image]   |   Network: bridge host ipvlan macvlan null overlay
+[Containerized service/Build and verify the image]   |   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[Containerized service/Build and verify the image]   |  CDI spec directories:
+[Containerized service/Build and verify the image]   |   /etc/cdi
+[Containerized service/Build and verify the image]   |   /var/run/cdi
+[Containerized service/Build and verify the image]   |  Swarm: inactive
+[Containerized service/Build and verify the image]   |  Runtimes: io.containerd.runc.v2 runc
+[Containerized service/Build and verify the image]   |  Default Runtime: runc
+[Containerized service/Build and verify the image]   |  Init Binary: docker-init
+[Containerized service/Build and verify the image]   |  containerd version: b7a25261e029d68978bbf290df0a62fc819b3c51
+[Containerized service/Build and verify the image]   |  runc version: v1.5.2-0-g29dd3dc2
+[Containerized service/Build and verify the image]   |  init version: de40ad0
+[Containerized service/Build and verify the image]   |  Security Options:
+[Containerized service/Build and verify the image]   |   apparmor
+[Containerized service/Build and verify the image]   |    Profile: default
+[Containerized service/Build and verify the image]   |   seccomp
+[Containerized service/Build and verify the image]   |    Profile: builtin
+[Containerized service/Build and verify the image]   |   cgroupns
+[Containerized service/Build and verify the image]   |  Kernel Version: 7.0.0-38-generic
+[Containerized service/Build and verify the image]   |  Operating System: Ubuntu 26.04.1 LTS
+[Containerized service/Build and verify the image]   |  OSType: linux
+[Containerized service/Build and verify the image]   |  Architecture: x86_64
+[Containerized service/Build and verify the image]   |  CPUs: 8
+[Containerized service/Build and verify the image]   |  Total Memory: 15.5GiB
+[Containerized service/Build and verify the image]   |  Name: Curlware
+[Containerized service/Build and verify the image]   |  ID: 3dc3610d-5dce-4c75-ae0b-aa5f0f5563a8
+[Containerized service/Build and verify the image]   |  Docker Root Dir: /var/lib/docker
+[Containerized service/Build and verify the image]   |  Debug Mode: false
+[Containerized service/Build and verify the image]   |  Experimental: false
+[Containerized service/Build and verify the image]   |  Insecure Registries:
+[Containerized service/Build and verify the image]   |   127.0.0.0/8
+[Containerized service/Build and verify the image]   |   ::1/128
+[Containerized service/Build and verify the image]   |  Live Restore Enabled: false
+[Containerized service/Build and verify the image]   |  Firewall Backend: iptables
+[Containerized service/Build and verify the image]   |   EnableUserlandProxy: true
+[Containerized service/Build and verify the image]   |   UserlandProxyPath: /usr/bin/docker-proxy
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Buildx version
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx version
+[Containerized service/Build and verify the image]   | github.com/docker/buildx v0.37.1 0b265a9f62db554fa9aba6dd19e1bd5704bc7d8a
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Inspecting default docker context
+[Containerized service/Build and verify the image]   | [
+[Containerized service/Build and verify the image]   |   {
+[Containerized service/Build and verify the image]   |     "Name": "default",
+[Containerized service/Build and verify the image]   |     "Metadata": {},
+[Containerized service/Build and verify the image]   |     "Endpoints": {
+[Containerized service/Build and verify the image]   |       "docker": {
+[Containerized service/Build and verify the image]   |         "Host": "unix:///var/run/docker.sock",
+[Containerized service/Build and verify the image]   |         "SkipTLSVerify": false
+[Containerized service/Build and verify the image]   |       }
+[Containerized service/Build and verify the image]   |     },
+[Containerized service/Build and verify the image]   |     "TLSMaterial": {},
+[Containerized service/Build and verify the image]   |     "Storage": {
+[Containerized service/Build and verify the image]   |       "MetadataPath": "<IN MEMORY>",
+[Containerized service/Build and verify the image]   |       "TLSPath": "<IN MEMORY>"
+[Containerized service/Build and verify the image]   |     }
+[Containerized service/Build and verify the image]   |   }
+[Containerized service/Build and verify the image]   | ]
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Pulling BuildKit image(s)
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker pull moby/buildkit:buildx-stable-1
+[Containerized service/Build and verify the image]   | buildx-stable-1: Pulling from moby/buildkit
+[Containerized service/Build and verify the image]   | Digest: sha256:cec9f139f45e93c5c69c60f8b07cfad9f43f4ef6b6a6cd917527fea5ff2e3dea
+[Containerized service/Build and verify the image]   | Status: Image is up to date for moby/buildkit:buildx-stable-1
+[Containerized service/Build and verify the image]   | docker.io/moby/buildkit:buildx-stable-1
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Creating a new builder instance
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx create --name builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417 --driver docker-container --buildkitd-flags --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host --use
+[Containerized service/Build and verify the image]   | builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Booting builder
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx inspect --bootstrap --builder builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417
+[Containerized service/Build and verify the image]   | #1 [internal] booting buildkit
+[Containerized service/Build and verify the image]   | #1 pulling image moby/buildkit:buildx-stable-1
+[Containerized service/Build and verify the image]   | #1 pulling image moby/buildkit:buildx-stable-1 2.4s done
+[Containerized service/Build and verify the image]   | #1 creating container buildx_buildkit_builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170
+[Containerized service/Build and verify the image]   | #1 creating container buildx_buildkit_builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170 1.0s done
+[Containerized service/Build and verify the image]   | #1 DONE 3.4s
+[Containerized service/Build and verify the image]   | Name:          builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417
+[Containerized service/Build and verify the image]   | Driver:        docker-container
+[Containerized service/Build and verify the image]   | Last Activity: 2026-10-26 12:36:10 +0000 UTC
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | Nodes:
+[Containerized service/Build and verify the image]   | Name:                  builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170
+[Containerized service/Build and verify the image]   | Endpoint:              unix:///var/run/docker.sock
+[Containerized service/Build and verify the image]   | Status:                running
+[Containerized service/Build and verify the image]   | BuildKit daemon flags: --allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host
+[Containerized service/Build and verify the image]   | BuildKit version:      v0.33.1
+[Containerized service/Build and verify the image]   | Platforms:             linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/386
+[Containerized service/Build and verify the image]   | Labels:
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.executor:         oci
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.hostname:         84ffba1a6989
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.network:          host
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.selinux.enabled:  false
+[Containerized service/Build and verify the image]   |  org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+[Containerized service/Build and verify the image]   | GC Policy rule#0:
+[Containerized service/Build and verify the image]   |  All:            false
+[Containerized service/Build and verify the image]   |  Filters:        type==source.local type==exec.cachemount type==source.git.checkout
+[Containerized service/Build and verify the image]   |  Keep Duration:  48h0m0s
+[Containerized service/Build and verify the image]   |  Max Used Space: 488.3MiB
+[Containerized service/Build and verify the image]   | GC Policy rule#1:
+[Containerized service/Build and verify the image]   |  All:            false
+[Containerized service/Build and verify the image]   |  Keep Duration:  1440h0m0s
+[Containerized service/Build and verify the image]   |  Reserved Space: 9.313GiB
+[Containerized service/Build and verify the image]   |  Max Used Space: 93.13GiB
+[Containerized service/Build and verify the image]   |  Min Free Space: 43.77GiB
+[Containerized service/Build and verify the image]   | GC Policy rule#2:
+[Containerized service/Build and verify the image]   |  All:            false
+[Containerized service/Build and verify the image]   |  Reserved Space: 9.313GiB
+[Containerized service/Build and verify the image]   |  Max Used Space: 93.13GiB
+[Containerized service/Build and verify the image]   |  Min Free Space: 43.77GiB
+[Containerized service/Build and verify the image]   | GC Policy rule#3:
+[Containerized service/Build and verify the image]   |  All:            true
+[Containerized service/Build and verify the image]   |  Reserved Space: 9.313GiB
+[Containerized service/Build and verify the image]   |  Max Used Space: 93.13GiB
+[Containerized service/Build and verify the image]   |  Min Free Space: 43.77GiB
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Inspect builder
+[Containerized service/Build and verify the image]   | {
+[Containerized service/Build and verify the image]   |   "nodes": [
+[Containerized service/Build and verify the image]   |     {
+[Containerized service/Build and verify the image]   |       "name": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170",
+[Containerized service/Build and verify the image]   |       "endpoint": "unix:///var/run/docker.sock",
+[Containerized service/Build and verify the image]   |       "status": "running",
+[Containerized service/Build and verify the image]   |       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+[Containerized service/Build and verify the image]   |       "buildkit": "v0.33.1",
+[Containerized service/Build and verify the image]   |       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+[Containerized service/Build and verify the image]   |       "features": {
+[Containerized service/Build and verify the image]   |         "Automatically load images to the Docker Engine image store": true,
+[Containerized service/Build and verify the image]   |         "Cache export": true,
+[Containerized service/Build and verify the image]   |         "Direct push": true,
+[Containerized service/Build and verify the image]   |         "Docker exporter": true,
+[Containerized service/Build and verify the image]   |         "Multi-platform build": true,
+[Containerized service/Build and verify the image]   |         "OCI exporter": true
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "labels": {
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.executor": "oci",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.hostname": "84ffba1a6989",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.network": "host",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "gcPolicy": [
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "filter": [
+[Containerized service/Build and verify the image]   |             "type==source.local type==exec.cachemount type==source.git.checkout"
+[Containerized service/Build and verify the image]   |           ],
+[Containerized service/Build and verify the image]   |           "keepDuration": "48h0m0s",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "488.3MiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "keepDuration": "1440h0m0s",
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": true,
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         }
+[Containerized service/Build and verify the image]   |       ]
+[Containerized service/Build and verify the image]   |     }
+[Containerized service/Build and verify the image]   |   ],
+[Containerized service/Build and verify the image]   |   "name": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417",
+[Containerized service/Build and verify the image]   |   "driver": "docker-container",
+[Containerized service/Build and verify the image]   |   "lastActivity": "2026-10-26T12:36:10.000Z"
+[Containerized service/Build and verify the image]   | }
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::BuildKit version
+[Containerized service/Build and verify the image]   | builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170: v0.33.1
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ✅  Success - Main docker/setup-buildx-action@v4 [7.384162872s]
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: name=builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: driver=docker-container
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: platforms=linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: nodes=[
+  {
+    "name": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170",
+    "endpoint": "unix:///var/run/docker.sock",
+    "status": "running",
+    "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+    "buildkit": "v0.33.1",
+    "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+    "features": {
+      "Automatically load images to the Docker Engine image store": true,
+      "Cache export": true,
+      "Direct push": true,
+      "Docker exporter": true,
+      "Multi-platform build": true,
+      "OCI exporter": true
+    },
+    "labels": {
+      "org.mobyproject.buildkit.worker.executor": "oci",
+      "org.mobyproject.buildkit.worker.hostname": "84ffba1a6989",
+      "org.mobyproject.buildkit.worker.network": "host",
+      "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+      "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+      "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+    },
+    "gcPolicy": [
+      {
+        "all": false,
+        "filter": [
+          "type==source.local type==exec.cachemount type==source.git.checkout"
+        ],
+        "keepDuration": "48h0m0s",
+        "maxUsedSpace": "488.3MiB"
+      },
+      {
+        "all": false,
+        "keepDuration": "1440h0m0s",
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      },
+      {
+        "all": false,
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      },
+      {
+        "all": true,
+        "reservedSpace": "9.313GiB",
+        "maxUsedSpace": "93.13GiB",
+        "minFreeSpace": "43.77GiB"
+      }
+    ]
+  }
+]
+[Containerized service/Build and verify the image] ⭐ Run Main Build
+[Containerized service/Build and verify the image]   🐳  docker cp src=/home/sunny/.cache/act/docker-build-push-action@v7/ dst=/var/run/act/actions/docker-build-push-action@v7/
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-build-push-action@v7/dist/index.cjs] user= workdir=
+[Containerized service/Build and verify the image]   ❓  ::group::GitHub Actions runtime token ACs
+[Containerized service/Build and verify the image]   🚧  ::warning::ACTIONS_RUNTIME_TOKEN not set
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Docker info
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker version
+[Containerized service/Build and verify the image]   | Client: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Version:           29.8.2
+[Containerized service/Build and verify the image]   |  API version:       1.56
+[Containerized service/Build and verify the image]   |  Go version:        go1.26.8
+[Containerized service/Build and verify the image]   |  Git commit:        7fc2dff
+[Containerized service/Build and verify the image]   |  Built:             Wed Sep 30 19:32:25 2026
+[Containerized service/Build and verify the image]   |  OS/Arch:           linux/amd64
+[Containerized service/Build and verify the image]   |  Context:           default
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | Server: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Engine:
+[Containerized service/Build and verify the image]   |   Version:          29.9.2
+[Containerized service/Build and verify the image]   |   API version:      1.56 (minimum version 1.40)
+[Containerized service/Build and verify the image]   |   Go version:       go1.26.10
+[Containerized service/Build and verify the image]   |   Git commit:       0367cbe
+[Containerized service/Build and verify the image]   |   Built:            Tue Oct 20 18:45:12 2026
+[Containerized service/Build and verify the image]   |   OS/Arch:          linux/amd64
+[Containerized service/Build and verify the image]   |   Experimental:     false
+[Containerized service/Build and verify the image]   |  containerd:
+[Containerized service/Build and verify the image]   |   Version:          v2.4.2
+[Containerized service/Build and verify the image]   |   GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+[Containerized service/Build and verify the image]   |  runc:
+[Containerized service/Build and verify the image]   |   Version:          1.5.2
+[Containerized service/Build and verify the image]   |   GitCommit:        v1.5.2-0-g29dd3dc2
+[Containerized service/Build and verify the image]   |  docker-init:
+[Containerized service/Build and verify the image]   |   Version:          0.19.0
+[Containerized service/Build and verify the image]   |   GitCommit:        de40ad0
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker info
+[Containerized service/Build and verify the image]   | Client: Docker Engine - Community
+[Containerized service/Build and verify the image]   |  Version:    29.8.2
+[Containerized service/Build and verify the image]   |  Context:    default
+[Containerized service/Build and verify the image]   |  Debug Mode: false
+[Containerized service/Build and verify the image]   |  Plugins:
+[Containerized service/Build and verify the image]   |   buildx: Docker Buildx (Docker Inc.)
+[Containerized service/Build and verify the image]   |     Version:  v0.37.1
+[Containerized service/Build and verify the image]   |     Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | Server:
+[Containerized service/Build and verify the image]   |  Containers: 20
+[Containerized service/Build and verify the image]   |   Running: 8
+[Containerized service/Build and verify the image]   |   Paused: 0
+[Containerized service/Build and verify the image]   |   Stopped: 12
+[Containerized service/Build and verify the image]   |  Images: 29
+[Containerized service/Build and verify the image]   |  Server Version: 29.9.2
+[Containerized service/Build and verify the image]   |  Storage Driver: overlayfs
+[Containerized service/Build and verify the image]   |   driver-type: io.containerd.snapshotter.v1
+[Containerized service/Build and verify the image]   |  Logging Driver: json-file
+[Containerized service/Build and verify the image]   |  Cgroup Driver: systemd
+[Containerized service/Build and verify the image]   |  Cgroup Version: 2
+[Containerized service/Build and verify the image]   |  Plugins:
+[Containerized service/Build and verify the image]   |   Volume: local
+[Containerized service/Build and verify the image]   |   Network: bridge host ipvlan macvlan null overlay
+[Containerized service/Build and verify the image]   |   Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+[Containerized service/Build and verify the image]   |  CDI spec directories:
+[Containerized service/Build and verify the image]   |   /etc/cdi
+[Containerized service/Build and verify the image]   |   /var/run/cdi
+[Containerized service/Build and verify the image]   |  Swarm: inactive
+[Containerized service/Build and verify the image]   |  Runtimes: io.containerd.runc.v2 runc
+[Containerized service/Build and verify the image]   |  Default Runtime: runc
+[Containerized service/Build and verify the image]   |  Init Binary: docker-init
+[Containerized service/Build and verify the image]   |  containerd version: b7a25261e029d68978bbf290df0a62fc819b3c51
+[Containerized service/Build and verify the image]   |  runc version: v1.5.2-0-g29dd3dc2
+[Containerized service/Build and verify the image]   |  init version: de40ad0
+[Containerized service/Build and verify the image]   |  Security Options:
+[Containerized service/Build and verify the image]   |   apparmor
+[Containerized service/Build and verify the image]   |    Profile: default
+[Containerized service/Build and verify the image]   |   seccomp
+[Containerized service/Build and verify the image]   |    Profile: builtin
+[Containerized service/Build and verify the image]   |   cgroupns
+[Containerized service/Build and verify the image]   |  Kernel Version: 7.0.0-38-generic
+[Containerized service/Build and verify the image]   |  Operating System: Ubuntu 26.04.1 LTS
+[Containerized service/Build and verify the image]   |  OSType: linux
+[Containerized service/Build and verify the image]   |  Architecture: x86_64
+[Containerized service/Build and verify the image]   |  CPUs: 8
+[Containerized service/Build and verify the image]   |  Total Memory: 15.5GiB
+[Containerized service/Build and verify the image]   |  Name: Curlware
+[Containerized service/Build and verify the image]   |  ID: 3dc3610d-5dce-4c75-ae0b-aa5f0f5563a8
+[Containerized service/Build and verify the image]   |  Docker Root Dir: /var/lib/docker
+[Containerized service/Build and verify the image]   |  Debug Mode: false
+[Containerized service/Build and verify the image]   |  Experimental: false
+[Containerized service/Build and verify the image]   |  Insecure Registries:
+[Containerized service/Build and verify the image]   |   127.0.0.0/8
+[Containerized service/Build and verify the image]   |   ::1/128
+[Containerized service/Build and verify the image]   |  Live Restore Enabled: false
+[Containerized service/Build and verify the image]   |  Firewall Backend: iptables
+[Containerized service/Build and verify the image]   |   EnableUserlandProxy: true
+[Containerized service/Build and verify the image]   |   UserlandProxyPath: /usr/bin/docker-proxy
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Proxy configuration
+[Containerized service/Build and verify the image]   | No proxy configuration found
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Buildx version
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx version
+[Containerized service/Build and verify the image]   | github.com/docker/buildx v0.37.1 0b265a9f62db554fa9aba6dd19e1bd5704bc7d8a
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Builder info
+[Containerized service/Build and verify the image]   | {
+[Containerized service/Build and verify the image]   |   "nodes": [
+[Containerized service/Build and verify the image]   |     {
+[Containerized service/Build and verify the image]   |       "name": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170",
+[Containerized service/Build and verify the image]   |       "endpoint": "unix:///var/run/docker.sock",
+[Containerized service/Build and verify the image]   |       "status": "running",
+[Containerized service/Build and verify the image]   |       "buildkitd-flags": "--allow-insecure-entitlement security.insecure --allow-insecure-entitlement network.host",
+[Containerized service/Build and verify the image]   |       "buildkit": "v0.33.1",
+[Containerized service/Build and verify the image]   |       "platforms": "linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386",
+[Containerized service/Build and verify the image]   |       "features": {
+[Containerized service/Build and verify the image]   |         "Automatically load images to the Docker Engine image store": true,
+[Containerized service/Build and verify the image]   |         "Cache export": true,
+[Containerized service/Build and verify the image]   |         "Direct push": true,
+[Containerized service/Build and verify the image]   |         "Docker exporter": true,
+[Containerized service/Build and verify the image]   |         "Multi-platform build": true,
+[Containerized service/Build and verify the image]   |         "OCI exporter": true
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "labels": {
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.executor": "oci",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.hostname": "84ffba1a6989",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.network": "host",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.oci.process-mode": "sandbox",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.selinux.enabled": "false",
+[Containerized service/Build and verify the image]   |         "org.mobyproject.buildkit.worker.snapshotter": "overlayfs"
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "gcPolicy": [
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "filter": [
+[Containerized service/Build and verify the image]   |             "type==source.local type==exec.cachemount type==source.git.checkout"
+[Containerized service/Build and verify the image]   |           ],
+[Containerized service/Build and verify the image]   |           "keepDuration": "48h0m0s",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "488.3MiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "keepDuration": "1440h0m0s",
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": false,
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         {
+[Containerized service/Build and verify the image]   |           "all": true,
+[Containerized service/Build and verify the image]   |           "reservedSpace": "9.313GiB",
+[Containerized service/Build and verify the image]   |           "maxUsedSpace": "93.13GiB",
+[Containerized service/Build and verify the image]   |           "minFreeSpace": "43.77GiB"
+[Containerized service/Build and verify the image]   |         }
+[Containerized service/Build and verify the image]   |       ]
+[Containerized service/Build and verify the image]   |     }
+[Containerized service/Build and verify the image]   |   ],
+[Containerized service/Build and verify the image]   |   "name": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417",
+[Containerized service/Build and verify the image]   |   "driver": "docker-container",
+[Containerized service/Build and verify the image]   |   "lastActivity": "2026-10-26T12:36:10.000Z"
+[Containerized service/Build and verify the image]   | }
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --file cicd-learn/Dockerfile --iidfile /tmp/docker-actions-toolkit-5YafJt/build-iidfile-6df3dd4000.txt --tag cicd-learn:f910ba9c5cf17c6f7fc61410349e5de80e6f69c1 --load --metadata-file /tmp/docker-actions-toolkit-5YafJt/build-metadata-1428b3d3b5.json cicd-learn
+[Containerized service/Build and verify the image]   | #0 building with "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417" instance using docker-container driver
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #1 [internal] load build definition from Dockerfile
+[Containerized service/Build and verify the image]   | #1 transferring dockerfile: 2.18kB done
+[Containerized service/Build and verify the image]   | #1 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+[Containerized service/Build and verify the image]   | #2 DONE 2.4s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+[Containerized service/Build and verify the image]   | #3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e done
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0B / 14.28MB 0.2s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 2.10MB / 14.28MB 0.5s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 3.15MB / 14.28MB 0.6s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 5.24MB / 14.28MB 0.8s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 7.34MB / 14.28MB 0.9s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 8.39MB / 14.28MB 1.1s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 10.49MB / 14.28MB 1.2s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 11.53MB / 14.28MB 1.4s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 13.63MB / 14.28MB 1.5s
+[Containerized service/Build and verify the image]   | #3 sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 14.28MB / 14.28MB 1.6s done
+[Containerized service/Build and verify the image]   | #3 extracting sha256:9d2b4f57f9e20f33279375ce25c6ff14f30f64270ed5c7b613b2b30256754f62 0.1s done
+[Containerized service/Build and verify the image]   | #3 DONE 1.8s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #4 [internal] load metadata for docker.io/library/node:22-alpine
+[Containerized service/Build and verify the image]   | #4 DONE 1.8s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #5 [internal] load .dockerignore
+[Containerized service/Build and verify the image]   | #5 transferring context: 2B done
+[Containerized service/Build and verify the image]   | #5 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #6 [internal] load build context
+[Containerized service/Build and verify the image]   | #6 transferring context: 93.93kB done
+[Containerized service/Build and verify the image]   | #6 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #7 [deps 1/4] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+[Containerized service/Build and verify the image]   | #7 resolve docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 done
+[Containerized service/Build and verify the image]   | #7 sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 0B / 442B 0.2s
+[Containerized service/Build and verify the image]   | #7 sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 442B / 442B 0.3s done
+[Containerized service/Build and verify the image]   | #7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 0B / 1.26MB 0.2s
+[Containerized service/Build and verify the image]   | #7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0B / 3.85MB 0.2s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 0B / 56.22MB 0.2s
+[Containerized service/Build and verify the image]   | #7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 1.05MB / 1.26MB 0.6s
+[Containerized service/Build and verify the image]   | #7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 1.26MB / 1.26MB 0.6s done
+[Containerized service/Build and verify the image]   | #7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 1.05MB / 3.85MB 0.9s
+[Containerized service/Build and verify the image]   | #7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 2.10MB / 3.85MB 1.1s
+[Containerized service/Build and verify the image]   | #7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 1.2s done
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 3.15MB / 56.22MB 1.4s
+[Containerized service/Build and verify the image]   | #7 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s done
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 7.34MB / 56.22MB 1.8s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 11.53MB / 56.22MB 2.3s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 14.68MB / 56.22MB 2.6s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 18.87MB / 56.22MB 3.0s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 23.07MB / 56.22MB 3.5s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 27.26MB / 56.22MB 3.9s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 30.41MB / 56.22MB 4.2s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 34.60MB / 56.22MB 4.7s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 38.80MB / 56.22MB 5.1s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 41.94MB / 56.22MB 5.4s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 46.14MB / 56.22MB 5.9s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 50.33MB / 56.22MB 6.3s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 54.53MB / 56.22MB 6.8s
+[Containerized service/Build and verify the image]   | #7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 56.22MB / 56.22MB 7.1s done
+[Containerized service/Build and verify the image]   | #7 extracting sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1
+[Containerized service/Build and verify the image]   | #7 extracting sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 1.1s done
+[Containerized service/Build and verify the image]   | #7 DONE 8.2s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #7 [deps 1/4] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+[Containerized service/Build and verify the image]   | #7 extracting sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 0.0s done
+[Containerized service/Build and verify the image]   | #7 extracting sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 done
+[Containerized service/Build and verify the image]   | #7 DONE 8.3s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #8 [deps 2/4] WORKDIR /app
+[Containerized service/Build and verify the image]   | #8 DONE 0.5s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #9 [deps 3/4] COPY package.json package-lock.json ./
+[Containerized service/Build and verify the image]   | #9 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #10 [deps 4/4] RUN npm ci
+[Containerized service/Build and verify the image]   | #10 3.127 
+[Containerized service/Build and verify the image]   | #10 3.127 added 127 packages, and audited 128 packages in 3s
+[Containerized service/Build and verify the image]   | #10 3.127 
+[Containerized service/Build and verify the image]   | #10 3.127 31 packages are looking for funding
+[Containerized service/Build and verify the image]   | #10 3.127   run `npm fund` for details
+[Containerized service/Build and verify the image]   | #10 3.128 
+[Containerized service/Build and verify the image]   | #10 3.128 found 0 vulnerabilities
+[Containerized service/Build and verify the image]   | #10 3.129 npm notice
+[Containerized service/Build and verify the image]   | #10 3.129 npm notice New major version of npm available! 10.9.9 -> 12.2.1
+[Containerized service/Build and verify the image]   | #10 3.129 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+[Containerized service/Build and verify the image]   | #10 3.129 npm notice To update run: npm install -g npm@12.2.1
+[Containerized service/Build and verify the image]   | #10 3.129 npm notice
+[Containerized service/Build and verify the image]   | #10 DONE 3.6s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #11 [runtime 3/7] COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+[Containerized service/Build and verify the image]   | #11 DONE 0.5s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #12 [runtime 4/7] COPY --chown=node:node package.json ./
+[Containerized service/Build and verify the image]   | #12 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #13 [runtime 5/7] COPY --chown=node:node build.mjs ./
+[Containerized service/Build and verify the image]   | #13 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #14 [runtime 6/7] COPY --chown=node:node src ./src
+[Containerized service/Build and verify the image]   | #14 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #15 [runtime 7/7] RUN node build.mjs && rm -rf node_modules
+[Containerized service/Build and verify the image]   | #15 0.150 built dist/app.js (2887 bytes)
+[Containerized service/Build and verify the image]   | #15 DONE 0.3s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #16 exporting to oci image format
+[Containerized service/Build and verify the image]   | #16 exporting layers
+[Containerized service/Build and verify the image]   | #16 exporting layers 2.9s done
+[Containerized service/Build and verify the image]   | #16 exporting manifest sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6 done
+[Containerized service/Build and verify the image]   | #16 exporting config sha256:e9f3a15f5849c050c3ebc6768deaa4e4e1923084284494c9b71d09174ba0c959 done
+[Containerized service/Build and verify the image]   | #16 sending tarball
+[Containerized service/Build and verify the image]   | #16 ...
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #17 importing to docker
+[Containerized service/Build and verify the image]   | #17 DONE 0.0s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #16 exporting to oci image format
+[Containerized service/Build and verify the image]   | #16 sending tarball 2.2s done
+[Containerized service/Build and verify the image]   | #16 DONE 5.1s
+[Containerized service/Build and verify the image]   | 
+[Containerized service/Build and verify the image]   | #18 resolving provenance for metadata file
+[Containerized service/Build and verify the image]   | #18 DONE 0.0s
+[Containerized service/Build and verify the image]   ❓  ::group::ImageID
+[Containerized service/Build and verify the image]   | sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Digest
+[Containerized service/Build and verify the image]   | sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Metadata
+[Containerized service/Build and verify the image]   ⚙  ::stop-commands::64fcf2a3-83cd-4025-aa89-4962092d0478
+[Containerized service/Build and verify the image]   | {
+[Containerized service/Build and verify the image]   |   "buildx.build.provenance": {
+[Containerized service/Build and verify the image]   |     "builder": {
+[Containerized service/Build and verify the image]   |       "id": ""
+[Containerized service/Build and verify the image]   |     },
+[Containerized service/Build and verify the image]   |     "buildType": "https://mobyproject.org/buildkit@v1",
+[Containerized service/Build and verify the image]   |     "materials": [
+[Containerized service/Build and verify the image]   |       {
+[Containerized service/Build and verify the image]   |         "uri": "pkg:docker/docker/dockerfile@1",
+[Containerized service/Build and verify the image]   |         "digest": {
+[Containerized service/Build and verify the image]   |           "sha256": "4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e"
+[Containerized service/Build and verify the image]   |         }
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       {
+[Containerized service/Build and verify the image]   |         "uri": "pkg:docker/node@22-alpine?platform=linux%2Famd64",
+[Containerized service/Build and verify the image]   |         "digest": {
+[Containerized service/Build and verify the image]   |           "sha256": "fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914"
+[Containerized service/Build and verify the image]   |         }
+[Containerized service/Build and verify the image]   |       }
+[Containerized service/Build and verify the image]   |     ],
+[Containerized service/Build and verify the image]   |     "invocation": {
+[Containerized service/Build and verify the image]   |       "configSource": {
+[Containerized service/Build and verify the image]   |         "entryPoint": "Dockerfile"
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "parameters": {
+[Containerized service/Build and verify the image]   |         "frontend": "gateway.v0",
+[Containerized service/Build and verify the image]   |         "args": {
+[Containerized service/Build and verify the image]   |           "cmdline": "docker/dockerfile:1",
+[Containerized service/Build and verify the image]   |           "source": "docker/dockerfile:1"
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         "locals": [
+[Containerized service/Build and verify the image]   |           {
+[Containerized service/Build and verify the image]   |             "name": "context"
+[Containerized service/Build and verify the image]   |           },
+[Containerized service/Build and verify the image]   |           {
+[Containerized service/Build and verify the image]   |             "name": "dockerfile"
+[Containerized service/Build and verify the image]   |           }
+[Containerized service/Build and verify the image]   |         ],
+[Containerized service/Build and verify the image]   |         "root": {
+[Containerized service/Build and verify the image]   |           "configSource": {
+[Containerized service/Build and verify the image]   |             "path": "Dockerfile"
+[Containerized service/Build and verify the image]   |           },
+[Containerized service/Build and verify the image]   |           "request": {
+[Containerized service/Build and verify the image]   |             "args": {
+[Containerized service/Build and verify the image]   |               "vcs:localdir:context": "cicd-learn",
+[Containerized service/Build and verify the image]   |               "vcs:localdir:dockerfile": "cicd-learn",
+[Containerized service/Build and verify the image]   |               "vcs:revision": "f910ba9c5cf17c6f7fc61410349e5de80e6f69c1"
+[Containerized service/Build and verify the image]   |             }
+[Containerized service/Build and verify the image]   |           }
+[Containerized service/Build and verify the image]   |         },
+[Containerized service/Build and verify the image]   |         "compatibilityVersion": 30
+[Containerized service/Build and verify the image]   |       },
+[Containerized service/Build and verify the image]   |       "environment": {
+[Containerized service/Build and verify the image]   |         "github_event_name": "push",
+[Containerized service/Build and verify the image]   |         "github_event_payload": {},
+[Containerized service/Build and verify the image]   |         "platform": "linux/amd64"
+[Containerized service/Build and verify the image]   |       }
+[Containerized service/Build and verify the image]   |     }
+[Containerized service/Build and verify the image]   |   },
+[Containerized service/Build and verify the image]   |   "buildx.build.ref": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417/builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170/pqdxqy8byca4gf0t6b53pi4u7",
+[Containerized service/Build and verify the image]   |   "containerimage.descriptor": {
+[Containerized service/Build and verify the image]   |     "mediaType": "application/vnd.oci.image.manifest.v1+json",
+[Containerized service/Build and verify the image]   |     "digest": "sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6",
+[Containerized service/Build and verify the image]   |     "size": 2187,
+[Containerized service/Build and verify the image]   |     "annotations": {
+[Containerized service/Build and verify the image]   |       "org.opencontainers.image.created": "2026-10-26T12:36:39Z"
+[Containerized service/Build and verify the image]   |     },
+[Containerized service/Build and verify the image]   |     "platform": {
+[Containerized service/Build and verify the image]   |       "architecture": "amd64",
+[Containerized service/Build and verify the image]   |       "os": "linux"
+[Containerized service/Build and verify the image]   |     }
+[Containerized service/Build and verify the image]   |   },
+[Containerized service/Build and verify the image]   |   "containerimage.digest": "sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6",
+[Containerized service/Build and verify the image]   |   "image.name": "docker.io/library/cicd-learn:f910ba9c5cf17c6f7fc61410349e5de80e6f69c1"
+[Containerized service/Build and verify the image]   | }
+[Containerized service/Build and verify the image]   ⚙  ::64fcf2a3-83cd-4025-aa89-4962092d0478::
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Reference
+[Containerized service/Build and verify the image]   | builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417/builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170/pqdxqy8byca4gf0t6b53pi4u7
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Check build summary support
+[Containerized service/Build and verify the image]   | Build summary supported!
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ✅  Success - Main Build [27.040419592s]
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: imageid=sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: digest=sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6
+[Containerized service/Build and verify the image]   ⚙  ::set-output:: metadata={
+  "buildx.build.provenance": {
+    "builder": {
+      "id": ""
+    },
+    "buildType": "https://mobyproject.org/buildkit@v1",
+    "materials": [
+      {
+        "uri": "pkg:docker/docker/dockerfile@1",
+        "digest": {
+          "sha256": "4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e"
+        }
+      },
+      {
+        "uri": "pkg:docker/node@22-alpine?platform=linux%2Famd64",
+        "digest": {
+          "sha256": "fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914"
+        }
+      }
+    ],
+    "invocation": {
+      "configSource": {
+        "entryPoint": "Dockerfile"
+      },
+      "parameters": {
+        "frontend": "gateway.v0",
+        "args": {
+          "cmdline": "docker/dockerfile:1",
+          "source": "docker/dockerfile:1"
+        },
+        "locals": [
+          {
+            "name": "context"
+          },
+          {
+            "name": "dockerfile"
+          }
+        ],
+        "root": {
+          "configSource": {
+            "path": "Dockerfile"
+          },
+          "request": {
+            "args": {
+              "vcs:localdir:context": "cicd-learn",
+              "vcs:localdir:dockerfile": "cicd-learn",
+              "vcs:revision": "f910ba9c5cf17c6f7fc61410349e5de80e6f69c1"
+            }
+          }
+        },
+        "compatibilityVersion": 30
+      },
+      "environment": {
+        "github_event_name": "push",
+        "github_event_payload": {},
+        "platform": "linux/amd64"
+      }
+    }
+  },
+  "buildx.build.ref": "builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417/builder-a3309999-9f27-4f00-b7d0-a5f92ec8f4170/pqdxqy8byca4gf0t6b53pi4u7",
+  "containerimage.descriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6",
+    "size": 2187,
+    "annotations": {
+      "org.opencontainers.image.created": "2026-10-26T12:36:39Z"
+    },
+    "platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  },
+  "containerimage.digest": "sha256:87a0d75d922f1982761307bc1d7fefc68dd44dca7ce6824ad925d78a039a39d6",
+  "image.name": "docker.io/library/cicd-learn:f910ba9c5cf17c6f7fc61410349e5de80e6f69c1"
+}
+[Containerized service/Build and verify the image] ⭐ Run Main Smoke test the running container
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=
+[Containerized service/Build and verify the image]   | the container serves the expected output
+[Containerized service/Build and verify the image]   ✅  Success - Main Smoke test the running container [801.109187ms]
+[Containerized service/Build and verify the image] ⭐ Run Main Report the image
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=
+[Containerized service/Build and verify the image]   | image: cicd-learn:f910ba9c5cf17c6f7fc61410349e5de80e6f69c1
+[Containerized service/Build and verify the image]   | size:  336MB
+[Containerized service/Build and verify the image]   ✅  Success - Main Report the image [132.761197ms]
+[Containerized service/Build and verify the image]   ⚙  Summary - ### Containerized service
+
+- image: `cicd-learn:f910ba9c5cf17c6f7fc61410349e5de80e6f69c1`
+- size: 336MB
+
+The image is built and verified, but NOT pushed. Push happens
+only on a tag, in the tag-driven release pipeline.
+[Containerized service/Build and verify the image] ⭐ Run Post Build
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-build-push-action@v7/dist/index.cjs] user= workdir=
+[Containerized service/Build and verify the image]   ❓  ::group::Generating build summary
+[Containerized service/Build and verify the image]   | exporting build record to /tmp/docker-actions-toolkit-QvnGdV/export
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx history export --builder builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417 --output /tmp/docker-actions-toolkit-QvnGdV/export/nektos~act~PQDXQY.dockerbuild pqdxqy8byca4gf0t6b53pi4u7 --finalize
+[Containerized service/Build and verify the image]   | Build record written to /tmp/docker-actions-toolkit-QvnGdV/export/nektos~act~PQDXQY.dockerbuild (34.99 KB)
+[Containerized service/Build and verify the image]   | Uploading nektos~act~PQDXQY.dockerbuild as an artifact
+[Containerized service/Build and verify the image]   | Artifact name is valid!
+[Containerized service/Build and verify the image]   | Root directory input is valid!
+[Containerized service/Build and verify the image]   🚧  ::warning::Unable to get the ACTIONS_RUNTIME_TOKEN env variable
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Removing temp folder /tmp/docker-actions-toolkit-5YafJt
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Post cache
+[Containerized service/Build and verify the image]   | State not set
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ✅  Success - Post Build [682.697851ms]
+[Containerized service/Build and verify the image] ⭐ Run Post docker/setup-buildx-action@v4
+[Containerized service/Build and verify the image]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/docker-setup-buildx-action@v4/dist/index.cjs] user= workdir=
+[Containerized service/Build and verify the image]   ❓  ::group::Removing builder
+[Containerized service/Build and verify the image]   | [command]/usr/bin/docker buildx rm builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417
+[Containerized service/Build and verify the image]   | builder-a3309999-9f27-4f00-b7d0-a5f92ec8f417 removed
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Cleaning up certificates
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ❓  ::group::Post cache
+[Containerized service/Build and verify the image]   | State not set
+[Containerized service/Build and verify the image]   ❓  ::endgroup::
+[Containerized service/Build and verify the image]   ✅  Success - Post docker/setup-buildx-action@v4 [722.778974ms]
+[Containerized service/Build and verify the image] ⭐ Run Complete job
+[Containerized service/Build and verify the image] Cleaning up container for job Build and verify the image
+[Containerized service/Build and verify the image]   ✅  Success - Complete job
+[Containerized service/Build and verify the image] 🏁  Job succeeded
+
+### act exit status: 0

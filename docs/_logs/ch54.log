@@ -1,0 +1,125 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch54.yml
+
+time="2026-10-26T18:36:55+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Staging and production/CI] ⭐ Run Set up job
+[Staging and production/CI] 🚀  Start image=cicd-act-runner:24
+[Staging and production/CI]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Staging and production/CI]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Staging and production/CI]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Staging and production/CI]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Staging and production/CI]   ✅  Success - Set up job
+[Staging and production/CI]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Staging and production/CI] ⭐ Run Main actions/checkout@v7
+[Staging and production/CI]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Staging and production/CI]   ✅  Success - Main actions/checkout@v7 [89.055063ms]
+[Staging and production/CI] ⭐ Run Main actions/setup-node@v7
+[Staging and production/CI]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Staging and production/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Staging and production/CI]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Staging and production/CI]   ❓  ::group::Environment details
+[Staging and production/CI]   | node: v22.23.3
+[Staging and production/CI]   | npm: 10.9.9
+[Staging and production/CI]   | yarn: 1.22.22
+[Staging and production/CI]   ❓  ::endgroup::
+[Staging and production/CI]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Staging and production/CI]   | /root/.npm
+[Staging and production/CI]   ⚙  ***
+[Staging and production/CI]   | Cache Size: ~21 MB (22348940 B)
+[Staging and production/CI]   | [command]/usr/bin/tar -xf /tmp/c0231f2a-813c-4a40-82c9-66f6e3f0f2c1/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Staging and production/CI]   | Cache restored successfully
+[Staging and production/CI]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Staging and production/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Staging and production/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Staging and production/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Staging and production/CI]   ✅  Success - Main actions/setup-node@v7 [1.367715074s]
+[Staging and production/CI]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Staging and production/CI]   ⚙  ::set-output:: cache-hit=true
+[Staging and production/CI]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Staging and production/CI]   ⚙  ::set-output:: node-version=v22.23.3
+[Staging and production/CI]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Staging and production/CI] ⭐ Run Main npm ci
+[Staging and production/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Staging and production/CI]   | 
+[Staging and production/CI]   | added 127 packages, and audited 128 packages in 1s
+[Staging and production/CI]   | 
+[Staging and production/CI]   | 31 packages are looking for funding
+[Staging and production/CI]   |   run `npm fund` for details
+[Staging and production/CI]   | 
+[Staging and production/CI]   | found 0 vulnerabilities
+[Staging and production/CI]   ✅  Success - Main npm ci [1.395332652s]
+[Staging and production/CI] ⭐ Run Main npm run lint
+[Staging and production/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Staging and production/CI]   | 
+[Staging and production/CI]   | > cicd-learn@1.0.0 lint
+[Staging and production/CI]   | > eslint .
+[Staging and production/CI]   | 
+[Staging and production/CI]   ✅  Success - Main npm run lint [553.99417ms]
+[Staging and production/CI] ⭐ Run Main npm test
+[Staging and production/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Staging and production/CI]   | 
+[Staging and production/CI]   | > cicd-learn@1.0.0 test
+[Staging and production/CI]   | > vitest run
+[Staging and production/CI]   | 
+[Staging and production/CI]   | 
+[Staging and production/CI]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Staging and production/CI]   | 
+[Staging and production/CI]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Staging and production/CI]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[Staging and production/CI]   | 
+[Staging and production/CI]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Staging and production/CI]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Staging and production/CI]   | [2m   Start at [22m 12:37:01
+[Staging and production/CI]   | [2m   Duration [22m 190ms[2m (transform 67%, import 20%, tests 8%, worker 6%)[22m
+[Staging and production/CI]   | 
+[Staging and production/CI]   ✅  Success - Main npm test [713.164569ms]
+[Staging and production/CI]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Staging and production/CI] ⭐ Run Main npm run build
+[Staging and production/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Staging and production/CI]   | 
+[Staging and production/CI]   | > cicd-learn@1.0.0 build
+[Staging and production/CI]   | > node build.mjs
+[Staging and production/CI]   | 
+[Staging and production/CI]   | built dist/app.js (2887 bytes)
+[Staging and production/CI]   ✅  Success - Main npm run build [249.322656ms]
+[Staging and production/CI] ⭐ Run Main [simulated upload-artifact: dist]
+[Staging and production/CI]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/6.sh] user= workdir=.
+[Staging and production/CI]   | -rw-r--r-- 1 root root 1466 Oct 26 12:37 .tmp/artifacts/dist.tar
+[Staging and production/CI]   | SIMULATED upload of cicd-learn/dist as dist
+[Staging and production/CI]   ✅  Success - Main [simulated upload-artifact: dist] [85.235263ms]
+[Staging and production/CI] ⭐ Run Post actions/setup-node@v7
+[Staging and production/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Staging and production/CI]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Staging and production/CI]   | Cache Size: ~21 MB (22347037 B)
+[Staging and production/CI]   | Cache saved successfully
+[Staging and production/CI]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Staging and production/CI]   ✅  Success - Post actions/setup-node@v7 [914.190101ms]
+[Staging and production/CI] ⭐ Run Complete job
+[Staging and production/CI] Cleaning up container for job CI
+[Staging and production/CI]   ✅  Success - Complete job
+[Staging and production/CI] 🏁  Job succeeded
+[Staging and production/Deploy to staging] ⭐ Run Set up job
+[Staging and production/Deploy to staging] 🚀  Start image=cicd-act-runner:24
+[Staging and production/Deploy to staging]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Staging and production/Deploy to staging]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Staging and production/Deploy to staging]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Staging and production/Deploy to staging]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Staging and production/Deploy to staging]   ✅  Success - Set up job
+[Staging and production/Deploy to staging] ⭐ Run Main [simulated download-artifact: dist]
+[Staging and production/Deploy to staging]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0.sh] user= workdir=.
+[Staging and production/Deploy to staging]   ❗  ::error::artifact dist not found
+[Staging and production/Deploy to staging]   ❌  Failure - Main [simulated download-artifact: dist] [63.402474ms]
+[Staging and production/Deploy to staging] exitcode '1': failure
+[Staging and production/Deploy to staging] ⭐ Run Complete job
+[Staging and production/Deploy to staging]   ✅  Success - Complete job
+[Staging and production/Deploy to staging] 🏁  Job failed
+Error: Job 'Deploy to staging' failed
+
+### act exit status: 1

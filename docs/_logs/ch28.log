@@ -1,0 +1,112 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/28-environments-and-approvals.yml
+
+time="2026-10-26T18:42:31+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Environments and approvals/CI] ⭐ Run Set up job
+[Environments and approvals/CI] 🚀  Start image=cicd-act-runner:24
+[Environments and approvals/CI]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Environments and approvals/CI]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Environments and approvals/CI]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Environments and approvals/CI]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Environments and approvals/CI]   ✅  Success - Set up job
+[Environments and approvals/CI]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Environments and approvals/CI] ⭐ Run Main actions/checkout@v7
+[Environments and approvals/CI]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Environments and approvals/CI]   ✅  Success - Main actions/checkout@v7 [111.73737ms]
+[Environments and approvals/CI] ⭐ Run Main actions/setup-node@v7
+[Environments and approvals/CI]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Environments and approvals/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Environments and approvals/CI]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Environments and approvals/CI]   ❓  ::group::Environment details
+[Environments and approvals/CI]   | node: v22.23.3
+[Environments and approvals/CI]   | npm: 10.9.9
+[Environments and approvals/CI]   | yarn: 1.22.22
+[Environments and approvals/CI]   ❓  ::endgroup::
+[Environments and approvals/CI]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Environments and approvals/CI]   | /root/.npm
+[Environments and approvals/CI]   ⚙  ***
+[Environments and approvals/CI]   | Cache Size: ~21 MB (22346026 B)
+[Environments and approvals/CI]   | [command]/usr/bin/tar -xf /tmp/de042ec8-360d-464e-be85-0ab6eb07d912/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Environments and approvals/CI]   | Cache restored successfully
+[Environments and approvals/CI]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Environments and approvals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Environments and approvals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Environments and approvals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Environments and approvals/CI]   ✅  Success - Main actions/setup-node@v7 [1.451508609s]
+[Environments and approvals/CI]   ⚙  ::set-output:: node-version=v22.23.3
+[Environments and approvals/CI]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Environments and approvals/CI]   ⚙  ::set-output:: cache-hit=true
+[Environments and approvals/CI]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Environments and approvals/CI]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Environments and approvals/CI] ⭐ Run Main npm ci
+[Environments and approvals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | added 127 packages, and audited 128 packages in 1s
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | 31 packages are looking for funding
+[Environments and approvals/CI]   |   run `npm fund` for details
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | found 0 vulnerabilities
+[Environments and approvals/CI]   ✅  Success - Main npm ci [1.436094344s]
+[Environments and approvals/CI] ⭐ Run Main npm run lint
+[Environments and approvals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | > cicd-learn@1.0.0 lint
+[Environments and approvals/CI]   | > eslint .
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   ✅  Success - Main npm run lint [597.906483ms]
+[Environments and approvals/CI] ⭐ Run Main npm test
+[Environments and approvals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | > cicd-learn@1.0.0 test
+[Environments and approvals/CI]   | > vitest run
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Environments and approvals/CI]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Environments and approvals/CI]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Environments and approvals/CI]   | [2m   Start at [22m 12:42:37
+[Environments and approvals/CI]   | [2m   Duration [22m 188ms[2m (transform 58%, import 22%, tests 11%, worker 8%)[22m
+[Environments and approvals/CI]   | 
+[Environments and approvals/CI]   ✅  Success - Main npm test [812.745269ms]
+[Environments and approvals/CI]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Environments and approvals/CI] ⭐ Run Post actions/setup-node@v7
+[Environments and approvals/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Environments and approvals/CI]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Environments and approvals/CI]   | Cache Size: ~21 MB (22347259 B)
+[Environments and approvals/CI]   | Cache saved successfully
+[Environments and approvals/CI]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Environments and approvals/CI]   ✅  Success - Post actions/setup-node@v7 [993.435155ms]
+[Environments and approvals/CI] ⭐ Run Complete job
+[Environments and approvals/CI] Cleaning up container for job CI
+[Environments and approvals/CI]   ✅  Success - Complete job
+[Environments and approvals/CI] 🏁  Job succeeded
+[Environments and approvals/Deploy to staging] ⭐ Run Set up job
+[Environments and approvals/Deploy to staging] 🚀  Start image=cicd-act-runner:24
+[Environments and approvals/Deploy to staging]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Environments and approvals/Deploy to staging]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Environments and approvals/Deploy to staging]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Environments and approvals/Deploy to staging]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Environments and approvals/Deploy to staging]   ✅  Success - Set up job
+[Environments and approvals/Deploy to staging] ⭐ Run Main Deploy (simulated)
+[Environments and approvals/Deploy to staging]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/0] user= workdir=
+[Environments and approvals/Deploy to staging]   | deploying to staging
+[Environments and approvals/Deploy to staging]   | url: https://staging.example.com
+[Environments and approvals/Deploy to staging]   ✅  Success - Main Deploy (simulated) [65.515948ms]
+[Environments and approvals/Deploy to staging] ⭐ Run Complete job
+[Environments and approvals/Deploy to staging] Cleaning up container for job Deploy to staging
+[Environments and approvals/Deploy to staging]   ✅  Success - Complete job
+[Environments and approvals/Deploy to staging] 🏁  Job succeeded
+
+### act exit status: 0

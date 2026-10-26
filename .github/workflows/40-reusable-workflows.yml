@@ -1,0 +1,37 @@
+name: Reusable workflows demo
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── The caller: a job whose `uses:` points at a workflow file ────────────
+  # A reusable workflow is invoked like an action, but with a path to a .yml
+  # file. It runs on ITS OWN runner, with ITS OWN permissions, in a fresh
+  # environment. The caller only sees what it chooses to export.
+  call-reusable:
+    name: Call the reusable quality workflow
+    uses: ./.github/workflows/quality-reusable.yml
+    # Inputs go in `with:`, secrets in `secrets:`. Both are declared by the
+    # callee's `on.workflow_call` block.
+    with:
+      node-version: '22'
+      run-tests: true
+    secrets:
+      # `inherit` passes every secret the caller has. Prefer naming them.
+      npm-token: ${{ secrets.NPM_TOKEN }}
+
+  # ── Pass-through: the callee's outputs arrive here ───────────────────────
+  report:
+    name: Report the reusable result
+    runs-on: ubuntu-24.04
+    needs: [call-reusable]
+    steps:
+      - name: Use the reusable workflow's output
+        run: |
+          echo "reusable workflow reported: ${{ needs.call-reusable.outputs.bytes }} bytes"
+          echo "conclusion: ${{ needs.call-reusable.result }}"

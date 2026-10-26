@@ -1,0 +1,78 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/29-github-pages-deploy.yml
+
+time="2026-10-26T18:37:31+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Deploy to GitHub Pages/Build] ⭐ Run Set up job
+[Deploy to GitHub Pages/Build] 🚀  Start image=cicd-act-runner:24
+[Deploy to GitHub Pages/Build]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Deploy to GitHub Pages/Build]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deploy to GitHub Pages/Build]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deploy to GitHub Pages/Build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Deploy to GitHub Pages/Build]   ✅  Success - Set up job
+[Deploy to GitHub Pages/Build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Deploy to GitHub Pages/Build]   ☁  git clone 'https://github.com/actions/configure-pages' # ref=v6
+[Deploy to GitHub Pages/Build]   ☁  git clone 'https://github.com/actions/upload-pages-artifact' # ref=v5
+[Deploy to GitHub Pages/Build] ⭐ Run Pre actions/upload-pages-artifact@v5
+[Deploy to GitHub Pages/Build]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=bbbca2ddaa5d8feaa63e36b76fdaad77386f024f
+[Deploy to GitHub Pages/Build]   ✅  Success - Pre actions/upload-pages-artifact@v5 [21.071989333s]
+[Deploy to GitHub Pages/Build] ⭐ Run Main actions/checkout@v7
+[Deploy to GitHub Pages/Build]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Deploy to GitHub Pages/Build]   ✅  Success - Main actions/checkout@v7 [88.206742ms]
+[Deploy to GitHub Pages/Build] ⭐ Run Main actions/setup-node@v7
+[Deploy to GitHub Pages/Build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Deploy to GitHub Pages/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Deploy to GitHub Pages/Build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Deploy to GitHub Pages/Build]   ❓  ::group::Environment details
+[Deploy to GitHub Pages/Build]   | node: v22.23.3
+[Deploy to GitHub Pages/Build]   | npm: 10.9.9
+[Deploy to GitHub Pages/Build]   | yarn: 1.22.22
+[Deploy to GitHub Pages/Build]   ❓  ::endgroup::
+[Deploy to GitHub Pages/Build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Deploy to GitHub Pages/Build]   | /root/.npm
+[Deploy to GitHub Pages/Build]   ⚙  ***
+[Deploy to GitHub Pages/Build]   | Cache Size: ~21 MB (22347301 B)
+[Deploy to GitHub Pages/Build]   | [command]/usr/bin/tar -xf /tmp/290bd325-c75a-46ed-a6c0-1701fa7701bc/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Deploy to GitHub Pages/Build]   | Cache restored successfully
+[Deploy to GitHub Pages/Build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deploy to GitHub Pages/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Deploy to GitHub Pages/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Deploy to GitHub Pages/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Deploy to GitHub Pages/Build]   ✅  Success - Main actions/setup-node@v7 [1.371991926s]
+[Deploy to GitHub Pages/Build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deploy to GitHub Pages/Build]   ⚙  ::set-output:: cache-hit=true
+[Deploy to GitHub Pages/Build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deploy to GitHub Pages/Build]   ⚙  ::set-output:: node-version=v22.23.3
+[Deploy to GitHub Pages/Build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Deploy to GitHub Pages/Build] ⭐ Run Main npm ci
+[Deploy to GitHub Pages/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Deploy to GitHub Pages/Build]   | 
+[Deploy to GitHub Pages/Build]   | added 127 packages, and audited 128 packages in 1s
+[Deploy to GitHub Pages/Build]   | 
+[Deploy to GitHub Pages/Build]   | 31 packages are looking for funding
+[Deploy to GitHub Pages/Build]   |   run `npm fund` for details
+[Deploy to GitHub Pages/Build]   | 
+[Deploy to GitHub Pages/Build]   | found 0 vulnerabilities
+[Deploy to GitHub Pages/Build]   ✅  Success - Main npm ci [1.614635267s]
+[Deploy to GitHub Pages/Build] ⭐ Run Main npm run build
+[Deploy to GitHub Pages/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Deploy to GitHub Pages/Build]   | 
+[Deploy to GitHub Pages/Build]   | > cicd-learn@1.0.0 build
+[Deploy to GitHub Pages/Build]   | > node build.mjs
+[Deploy to GitHub Pages/Build]   | 
+[Deploy to GitHub Pages/Build]   | built dist/app.js (2887 bytes)
+[Deploy to GitHub Pages/Build]   ✅  Success - Main npm run build [260.282171ms]
+[Deploy to GitHub Pages/Build] ⭐ Run Main actions/configure-pages@v6
+[Deploy to GitHub Pages/Build]   🐳  docker cp src=/home/sunny/.cache/act/actions-configure-pages@v6/ dst=/var/run/act/actions/actions-configure-pages@v6/
+[Deploy to GitHub Pages/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-configure-pages@v6/dist/index.js] user= workdir=
+[Deploy to GitHub Pages/Build]   ❗  ::error title=HttpError,file=/run/act/actions/actions-configure-pages@v6/node_modules/@octokit/request/dist-node/index.js,line=124,col=1::Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions, or consider exploring the `enablement` parameter for this action. Error: Not Found - https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site
+[Deploy to GitHub Pages/Build]   ❗  ::error::HttpError: Not Found - https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site
+[Deploy to GitHub Pages/Build]   ❌  Failure - Main actions/configure-pages@v6 [1.003394965s]
+[Deploy to GitHub Pages/Build] exitcode '1': failure
+[Deploy to GitHub Pages/Build] ⭐ Run Complete job
+[Deploy to GitHub Pages/Build]   ✅  Success - Complete job
+[Deploy to GitHub Pages/Build] 🏁  Job failed
+Error: Job 'Build' failed
+
+### act exit status: 1

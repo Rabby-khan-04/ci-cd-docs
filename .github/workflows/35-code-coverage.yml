@@ -1,0 +1,50 @@
+name: Code coverage
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    name: Test with coverage
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+
+      # Coverage is the same tests plus a coverage report. The threshold is
+      # configured in vitest.config.js: lines: 90. If coverage drops below it,
+      # `npm run coverage` exits non-zero and the step fails.
+      - name: Run tests with coverage
+        id: cov
+        run: npm run coverage
+
+      - name: Upload the HTML report as an artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: cicd-learn/coverage
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: What the text report actually shows
+        run: |
+          echo "On CI the text table hides 100%-covered files (skipFull is true"
+          echo "when Vitest detects a CI agent). So `sum.js`, which is 100%"
+          echo "covered on every metric, does not appear in the printed table even"
+          echo "though it is in coverage-final.json. That is expected, not a bug."

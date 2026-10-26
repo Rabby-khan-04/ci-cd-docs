@@ -1,0 +1,89 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/13-test-step.yml
+
+time="2026-10-26T18:48:29+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Test step/Unit tests] ⭐ Run Set up job
+[Test step/Unit tests] 🚀  Start image=cicd-act-runner:24
+[Test step/Unit tests]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Test step/Unit tests]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Test step/Unit tests]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Test step/Unit tests]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Test step/Unit tests]   ✅  Success - Set up job
+[Test step/Unit tests]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Test step/Unit tests] ⭐ Run Main actions/checkout@v7
+[Test step/Unit tests]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Test step/Unit tests]   ✅  Success - Main actions/checkout@v7 [111.703228ms]
+[Test step/Unit tests] ⭐ Run Main actions/setup-node@v7
+[Test step/Unit tests]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Test step/Unit tests]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Test step/Unit tests]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Test step/Unit tests]   ❓  ::group::Environment details
+[Test step/Unit tests]   | node: v22.23.3
+[Test step/Unit tests]   | npm: 10.9.9
+[Test step/Unit tests]   | yarn: 1.22.22
+[Test step/Unit tests]   ❓  ::endgroup::
+[Test step/Unit tests]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Test step/Unit tests]   | /root/.npm
+[Test step/Unit tests]   ⚙  ***
+[Test step/Unit tests]   | Cache Size: ~21 MB (22347259 B)
+[Test step/Unit tests]   | [command]/usr/bin/tar -xf /tmp/010d1c56-0dea-4782-86c5-9d40b9014de2/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Test step/Unit tests]   | Cache restored successfully
+[Test step/Unit tests]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Test step/Unit tests]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Test step/Unit tests]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Test step/Unit tests]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Test step/Unit tests]   ✅  Success - Main actions/setup-node@v7 [1.537893934s]
+[Test step/Unit tests]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Test step/Unit tests]   ⚙  ::set-output:: cache-hit=true
+[Test step/Unit tests]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Test step/Unit tests]   ⚙  ::set-output:: node-version=v22.23.3
+[Test step/Unit tests]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Test step/Unit tests] ⭐ Run Main npm ci
+[Test step/Unit tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | added 127 packages, and audited 128 packages in 1s
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | 31 packages are looking for funding
+[Test step/Unit tests]   |   run `npm fund` for details
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | found 0 vulnerabilities
+[Test step/Unit tests]   ✅  Success - Main npm ci [1.694116545s]
+[Test step/Unit tests] ⭐ Run Main Run tests
+[Test step/Unit tests]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/tests] user= workdir=cicd-learn
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | > cicd-learn@1.0.0 test
+[Test step/Unit tests]   | > vitest run
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Test step/Unit tests]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Test step/Unit tests]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Test step/Unit tests]   | [2m   Start at [22m 12:48:35
+[Test step/Unit tests]   | [2m   Duration [22m 182ms[2m (transform 49%, import 27%, tests 14%, worker 9%)[22m
+[Test step/Unit tests]   | 
+[Test step/Unit tests]   ✅  Success - Main Run tests [854.752065ms]
+[Test step/Unit tests]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Test step/Unit tests] ⭐ Run Post actions/setup-node@v7
+[Test step/Unit tests]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Test step/Unit tests]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Test step/Unit tests]   | Cache Size: ~21 MB (22353345 B)
+[Test step/Unit tests]   | Cache saved successfully
+[Test step/Unit tests]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Test step/Unit tests]   ✅  Success - Post actions/setup-node@v7 [1.251176828s]
+[Test step/Unit tests] ⭐ Run Complete job
+[Test step/Unit tests] Cleaning up container for job Unit tests
+[Test step/Unit tests]   ✅  Success - Complete job
+[Test step/Unit tests] 🏁  Job succeeded
+
+### act exit status: 0

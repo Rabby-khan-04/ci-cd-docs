@@ -1,0 +1,48 @@
+name: Environments and approvals
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── A job with no environment: runs immediately ──────────────────────────
+  ci:
+    name: CI
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  # ── A job bound to an environment ────────────────────────────────────────
+  # The environment must exist in Settings -> Environments. If it does not, the
+  # job fails immediately with "environment not found".
+  #
+  # Required reviewers (configured in the environment's protection rules) turn
+  # this job into a manual gate: it sits in "waiting" until someone approves.
+  # There is no way to approve from YAML; the UI is the only mechanism.
+  deploy:
+    name: Deploy to staging
+    runs-on: ubuntu-24.04
+    needs: [ci]
+    environment:
+      name: staging
+      url: https://staging.example.com
+    steps:
+      - name: Deploy (simulated)
+        run: |
+          echo "deploying to staging"
+          echo "url: https://staging.example.com"

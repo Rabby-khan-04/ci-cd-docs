@@ -1,0 +1,31 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/09-using-actions.yml
+
+time="2026-10-08T15:51:09+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Using actions/Anatomy of an action] ⭐ Run Set up job
+[Using actions/Anatomy of an action] 🚀  Start image=cicd-act-runner:24
+[Using actions/Anatomy of an action]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Using actions/Anatomy of an action]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Using actions/Anatomy of an action]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Using actions/Anatomy of an action]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Using actions/Anatomy of an action]   ✅  Success - Set up job
+[Using actions/Anatomy of an action] ⭐ Run Main actions/checkout@v7
+[Using actions/Anatomy of an action]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Using actions/Anatomy of an action]   ✅  Success - Main actions/checkout@v7 [79.714627ms]
+[Using actions/Anatomy of an action] ⭐ Run Main Show that an action is just files
+[Using actions/Anatomy of an action]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=cicd-learn
+[Using actions/Anatomy of an action]   | --- a JavaScript action looks like this ---
+[Using actions/Anatomy of an action]   | find: ‘.github/actions’: No such file or directory
+[Using actions/Anatomy of an action]   | 
+[Using actions/Anatomy of an action]   | --- action.yml is the manifest ---
+[Using actions/Anatomy of an action]   | cat: .github/actions/setup-node/action.yml: No such file or directory
+[Using actions/Anatomy of an action]   ❌  Failure - Main Show that an action is just files [59.751787ms]
+[Using actions/Anatomy of an action] exitcode '1': failure
+[Using actions/Anatomy of an action] ⭐ Run Complete job
+[Using actions/Anatomy of an action]   ✅  Success - Complete job
+[Using actions/Anatomy of an action] 🏁  Job failed
+Error: Job 'Anatomy of an action' failed
+
+### act exit status: 1

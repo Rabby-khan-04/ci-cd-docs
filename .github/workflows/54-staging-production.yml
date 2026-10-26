@@ -1,0 +1,76 @@
+name: Staging and production
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: cicd-learn/dist
+          retention-days: 7
+          if-no-files-found: error
+
+  # ── Staging: automatic, no approvals ──────────────────────────────────────
+  deploy-staging:
+    name: Deploy to staging
+    runs-on: ubuntu-24.04
+    needs: [ci]
+    environment:
+      # The environment must exist in Settings -> Environments.
+      name: staging
+      url: https://staging.example.com
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Deploy (simulated)
+        run: |
+          echo "deploying $(wc -c < dist/app.js) bytes to staging"
+          echo "url: https://staging.example.com"
+
+  # ── Production: gated by required reviewers ───────────────────────────────
+  deploy-production:
+    name: Deploy to production
+    runs-on: ubuntu-24.04
+    needs: [ci, deploy-staging]
+    environment:
+      name: production
+      url: https://example.com
+    # Required reviewers are configured in the environment's protection rules.
+    # Until someone approves, this job sits in a "waiting" state.
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Deploy (simulated)
+        run: |
+          echo "deploying $(wc -c < dist/app.js) bytes to production"
+          echo "url: https://example.com"

@@ -1,0 +1,29 @@
+name: Composite actions demo
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  use-composite:
+    name: Use a composite action
+    runs-on: ubuntu-24.04
+    steps:
+      # A composite action is a directory of steps, packaged under one name.
+      # Unlike a reusable workflow, it runs IN THIS JOB, on THIS runner, and
+      # shares the workspace. That is the whole difference.
+      - name: Set up the whole app with one composite action
+        uses: ./.github/actions/setup-node-app
+        with:
+          node-version: '22'
+          run-checks: 'true'
+
+      - name: The workspace is shared, so this works
+        run: |
+          echo "composite actions run on the caller's runner, so the built"
+          echo "output is simply here:"
+          ls -l cicd-learn/dist/app.js

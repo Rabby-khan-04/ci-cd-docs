@@ -1,0 +1,476 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/17-matrix-builds.yml
+
+time="2026-10-26T18:38:44+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Set up job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Set up job
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] 🚀  Start image=cicd-act-runner:24
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Set up job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] 🚀  Start image=cicd-act-runner:24
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] 🚀  Start image=cicd-act-runner:24
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Set up job
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] 🚀  Start image=cicd-act-runner:24
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Set up job
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Set up job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Set up job
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Set up job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] 🧪  Matrix: map[node:22 os:ubuntu-24.04]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main actions/checkout@v7
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main actions/checkout@v7 [88.588118ms]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main actions/setup-node@v7
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ❓  ::group::Environment details
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] 🧪  Matrix: map[node:20 os:ubuntu-24.04]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main actions/checkout@v7
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main actions/checkout@v7 [100.880319ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main actions/setup-node@v7
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | node: v22.23.3
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | npm: 10.9.9
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | yarn: 1.22.22
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ❓  ::endgroup::
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | /root/.npm
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ***
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache Size: ~21 MB (22347301 B)
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [command]/usr/bin/tar -xf /tmp/e2526bea-f885-405c-8151-09bb39b13a8b/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache restored successfully
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main actions/setup-node@v7 [1.419817439s]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ::set-output:: node-version=v22.23.3
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ::set-output:: cache-hit=true
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main Report the combination
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | node        : v22.23.3
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | npm         : 10.9.9
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | os label    : ubuntu-24.04
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | experimental: no
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main Report the combination [183.009292ms]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main npm ci
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] 🧪  Matrix: map[node:24 os:ubuntu-24.04-arm]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main actions/checkout@v7
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Found in cache @ /opt/hostedtoolcache/node/20.20.2/x64
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main actions/checkout@v7 [105.163535ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ❓  ::group::Environment details
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main actions/setup-node@v7
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | node: v20.20.2
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm: 10.8.2
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | yarn: 1.22.22
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ❓  ::endgroup::
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [command]/opt/hostedtoolcache/node/20.20.2/x64/bin/npm config get cache
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | /root/.npm
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ***
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache Size: ~21 MB (22347301 B)
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [command]/usr/bin/tar -xf /tmp/b94703c8-1f7f-4216-983d-55e929907029/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] 🧪  Matrix: map[experimental:true node:24 os:ubuntu-24.04]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main actions/checkout@v7
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache restored successfully
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main actions/setup-node@v7 [1.896898724s]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ::set-output:: node-version=v20.20.2
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ::set-output:: cache-hit=true
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  ::add-path:: /opt/hostedtoolcache/node/20.20.2/x64/bin
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main Report the combination
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main actions/checkout@v7 [130.515485ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main actions/setup-node@v7
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | node        : v20.20.2
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ❓  ::group::Environment details
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm         : 10.8.2
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | os label    : ubuntu-24.04
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | experimental: no
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main Report the combination [265.8347ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main npm ci
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | added 127 packages, and audited 128 packages in 2s
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 31 packages are looking for funding
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   |   run `npm fund` for details
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | found 0 vulnerabilities
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main npm ci [1.926934576s]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main Lint
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ❓  ::group::Environment details
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > cicd-learn@1.0.0 lint
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > eslint .
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | node: v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm: 11.19.0
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | yarn: 1.22.22
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ❓  ::endgroup::
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [command]/opt/hostedtoolcache/node/24.21.0/x64/bin/npm config get cache
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | node: v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm: 11.19.0
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | yarn: 1.22.22
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ❓  ::endgroup::
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [command]/opt/hostedtoolcache/node/24.21.0/x64/bin/npm config get cache
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | /root/.npm
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | /root/.npm
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main Lint [1.041387311s]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ***
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ***
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main Test
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache Size: ~21 MB (22347301 B)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [command]/usr/bin/tar -xf /tmp/651068ac-82a1-4be0-9658-08553c17aad5/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE Unsupported engine {
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   package: 'cicd-learn@1.0.0',
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   required: { node: '>=22' },
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE Unsupported engine {
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   package: '@vitest/istanbul-lib-coverage@1.0.2',
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   required: { node: '>=22' },
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE Unsupported engine {
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   package: '@vitest/istanbul-lib-report@1.0.2',
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   required: { node: '>=22' },
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE Unsupported engine {
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   package: 'vitest@5.0.3',
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   required: { node: '^22.12.0 || ^24.0.0 || >=26.0.0' },
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | npm warn EBADENGINE }
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache Size: ~21 MB (22347301 B)
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [command]/usr/bin/tar -xf /tmp/18f06dbc-26f0-4eeb-adc5-947764ab532d/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache restored successfully
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main actions/setup-node@v7 [3.087141983s]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ::set-output:: node-version=v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ::set-output:: cache-hit=true
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  ::add-path:: /opt/hostedtoolcache/node/24.21.0/x64/bin
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > cicd-learn@1.0.0 test
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > vitest run
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache restored successfully
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main Report the combination
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main actions/setup-node@v7 [2.06608116s]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ::set-output:: cache-hit=true
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ::set-output:: node-version=v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  ::add-path:: /opt/hostedtoolcache/node/24.21.0/x64/bin
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main Report the combination
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | node        : v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | node        : v24.21.0
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm         : 11.19.0
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | os label    : ubuntu-24.04-arm
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | experimental: no
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main Report the combination [225.269296ms]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main npm ci
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm         : 11.19.0
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | os label    : ubuntu-24.04
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | experimental: true
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main Report the combination [233.317104ms]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main npm ci
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [2m   Start at [22m 12:38:52
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [2m   Duration [22m 243ms[2m (transform 67%, import 18%, tests 8%, worker 7%)[22m
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main Test [1.277648986s]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main Build
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | added 127 packages, and audited 128 packages in 3s
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 31 packages are looking for funding
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   |   run `npm fund` for details
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | found 0 vulnerabilities
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main npm ci [2.802107136s]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main Lint
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > cicd-learn@1.0.0 build
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | > node build.mjs
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | built dist/app.js (2887 bytes)
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main Build [335.730247ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > cicd-learn@1.0.0 lint
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > eslint .
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Main Summary row
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Main Summary row [238.845692ms]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ⚙  Summary - | node | npm | os | experimental |
+| ---- | --- | -- | ------------ |
+| 22 | 10.9.9 | ubuntu-24.04 | no |
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Post actions/setup-node@v7
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main Lint [751.745762ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main Test
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > cicd-learn@1.0.0 test
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > vitest run
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [2m   Start at [22m 12:38:54
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [2m   Duration [22m 405ms[2m (transform 52%, import 29%, worker 10%, tests 9%)[22m
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main Test [1.29023967s]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache Size: ~21 MB (22347261 B)
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache saved successfully
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Post actions/setup-node@v7 [1.587182946s]
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] ⭐ Run Complete job
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] Cleaning up container for job Node 22 on ubuntu-24.04
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | added 127 packages, and audited 128 packages in 3s
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main Build
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 31 packages are looking for funding
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   |   run `npm fund` for details
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | found 0 vulnerabilities
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm warn install-scripts
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main npm ci [3.108399617s]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | added 127 packages, and audited 128 packages in 3s
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 31 packages are looking for funding
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   |   run `npm fund` for details
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | found 0 vulnerabilities
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm warn install-scripts
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main Lint
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main npm ci [3.12141668s]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main Lint
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > cicd-learn@1.0.0 lint
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > eslint .
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > cicd-learn@1.0.0 build
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | > node build.mjs
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > cicd-learn@1.0.0 lint
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > eslint .
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | built dist/app.js (2887 bytes)
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main Build [524.821025ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Main Summary row
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Main Summary row [200.335323ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ⚙  Summary - | node | npm | os | experimental |
+| ---- | --- | -- | ------------ |
+| 20 | 10.8.2 | ubuntu-24.04 | no |
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Post actions/setup-node@v7
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main Lint [699.065155ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main Test
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main Lint [681.019575ms]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main Test
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > cicd-learn@1.0.0 test
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > vitest run
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > cicd-learn@1.0.0 test
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > vitest run
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 22 on ubuntu-24.04-2    ]   ✅  Success - Complete job
+[Matrix builds/Node 22 on ubuntu-24.04-2    ] 🏁  Job succeeded
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [2m   Start at [22m 12:38:56
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [2m   Duration [22m 199ms[2m (transform 52%, import 28%, tests 12%, worker 8%)[22m
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [2m   Start at [22m 12:38:56
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [2m   Duration [22m 211ms[2m (transform 59%, import 22%, worker 9%, tests 9%)[22m
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main Test [822.355783ms]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main Build
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main Test [814.696369ms]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main Build
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > cicd-learn@1.0.0 build
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | > node build.mjs
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > cicd-learn@1.0.0 build
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | > node build.mjs
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | 
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | built dist/app.js (2887 bytes)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main Build [272.543397ms]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | built dist/app.js (2887 bytes)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Main Summary row
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main Build [268.396079ms]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache Size: ~21 MB (22345342 B)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Main Summary row
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache saved successfully
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Post actions/setup-node@v7 [1.280440575s]
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] ⭐ Run Complete job
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] Cleaning up container for job Node 20 on ubuntu-24.04
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Main Summary row [186.190908ms]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ⚙  Summary - | node | npm | os | experimental |
+| ---- | --- | -- | ------------ |
+| 24 | 11.19.0 | ubuntu-24.04-arm | no |
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Post actions/setup-node@v7
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Main Summary row [193.30397ms]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ⚙  Summary - | node | npm | os | experimental |
+| ---- | --- | -- | ------------ |
+| 24 | 11.19.0 | ubuntu-24.04 | true |
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Post actions/setup-node@v7
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Matrix builds/Node 20 on ubuntu-24.04-1    ]   ✅  Success - Complete job
+[Matrix builds/Node 20 on ubuntu-24.04-1    ] 🏁  Job succeeded
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache Size: ~21 MB (22346125 B)
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache saved successfully
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Post actions/setup-node@v7 [1.017152647s]
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] ⭐ Run Complete job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] Cleaning up container for job Node 24 on ubuntu-24.04-arm
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache Size: ~21 MB (22346174 B)
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache saved successfully
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Post actions/setup-node@v7 [1.197165715s]
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] ⭐ Run Complete job
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] Cleaning up container for job Node 24 on ubuntu-24.04
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4]   ✅  Success - Complete job
+[Matrix builds/Node 24 on ubuntu-24.04-arm-4] 🏁  Job succeeded
+[Matrix builds/Node 24 on ubuntu-24.04-3    ]   ✅  Success - Complete job
+[Matrix builds/Node 24 on ubuntu-24.04-3    ] 🏁  Job succeeded
+
+### act exit status: 0

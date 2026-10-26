@@ -297,83 +297,83 @@ of each at a glance.
 One box per topic. Ticked as the chapter lands.
 
 ### Part 1 — Concepts
-- [ ] 01 What is CI/CD
-- [ ] 02 Anatomy of a pipeline
-- [ ] 03 GitHub Actions in the landscape
+- [x] 01 What is CI/CD
+- [x] 02 Anatomy of a pipeline
+- [x] 03 GitHub Actions in the landscape
 
 ### Part 2 — GitHub Actions basics
-- [ ] 04 Your first workflow
-- [ ] 05 YAML for workflows
-- [ ] 06 Events and triggers
-- [ ] 07 Runners
-- [ ] 08 Jobs and steps
-- [ ] 09 Using actions
-- [ ] 10 Reading logs
+- [x] 04 Your first workflow
+- [x] 05 YAML for workflows
+- [x] 06 Events and triggers
+- [x] 07 Runners
+- [x] 08 Jobs and steps
+- [x] 09 Using actions
+- [x] 10 Reading logs
 
 ### Part 3 — Building a CI pipeline
-- [ ] 11 Install
-- [ ] 12 Lint
-- [ ] 13 Test
-- [ ] 14 Build
-- [ ] 15 The order, end to end
+- [x] 11 Install
+- [x] 12 Lint
+- [x] 13 Test
+- [x] 14 Build
+- [x] 15 The order, end to end
 
 ### Part 4 — Speed and structure
-- [ ] 16 Caching dependencies
-- [ ] 17 Matrix builds
-- [ ] 18 Job dependencies and parallelism
-- [ ] 19 Conditionals
-- [ ] 20 Artifacts
-- [ ] 21 Concurrency
+- [x] 16 Caching dependencies
+- [x] 17 Matrix builds
+- [x] 18 Job dependencies and parallelism
+- [x] 19 Conditionals
+- [x] 20 Artifacts
+- [x] 21 Concurrency
 
 ### Part 5 — Secrets and configuration
-- [ ] 22 Secrets
-- [ ] 23 Variables
-- [ ] 24 Environment secrets
-- [ ] 25 `GITHUB_TOKEN` and permissions
-- [ ] 26 Secret safety
+- [x] 22 Secrets
+- [x] 23 Variables
+- [x] 24 Environment secrets
+- [x] 25 `GITHUB_TOKEN` and permissions
+- [x] 26 Secret safety
 
 ### Part 6 — Deployment
-- [ ] 27 Deployment fundamentals
-- [ ] 28 Environments and manual approvals
-- [ ] 29 Deploy to GitHub Pages
-- [ ] 30 Build a Docker image
-- [ ] 31 Push to a registry
-- [ ] 32 Deploy over SSH
-- [ ] 33 Deployment strategies
+- [x] 27 Deployment fundamentals
+- [x] 28 Environments and manual approvals
+- [x] 29 Deploy to GitHub Pages
+- [x] 30 Build a Docker image
+- [x] 31 Push to a registry
+- [x] 32 Deploy over SSH
+- [x] 33 Deployment strategies
 
 ### Part 7 — Quality and safety
-- [ ] 34 Branch protection and required checks
-- [ ] 35 Code coverage
-- [ ] 36 Dependabot
-- [ ] 37 CodeQL
-- [ ] 38 Secret scanning
-- [ ] 39 Pinning actions
+- [x] 34 Branch protection and required checks
+- [x] 35 Code coverage
+- [x] 36 Dependabot
+- [x] 37 CodeQL
+- [x] 38 Secret scanning
+- [x] 39 Pinning actions
 
 ### Part 8 — Advanced
-- [ ] 40 Reusable workflows
-- [ ] 41 Composite actions
-- [ ] 42 Self-hosted runners
-- [ ] 43 OIDC cloud auth
-- [ ] 44 Monorepo pipelines
-- [ ] 45 Release automation and semver
-- [ ] 46 Rollbacks
+- [x] 40 Reusable workflows
+- [x] 41 Composite actions
+- [x] 42 Self-hosted runners
+- [x] 43 OIDC cloud auth
+- [x] 44 Monorepo pipelines
+- [x] 45 Release automation and semver
+- [x] 46 Rollbacks
 
 ### Part 9 — Operations
-- [ ] 47 Debugging failed runs
-- [ ] 48 Re-running jobs
-- [ ] 49 Cost and limits
-- [ ] 50 Notifications
+- [x] 47 Debugging failed runs
+- [x] 48 Re-running jobs
+- [x] 49 Cost and limits
+- [x] 50 Notifications
 
 ### Part 10 — Real-world patterns
-- [ ] 51 Next.js preview pipeline
-- [ ] 52 Containerized service pipeline
-- [ ] 53 Safe database migrations
-- [ ] 54 Staging and production
-- [ ] 55 Tag-driven release
+- [x] 51 Next.js preview pipeline
+- [x] 52 Containerized service pipeline
+- [x] 53 Safe database migrations
+- [x] 54 Staging and production
+- [x] 55 Tag-driven release
 
 ### Part 11 — Wrap-up
-- [ ] 56 Other platforms
-- [ ] 57 Next steps
+- [x] 56 Other platforms
+- [x] 57 Next steps
 
 ---
 

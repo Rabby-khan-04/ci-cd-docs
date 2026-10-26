@@ -1,0 +1,128 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch55.yml
+
+time="2026-10-26T18:37:13+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Tag-driven release/Build] ⭐ Run Set up job
+[Tag-driven release/Build] 🚀  Start image=cicd-act-runner:24
+[Tag-driven release/Build]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Tag-driven release/Build]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Tag-driven release/Build]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Tag-driven release/Build]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Tag-driven release/Build]   ✅  Success - Set up job
+[Tag-driven release/Build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Tag-driven release/Build] ⭐ Run Main actions/checkout@v7
+[Tag-driven release/Build]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Tag-driven release/Build]   ✅  Success - Main actions/checkout@v7 [89.156426ms]
+[Tag-driven release/Build] ⭐ Run Main actions/setup-node@v7
+[Tag-driven release/Build]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Tag-driven release/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Tag-driven release/Build]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Tag-driven release/Build]   ❓  ::group::Environment details
+[Tag-driven release/Build]   | node: v22.23.3
+[Tag-driven release/Build]   | npm: 10.9.9
+[Tag-driven release/Build]   | yarn: 1.22.22
+[Tag-driven release/Build]   ❓  ::endgroup::
+[Tag-driven release/Build]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Tag-driven release/Build]   | /root/.npm
+[Tag-driven release/Build]   ⚙  ***
+[Tag-driven release/Build]   | Cache Size: ~21 MB (22347037 B)
+[Tag-driven release/Build]   | [command]/usr/bin/tar -xf /tmp/dcc10d4e-607e-4535-95d1-08f740ffa128/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Tag-driven release/Build]   | Cache restored successfully
+[Tag-driven release/Build]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Tag-driven release/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Tag-driven release/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Tag-driven release/Build]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Tag-driven release/Build]   ✅  Success - Main actions/setup-node@v7 [1.31145565s]
+[Tag-driven release/Build]   ⚙  ::set-output:: node-version=v22.23.3
+[Tag-driven release/Build]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Tag-driven release/Build]   ⚙  ::set-output:: cache-hit=true
+[Tag-driven release/Build]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Tag-driven release/Build]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Tag-driven release/Build] ⭐ Run Main npm ci
+[Tag-driven release/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | added 127 packages, and audited 128 packages in 1s
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | 31 packages are looking for funding
+[Tag-driven release/Build]   |   run `npm fund` for details
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | found 0 vulnerabilities
+[Tag-driven release/Build]   ✅  Success - Main npm ci [1.487834295s]
+[Tag-driven release/Build] ⭐ Run Main npm run lint
+[Tag-driven release/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | > cicd-learn@1.0.0 lint
+[Tag-driven release/Build]   | > eslint .
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   ✅  Success - Main npm run lint [570.020118ms]
+[Tag-driven release/Build] ⭐ Run Main npm test
+[Tag-driven release/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | > cicd-learn@1.0.0 test
+[Tag-driven release/Build]   | > vitest run
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Tag-driven release/Build]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Tag-driven release/Build]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Tag-driven release/Build]   | [2m   Start at [22m 12:37:20
+[Tag-driven release/Build]   | [2m   Duration [22m 193ms[2m (transform 54%, import 25%, tests 14%, worker 7%)[22m
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   ✅  Success - Main npm test [725.648871ms]
+[Tag-driven release/Build]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Tag-driven release/Build] ⭐ Run Main npm run build
+[Tag-driven release/Build]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | > cicd-learn@1.0.0 build
+[Tag-driven release/Build]   | > node build.mjs
+[Tag-driven release/Build]   | 
+[Tag-driven release/Build]   | built dist/app.js (2887 bytes)
+[Tag-driven release/Build]   ✅  Success - Main npm run build [271.180196ms]
+[Tag-driven release/Build] ⭐ Run Main [simulated upload-artifact: dist]
+[Tag-driven release/Build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/6.sh] user= workdir=.
+[Tag-driven release/Build]   | -rw-r--r-- 1 root root 1465 Oct 26 12:37 .tmp/artifacts/dist.tar
+[Tag-driven release/Build]   | SIMULATED upload of cicd-learn/dist as dist
+[Tag-driven release/Build]   ✅  Success - Main [simulated upload-artifact: dist] [83.287907ms]
+[Tag-driven release/Build] ⭐ Run Post actions/setup-node@v7
+[Tag-driven release/Build]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Tag-driven release/Build]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Tag-driven release/Build]   | Cache Size: ~21 MB (22347301 B)
+[Tag-driven release/Build]   | Cache saved successfully
+[Tag-driven release/Build]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Tag-driven release/Build]   ✅  Success - Post actions/setup-node@v7 [948.7511ms]
+[Tag-driven release/Build] ⭐ Run Complete job
+[Tag-driven release/Build] Cleaning up container for job Build
+[Tag-driven release/Build]   ✅  Success - Complete job
+[Tag-driven release/Build] 🏁  Job succeeded
+[Tag-driven release/Create the GitHub Release] ⭐ Run Set up job
+[Tag-driven release/Create the GitHub Release] 🚀  Start image=cicd-act-runner:24
+[Tag-driven release/Create the GitHub Release]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Tag-driven release/Create the GitHub Release]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Tag-driven release/Create the GitHub Release]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Tag-driven release/Create the GitHub Release]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Tag-driven release/Create the GitHub Release]   ✅  Success - Set up job
+[Tag-driven release/Create the GitHub Release] ⭐ Run Main actions/checkout@v7
+[Tag-driven release/Create the GitHub Release]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Tag-driven release/Create the GitHub Release]   ✅  Success - Main actions/checkout@v7 [94.625978ms]
+[Tag-driven release/Create the GitHub Release] ⭐ Run Main [simulated download-artifact: dist]
+[Tag-driven release/Create the GitHub Release]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/1.sh] user= workdir=.
+[Tag-driven release/Create the GitHub Release]   ❗  ::error::artifact dist not found
+[Tag-driven release/Create the GitHub Release]   ❌  Failure - Main [simulated download-artifact: dist] [60.318417ms]
+[Tag-driven release/Create the GitHub Release] exitcode '1': failure
+[Tag-driven release/Create the GitHub Release] ⭐ Run Complete job
+[Tag-driven release/Create the GitHub Release]   ✅  Success - Complete job
+[Tag-driven release/Create the GitHub Release] 🏁  Job failed
+Error: Job 'Create the GitHub Release' failed
+
+### act exit status: 1

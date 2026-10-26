@@ -1,0 +1,50 @@
+# A reusable workflow. Triggered by `workflow_call`, not by events.
+# Called from 40-reusable-workflows.yml with `uses: ./.github/workflows/quality-reusable.yml`.
+name: Reusable quality checks
+
+"on":
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+      run-tests:
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      npm-token:
+        required: false
+    outputs:
+      bytes:
+        description: 'Size of the built app, in bytes'
+        value: ${{ jobs.build.outputs.bytes }}
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Lint, test, build
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - if: inputs.run-tests
+        run: npm test
+      - name: Build
+        id: build
+        run: |
+          npm run build
+          echo "bytes=$(wc -c < dist/app.js)" >> "$GITHUB_OUTPUT"
+    outputs:
+      bytes: ${{ steps.build.outputs.bytes }}

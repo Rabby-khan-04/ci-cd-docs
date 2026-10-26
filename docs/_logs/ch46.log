@@ -1,0 +1,118 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/46-rollbacks.yml
+
+time="2026-10-26T19:01:30+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Rollback/Roll back to main] ⭐ Run Set up job
+[Rollback/Roll back to main] 🚀  Start image=cicd-act-runner:24
+[Rollback/Roll back to main]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Rollback/Roll back to main]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Rollback/Roll back to main]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Rollback/Roll back to main]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Rollback/Roll back to main]   ✅  Success - Set up job
+[Rollback/Roll back to main]   ☁  git clone 'https://github.com/actions/checkout' # ref=v7
+[Rollback/Roll back to main] ⭐ Run Main actions/checkout@v7
+[Rollback/Roll back to main]   🐳  docker cp src=/home/sunny/.cache/act/actions-checkout@v7/ dst=/var/run/act/actions/actions-checkout@v7/
+[Rollback/Roll back to main]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-checkout@v7/dist/index.js] user= workdir=
+[Rollback/Roll back to main]   ❓ add-matcher /run/act/actions/actions-checkout@v7/dist/problem-matcher.json
+[Rollback/Roll back to main]   | Syncing repository: nektos/act
+[Rollback/Roll back to main]   ❓  ::group::Getting Git version info
+[Rollback/Roll back to main]   | Working directory is '/home/sunny/app/nimo/cicd-docs'
+[Rollback/Roll back to main]   | [command]/usr/bin/git version
+[Rollback/Roll back to main]   | git version 2.39.5
+[Rollback/Roll back to main]   ❓  ::endgroup::
+[Rollback/Roll back to main]   ⚙  ***
+[Rollback/Roll back to main]   | Temporarily overriding HOME='/tmp/f84fb0a3-d5db-4e79-88c6-397efb6294f1' before making global git config changes
+[Rollback/Roll back to main]   | Adding repository directory to the temporary git global config as a safe directory
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --global --add safe.directory /home/sunny/app/nimo/cicd-docs
+[Rollback/Roll back to main]   | Deleting the contents of '/home/sunny/app/nimo/cicd-docs'
+[Rollback/Roll back to main]   ❓  ::group::Determining repository object format
+[Rollback/Roll back to main]   ❓  ::endgroup::
+[Rollback/Roll back to main]   ❓  ::group::Initializing the repository
+[Rollback/Roll back to main]   | [command]/usr/bin/git init /home/sunny/app/nimo/cicd-docs
+[Rollback/Roll back to main]   | hint: Using 'master' as the name for the initial branch. This default branch name
+[Rollback/Roll back to main]   | hint: is subject to change. To configure the initial branch name to use in all
+[Rollback/Roll back to main]   | hint: of your new repositories, which will suppress this warning, call:
+[Rollback/Roll back to main]   | hint: 
+[Rollback/Roll back to main]   | hint: 	git config --global init.defaultBranch <name>
+[Rollback/Roll back to main]   | hint: 
+[Rollback/Roll back to main]   | hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+[Rollback/Roll back to main]   | hint: 'development'. The just-created branch can be renamed via this command:
+[Rollback/Roll back to main]   | hint: 
+[Rollback/Roll back to main]   | hint: 	git branch -m <name>
+[Rollback/Roll back to main]   | Initialized empty Git repository in /home/sunny/app/nimo/cicd-docs/.git/
+[Rollback/Roll back to main]   | [command]/usr/bin/git remote add origin https://github.com/nektos/act
+[Rollback/Roll back to main]   ❓  ::endgroup::
+[Rollback/Roll back to main]   ❓  ::group::Disabling automatic garbage collection
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local gc.auto 0
+[Rollback/Roll back to main]   ❓  ::endgroup::
+[Rollback/Roll back to main]   ❓  ::group::Setting up auth
+[Rollback/Roll back to main]   | Removing SSH command configuration
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+[Rollback/Roll back to main]   | Removing HTTP extra header
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+[Rollback/Roll back to main]   | Removing includeIf entries pointing to credentials config files
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --file /tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local includeIf.gitdir:/home/sunny/app/nimo/cicd-docs/.git.path /tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local includeIf.gitdir:/home/sunny/app/nimo/cicd-docs/.git/worktrees/*.path /tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   ❓  ::endgroup::
+[Rollback/Roll back to main]   ❓  ::group::Fetching the repository
+[Rollback/Roll back to main]   | [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+[Rollback/Roll back to main]   | The process '/usr/bin/git' failed with exit code 1
+[Rollback/Roll back to main]   | Waiting 19 seconds before trying again
+[Rollback/Roll back to main]   | [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+[Rollback/Roll back to main]   | The process '/usr/bin/git' failed with exit code 1
+[Rollback/Roll back to main]   | Waiting 12 seconds before trying again
+[Rollback/Roll back to main]   | [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+[Rollback/Roll back to main]   ❓  ::remove-matcher owner=checkout-git::
+[Rollback/Roll back to main]   ❗  ::error::The process '/usr/bin/git' failed with exit code 1
+[Rollback/Roll back to main]   ❌  Failure - Main actions/checkout@v7 [35.192733347s]
+[Rollback/Roll back to main] exitcode '1': failure
+[Rollback/Roll back to main] ⭐ Run Post actions/checkout@v7
+[Rollback/Roll back to main]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-checkout@v7/dist/index.js] user= workdir=
+[Rollback/Roll back to main]   | [command]/usr/bin/git version
+[Rollback/Roll back to main]   | git version 2.39.5
+[Rollback/Roll back to main]   ⚙  ***
+[Rollback/Roll back to main]   | Temporarily overriding HOME='/tmp/fe0a6fa1-1651-4316-9f3e-c4499534e349' before making global git config changes
+[Rollback/Roll back to main]   | Adding repository directory to the temporary git global config as a safe directory
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --global --add safe.directory /home/sunny/app/nimo/cicd-docs
+[Rollback/Roll back to main]   | Removing SSH command configuration
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+[Rollback/Roll back to main]   | Removing HTTP extra header
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+[Rollback/Roll back to main]   | Removing includeIf entries pointing to credentials config files
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+[Rollback/Roll back to main]   | includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git.path
+[Rollback/Roll back to main]   | includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git/worktrees/*.path
+[Rollback/Roll back to main]   | includeif.gitdir:/github/workspace/.git.path
+[Rollback/Roll back to main]   | includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git.path
+[Rollback/Roll back to main]   | /tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --unset includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git.path \/tmp\/git\-credentials\-b7931293\-a9a4\-4469\-9b40\-c697114838a4\.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git/worktrees/*.path
+[Rollback/Roll back to main]   | /tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --unset includeif.gitdir:/home/sunny/app/nimo/cicd-docs/.git/worktrees/*.path \/tmp\/git\-credentials\-b7931293\-a9a4\-4469\-9b40\-c697114838a4\.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+[Rollback/Roll back to main]   | /github/runner_temp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-b7931293\-a9a4\-4469\-9b40\-c697114838a4\.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+[Rollback/Roll back to main]   | /github/runner_temp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-b7931293\-a9a4\-4469\-9b40\-c697114838a4\.config
+[Rollback/Roll back to main]   | [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+[Rollback/Roll back to main]   | Removing credentials config '/tmp/git-credentials-b7931293-a9a4-4469-9b40-c697114838a4.config'
+[Rollback/Roll back to main]   ✅  Success - Post actions/checkout@v7 [265.690052ms]
+[Rollback/Roll back to main] ⭐ Run Complete job
+[Rollback/Roll back to main]   ✅  Success - Complete job
+[Rollback/Roll back to main] 🏁  Job failed
+Error: Job 'Roll back to ${{ inputs.target || github.ref_name }}' failed
+
+### act exit status: 1

@@ -1,0 +1,67 @@
+name: Rollback
+
+"on":
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Roll back to this tag or SHA'
+        required: true
+        type: string
+  push:
+    tags:
+      - 'rollback-*'
+
+permissions:
+  contents: read
+
+jobs:
+  # ── A rollback is a deploy of an older artifact ──────────────────────────
+  # There is no "undo" button. A rollback is just a deploy of a previous
+  # version, chosen by tag or SHA. The workflow below finds the previous release,
+  # downloads its artifact, and deploys it.
+  rollback:
+    name: Roll back to ${{ inputs.target || github.ref_name }}
+    runs-on: ubuntu-24.04
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.target || github.ref_name }}
+
+      # Re-run the safety checks on the OLDER code before deploying it. A
+      # rollback that has not been tested is just a different outage.
+      - name: Verify the older code
+        run: |
+          echo "checking out ${{ inputs.target || github.ref_name }}"
+          echo "lint, test and build would run here"
+
+      - name: Download the previous release artifact
+        run: |
+          echo "In a real pipeline, this step fetches the artifact produced by"
+          echo "the release that you are rolling back to, by tag or by run id."
+          echo "GitHub Actions keeps artifacts for 90 days by default, so a"
+          echo "recent rollback is always possible. Older than that, you need"
+          echo "a registry or a backup you control."
+
+      - name: Deploy the previous version
+        run: |
+          echo "Deploying the rolled-back version."
+          echo "The production deploy is serialized (concurrency: production,"
+          echo "cancel-in-progress: false), so this waits for any in-flight deploy."
+
+  # ── The database-shaped caveat ─────────────────────────────────────────────
+  # Rollbacks are easy for code and hard for data. A code rollback to a version
+  # whose database schema is newer will crash, because the old code does not
+  # understand the new schema. Chapter 53 covers expand/contract migrations,
+  # which are what make rollbacks safe at all.
+  database-caveat:
+    name: Why rollbacks are not free
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Explain
+        run: |
+          echo "A rollback is a deploy of an older version."
+          echo "It is NOT a time machine."
+          echo "If the database schema moved forward, the old code will crash."
+          echo "Migrations must be reversible, or the rollback is a fiction."

@@ -1,0 +1,57 @@
+name: Deploy to GitHub Pages
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Pages needs specific permissions. These are the minimum.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+      # configure-pages sets up the Pages environment and outputs the base URL.
+      # It must run before upload-pages-artifact.
+      - uses: actions/configure-pages@v6
+
+      # Upload the build output as the Pages artifact. The name is fixed by the
+      # action: "github-pages". You cannot rename it.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: cicd-learn/dist
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-24.04
+    needs: [build]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+      - name: Report the URL
+        run: |
+          echo "deployed to: ${{ steps.deployment.outputs.page_url }}"

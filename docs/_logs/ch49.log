@@ -1,0 +1,135 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/49-cost.yml
+
+time="2026-10-26T19:05:35+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Cost and limits/Report the cost of this run] ⭐ Run Set up job
+[Cost and limits/Report the cost of this run] 🚀  Start image=cicd-act-runner:24
+[Cost and limits/Report the cost of this run]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Cost and limits/Report the cost of this run]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Cost and limits/Report the cost of this run]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Cost and limits/Report the cost of this run]   ✅  Success - Set up job
+[Cost and limits/Report the cost of this run]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Cost and limits/Report the cost of this run] ⭐ Run Main actions/checkout@v7
+[Cost and limits/Report the cost of this run]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Cost and limits/Report the cost of this run]   ✅  Success - Main actions/checkout@v7 [102.431372ms]
+[Cost and limits/Report the cost of this run] ⭐ Run Main actions/setup-node@v7
+[Cost and limits/Report the cost of this run]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Cost and limits/Report the cost of this run]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Cost and limits/Report the cost of this run]   ❓  ::group::Environment details
+[Cost and limits/Report the cost of this run]   | node: v22.23.3
+[Cost and limits/Report the cost of this run]   | npm: 10.9.9
+[Cost and limits/Report the cost of this run]   | yarn: 1.22.22
+[Cost and limits/Report the cost of this run]   ❓  ::endgroup::
+[Cost and limits/Report the cost of this run]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Cost and limits/Report the cost of this run]   | /root/.npm
+[Cost and limits/Report the cost of this run]   ⚙  ***
+[Cost and limits/Report the cost of this run]   | Cache Size: ~21 MB (22353550 B)
+[Cost and limits/Report the cost of this run]   | [command]/usr/bin/tar -xf /tmp/fb02f000-833b-4efc-b39c-8fa8d6b43dbb/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Cost and limits/Report the cost of this run]   | Cache restored successfully
+[Cost and limits/Report the cost of this run]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Cost and limits/Report the cost of this run]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Cost and limits/Report the cost of this run]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Cost and limits/Report the cost of this run]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Cost and limits/Report the cost of this run]   ✅  Success - Main actions/setup-node@v7 [1.642760442s]
+[Cost and limits/Report the cost of this run]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Cost and limits/Report the cost of this run]   ⚙  ::set-output:: cache-hit=true
+[Cost and limits/Report the cost of this run]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Cost and limits/Report the cost of this run]   ⚙  ::set-output:: node-version=v22.23.3
+[Cost and limits/Report the cost of this run]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Cost and limits/Report the cost of this run] ⭐ Run Main npm ci
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | added 127 packages, and audited 128 packages in 1s
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | 31 packages are looking for funding
+[Cost and limits/Report the cost of this run]   |   run `npm fund` for details
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | found 0 vulnerabilities
+[Cost and limits/Report the cost of this run]   ✅  Success - Main npm ci [1.49491819s]
+[Cost and limits/Report the cost of this run] ⭐ Run Main npm run lint
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | > cicd-learn@1.0.0 lint
+[Cost and limits/Report the cost of this run]   | > eslint .
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   ✅  Success - Main npm run lint [593.433915ms]
+[Cost and limits/Report the cost of this run] ⭐ Run Main npm test
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | > cicd-learn@1.0.0 test
+[Cost and limits/Report the cost of this run]   | > vitest run
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Cost and limits/Report the cost of this run]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Cost and limits/Report the cost of this run]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Cost and limits/Report the cost of this run]   | [2m   Start at [22m 13:05:42
+[Cost and limits/Report the cost of this run]   | [2m   Duration [22m 183ms[2m (transform 58%, import 23%, tests 12%, worker 7%, environment 1%)[22m
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   ✅  Success - Main npm test [740.380895ms]
+[Cost and limits/Report the cost of this run]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Cost and limits/Report the cost of this run] ⭐ Run Main npm run build
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | > cicd-learn@1.0.0 build
+[Cost and limits/Report the cost of this run]   | > node build.mjs
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | built dist/app.js (2887 bytes)
+[Cost and limits/Report the cost of this run]   ✅  Success - Main npm run build [255.953654ms]
+[Cost and limits/Report the cost of this run] ⭐ Run Main How many minutes this run used
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/6] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   | job started at:  
+[Cost and limits/Report the cost of this run]   | run id        :  1
+[Cost and limits/Report the cost of this run]   | run attempt   :  1
+[Cost and limits/Report the cost of this run]   | minutes used  :  this job ran on a Linux runner, billed at 1x
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | Monthly allowance on the free tier:
+[Cost and limits/Report the cost of this run]   |   public repository  : unlimited
+[Cost and limits/Report the cost of this run]   |   private, GitHub Free : 2,000 minutes
+[Cost and limits/Report the cost of this run]   |   private, GitHub Pro  : 3,000 minutes
+[Cost and limits/Report the cost of this run]   |   larger runners       : not included, billed per hour
+[Cost and limits/Report the cost of this run]   | 
+[Cost and limits/Report the cost of this run]   | Multipliers: Linux 1x, Windows 2x, macOS 10x.
+[Cost and limits/Report the cost of this run]   | That is why a macOS runner costs the same as ten Linux runners.
+[Cost and limits/Report the cost of this run]   ✅  Success - Main How many minutes this run used [76.29656ms]
+[Cost and limits/Report the cost of this run] ⭐ Run Main Where the minutes go
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/7] user= workdir=cicd-learn
+[Cost and limits/Report the cost of this run]   ✅  Success - Main Where the minutes go [78.519151ms]
+[Cost and limits/Report the cost of this run]   ⚙  Summary - ### Cost of this run
+
+| Step | What it costs |
+| ---- | ------------- |
+| npm ci, cached | ~1 minute |
+| npm run lint | ~1 minute |
+| npm test | ~1 minute |
+| npm run build | ~1 minute |
+
+Total: about 4 minutes per run on a cold cache.
+With a warm cache, npm ci drops to a few seconds but still
+rounds up to a full minute.
+[Cost and limits/Report the cost of this run] ⭐ Run Post actions/setup-node@v7
+[Cost and limits/Report the cost of this run]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Cost and limits/Report the cost of this run]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Cost and limits/Report the cost of this run]   | Cache Size: ~21 MB (22353379 B)
+[Cost and limits/Report the cost of this run]   | Cache saved successfully
+[Cost and limits/Report the cost of this run]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Cost and limits/Report the cost of this run]   ✅  Success - Post actions/setup-node@v7 [995.286023ms]
+[Cost and limits/Report the cost of this run] ⭐ Run Complete job
+[Cost and limits/Report the cost of this run] Cleaning up container for job Report the cost of this run
+[Cost and limits/Report the cost of this run]   ✅  Success - Complete job
+[Cost and limits/Report the cost of this run] 🏁  Job succeeded
+
+### act exit status: 0

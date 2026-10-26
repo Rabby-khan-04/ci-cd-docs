@@ -1,0 +1,76 @@
+name: Containerized service
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and verify the image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - name: Build
+        id: build
+        uses: docker/build-push-action@v7
+        with:
+          context: cicd-learn
+          file: cicd-learn/Dockerfile
+          tags: cicd-learn:${{ github.sha }}
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Smoke test the running container
+        run: |
+          docker run --rm cicd-learn:${{ github.sha }} Ada | grep -q 'HELLO, ADA!'
+          echo "the container serves the expected output"
+      - name: Report the image
+        run: |
+          echo "image: cicd-learn:${{ github.sha }}"
+          echo "size:  $(docker images cicd-learn:${{ github.sha }} --format '{{.Size}}')"
+          {
+            echo "### Containerized service"
+            echo ""
+            echo "- image: \`cicd-learn:${{ github.sha }}\`"
+            echo "- size: $(docker images cicd-learn:${{ github.sha }} --format '{{.Size}}')"
+            echo ""
+            echo "The image is built and verified, but NOT pushed. Push happens"
+            echo "only on a tag, in the tag-driven release pipeline."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # ── Push on tag only ──────────────────────────────────────────────────────
+  push:
+    name: Push the image to the registry
+    runs-on: ubuntu-24.04
+    needs: [build]
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push
+        uses: docker/build-push-action@v7
+        with:
+          context: cicd-learn
+          file: cicd-learn/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/cicd-learn:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/cicd-learn:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

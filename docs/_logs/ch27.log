@@ -1,0 +1,126 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .tmp/sim-ch27.yml
+
+time="2026-10-26T18:42:17+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+time="2026-10-26T18:42:17+06:00" level=info msg="deleted cache: &{ID:31 Key:node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c Version:29d606ef19ab02a6888ca442005f02a50e5a7afed9d5df9fab5d1b61942f210e Size:22347037 Complete:true UsedAt:1793018237 CreatedAt:1793018223}" module=artifactcache
+[Deployment fundamentals/CI] ⭐ Run Set up job
+[Deployment fundamentals/CI] 🚀  Start image=cicd-act-runner:24
+[Deployment fundamentals/CI]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Deployment fundamentals/CI]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deployment fundamentals/CI]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Deployment fundamentals/CI]   ✅  Success - Set up job
+[Deployment fundamentals/CI]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Deployment fundamentals/CI] ⭐ Run Main actions/checkout@v7
+[Deployment fundamentals/CI]   🐳  docker cp src=/home/sunny/app/nimo/cicd-docs/. dst=/home/sunny/app/nimo/cicd-docs
+[Deployment fundamentals/CI]   ✅  Success - Main actions/checkout@v7 [93.060884ms]
+[Deployment fundamentals/CI] ⭐ Run Main actions/setup-node@v7
+[Deployment fundamentals/CI]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Deployment fundamentals/CI]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Deployment fundamentals/CI]   ❓  ::group::Environment details
+[Deployment fundamentals/CI]   | node: v22.23.3
+[Deployment fundamentals/CI]   | npm: 10.9.9
+[Deployment fundamentals/CI]   | yarn: 1.22.22
+[Deployment fundamentals/CI]   ❓  ::endgroup::
+[Deployment fundamentals/CI]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Deployment fundamentals/CI]   | /root/.npm
+[Deployment fundamentals/CI]   ⚙  ***
+[Deployment fundamentals/CI]   | Cache Size: ~21 MB (22346125 B)
+[Deployment fundamentals/CI]   | [command]/usr/bin/tar -xf /tmp/648bb795-2002-4b2c-a1d4-b5dcbf37331f/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Deployment fundamentals/CI]   | Cache restored successfully
+[Deployment fundamentals/CI]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deployment fundamentals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Deployment fundamentals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Deployment fundamentals/CI]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Deployment fundamentals/CI]   ✅  Success - Main actions/setup-node@v7 [1.353264194s]
+[Deployment fundamentals/CI]   ⚙  ::set-output:: node-version=v22.23.3
+[Deployment fundamentals/CI]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deployment fundamentals/CI]   ⚙  ::set-output:: cache-hit=true
+[Deployment fundamentals/CI]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deployment fundamentals/CI]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Deployment fundamentals/CI] ⭐ Run Main npm ci
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/2] user= workdir=cicd-learn
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | added 127 packages, and audited 128 packages in 1s
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | 31 packages are looking for funding
+[Deployment fundamentals/CI]   |   run `npm fund` for details
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | found 0 vulnerabilities
+[Deployment fundamentals/CI]   ✅  Success - Main npm ci [1.485983327s]
+[Deployment fundamentals/CI] ⭐ Run Main npm run lint
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/3] user= workdir=cicd-learn
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | > cicd-learn@1.0.0 lint
+[Deployment fundamentals/CI]   | > eslint .
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   ✅  Success - Main npm run lint [632.066016ms]
+[Deployment fundamentals/CI] ⭐ Run Main npm test
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/4] user= workdir=cicd-learn
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | > cicd-learn@1.0.0 test
+[Deployment fundamentals/CI]   | > vitest run
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Deployment fundamentals/CI]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Deployment fundamentals/CI]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Deployment fundamentals/CI]   | [2m   Start at [22m 12:42:23
+[Deployment fundamentals/CI]   | [2m   Duration [22m 177ms[2m (transform 45%, import 31%, tests 15%, worker 9%, environment 1%)[22m
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   ✅  Success - Main npm test [729.522611ms]
+[Deployment fundamentals/CI]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Deployment fundamentals/CI] ⭐ Run Main npm run build
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/5] user= workdir=cicd-learn
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | > cicd-learn@1.0.0 build
+[Deployment fundamentals/CI]   | > node build.mjs
+[Deployment fundamentals/CI]   | 
+[Deployment fundamentals/CI]   | built dist/app.js (2887 bytes)
+[Deployment fundamentals/CI]   ✅  Success - Main npm run build [258.640899ms]
+[Deployment fundamentals/CI] ⭐ Run Main [simulated upload-artifact: dist]
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/6.sh] user= workdir=.
+[Deployment fundamentals/CI]   | -rw-r--r-- 1 root root 1466 Oct 26 12:42 .tmp/artifacts/dist.tar
+[Deployment fundamentals/CI]   | SIMULATED upload of cicd-learn/dist as dist
+[Deployment fundamentals/CI]   ✅  Success - Main [simulated upload-artifact: dist] [86.204479ms]
+[Deployment fundamentals/CI] ⭐ Run Post actions/setup-node@v7
+[Deployment fundamentals/CI]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Deployment fundamentals/CI]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Deployment fundamentals/CI]   | Cache Size: ~21 MB (22346026 B)
+[Deployment fundamentals/CI]   | Cache saved successfully
+[Deployment fundamentals/CI]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Deployment fundamentals/CI]   ✅  Success - Post actions/setup-node@v7 [947.735985ms]
+[Deployment fundamentals/CI] ⭐ Run Complete job
+[Deployment fundamentals/CI] Cleaning up container for job CI
+[Deployment fundamentals/CI]   ✅  Success - Complete job
+[Deployment fundamentals/CI] 🏁  Job succeeded
+[Deployment fundamentals/Deploy] ⭐ Run Set up job
+[Deployment fundamentals/Deploy] 🚀  Start image=cicd-act-runner:24
+[Deployment fundamentals/Deploy]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Deployment fundamentals/Deploy]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deployment fundamentals/Deploy]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Deployment fundamentals/Deploy]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Deployment fundamentals/Deploy]   ✅  Success - Set up job
+[Deployment fundamentals/Deploy] ⭐ Run Main [simulated download-artifact: dist]
+[Deployment fundamentals/Deploy]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0.sh] user= workdir=.
+[Deployment fundamentals/Deploy]   ❗  ::error::artifact dist not found
+[Deployment fundamentals/Deploy]   ❌  Failure - Main [simulated download-artifact: dist] [64.311803ms]
+[Deployment fundamentals/Deploy] exitcode '1': failure
+[Deployment fundamentals/Deploy] ⭐ Run Complete job
+[Deployment fundamentals/Deploy]   ✅  Success - Complete job
+[Deployment fundamentals/Deploy] 🏁  Job failed
+Error: Job 'Deploy' failed
+
+### act exit status: 1

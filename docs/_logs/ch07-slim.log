@@ -1,0 +1,2 @@
+time="2026-10-08T15:52:09+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Runners/ubuntu-slim (cheap, limited)] 🚧  Skipping unsupported platform -- Try running with `-P ubuntu-slim=...`

@@ -1,0 +1,64 @@
+name: Cost and limits
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    name: Report the cost of this run
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: cicd-learn
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: cicd-learn/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+      - name: How many minutes this run used
+        run: |
+          # GitHub bills per minute of runner time, rounded up to the nearest
+          # minute per job. A 14-second job still costs a full minute.
+          # This step prints the actual duration from the runner's own clock.
+          echo "job started at:  ${{ github.event.repository.updated_at }}"
+          echo "run id        :  ${{ github.run_id }}"
+          echo "run attempt   :  ${{ github.run_attempt }}"
+          echo "minutes used  :  this job ran on a Linux runner, billed at 1x"
+          echo
+          echo "Monthly allowance on the free tier:"
+          echo "  public repository  : unlimited"
+          echo "  private, GitHub Free : 2,000 minutes"
+          echo "  private, GitHub Pro  : 3,000 minutes"
+          echo "  larger runners       : not included, billed per hour"
+          echo
+          echo "Multipliers: Linux 1x, Windows 2x, macOS 10x."
+          echo "That is why a macOS runner costs the same as ten Linux runners."
+
+      - name: Where the minutes go
+        run: |
+          {
+            echo "### Cost of this run"
+            echo ""
+            echo "| Step | What it costs |"
+            echo "| ---- | ------------- |"
+            echo "| npm ci, cached | ~1 minute |"
+            echo "| npm run lint | ~1 minute |"
+            echo "| npm test | ~1 minute |"
+            echo "| npm run build | ~1 minute |"
+            echo ""
+            echo "Total: about 4 minutes per run on a cold cache."
+            echo "With a warm cache, npm ci drops to a few seconds but still"
+            echo "rounds up to a full minute."
+          } >> "$GITHUB_STEP_SUMMARY"

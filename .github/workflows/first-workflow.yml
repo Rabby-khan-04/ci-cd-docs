@@ -1,6 +1,6 @@
 name: First workflow
 
-on:
+"on":
   # Run this workflow when a file is pushed to the main branch.
   push:
     branches: [main]

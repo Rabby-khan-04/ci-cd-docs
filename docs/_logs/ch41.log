@@ -1,0 +1,113 @@
+### act act version 0.2.89
+### image  cicd-act-runner:24
+### event  push
+### file   .github/workflows/41-composite-actions.yml
+
+time="2026-10-26T18:34:44+06:00" level=info msg="Using docker host 'unix:///var/run/docker.sock', and daemon socket 'unix:///var/run/docker.sock'"
+[Composite actions demo/Use a composite action] ⭐ Run Set up job
+[Composite actions demo/Use a composite action] 🚀  Start image=cicd-act-runner:24
+[Composite actions demo/Use a composite action]   🐳  docker pull image=cicd-act-runner:24 platform= username= forcePull=false
+[Composite actions demo/Use a composite action]   🐳  docker create image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Composite actions demo/Use a composite action]   🐳  docker run image=cicd-act-runner:24 platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[] network="host"
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[node --no-warnings -e console.log(process.execPath)] user= workdir=
+[Composite actions demo/Use a composite action]   ✅  Success - Set up job
+[Composite actions demo/Use a composite action] ⭐ Run Main Set up the whole app with one composite action
+[Composite actions demo/Use a composite action] ⭐ Run Main actions/checkout@v7
+[Composite actions demo/Use a composite action]   ✅  Success - Main actions/checkout@v7 [549.81µs]
+[Composite actions demo/Use a composite action]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v7
+[Composite actions demo/Use a composite action] ⭐ Run Main actions/setup-node@v7
+[Composite actions demo/Use a composite action]   🐳  docker cp src=/home/sunny/.cache/act/actions-setup-node@v7/ dst=/var/run/act/actions/actions-setup-node@v7/
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/setup/index.js] user= workdir=
+[Composite actions demo/Use a composite action]   | Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+[Composite actions demo/Use a composite action]   ❓  ::group::Environment details
+[Composite actions demo/Use a composite action]   | node: v22.23.3
+[Composite actions demo/Use a composite action]   | npm: 10.9.9
+[Composite actions demo/Use a composite action]   | yarn: 1.22.22
+[Composite actions demo/Use a composite action]   ❓  ::endgroup::
+[Composite actions demo/Use a composite action]   | [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+[Composite actions demo/Use a composite action]   | /root/.npm
+[Composite actions demo/Use a composite action]   ⚙  ***
+[Composite actions demo/Use a composite action]   | Cache Size: ~21 MB (22342929 B)
+[Composite actions demo/Use a composite action]   | [command]/usr/bin/tar -xf /tmp/070e4838-19c5-4b46-a344-e175a892106a/cache.tgz -P -C /home/sunny/app/nimo/cicd-docs -z
+[Composite actions demo/Use a composite action]   | Cache restored successfully
+[Composite actions demo/Use a composite action]   | Cache restored from key: node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Composite actions demo/Use a composite action]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/tsc.json
+[Composite actions demo/Use a composite action]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-stylish.json
+[Composite actions demo/Use a composite action]   ❓ add-matcher /run/act/actions/actions-setup-node@v7/.github/eslint-compact.json
+[Composite actions demo/Use a composite action]   ✅  Success - Main actions/setup-node@v7 [1.965783268s]
+[Composite actions demo/Use a composite action]   ⚙  ::set-output:: node-version=v22.23.3
+[Composite actions demo/Use a composite action]   ⚙  ::set-output:: cache-primary-key=node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Composite actions demo/Use a composite action]   ⚙  ::set-output:: cache-hit=true
+[Composite actions demo/Use a composite action]   ⚙  ::set-output:: cache-matched-key=node-cache-linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Composite actions demo/Use a composite action]   ⚙  ::add-path:: /opt/hostedtoolcache/node/22.23.3/x64/bin
+[Composite actions demo/Use a composite action] ⭐ Run Main Install
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0-composite-2.sh] user= workdir=cicd-learn
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | added 127 packages, and audited 128 packages in 2s
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | 31 packages are looking for funding
+[Composite actions demo/Use a composite action]   |   run `npm fund` for details
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | found 0 vulnerabilities
+[Composite actions demo/Use a composite action]   ✅  Success - Main Install [1.874092237s]
+[Composite actions demo/Use a composite action] ⭐ Run Main Run the checks
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0-composite-3.sh] user= workdir=cicd-learn
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | > cicd-learn@1.0.0 lint
+[Composite actions demo/Use a composite action]   | > eslint .
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | > cicd-learn@1.0.0 test
+[Composite actions demo/Use a composite action]   | > vitest run
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | [1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/sunny/app/nimo/cicd-docs/cicd-learn[39m
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   |  [32m✓[39m test/sum.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[Composite actions demo/Use a composite action]   |  [32m✓[39m test/greet.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[Composite actions demo/Use a composite action]   | [2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[Composite actions demo/Use a composite action]   | [2m   Start at [22m 12:34:51
+[Composite actions demo/Use a composite action]   | [2m   Duration [22m 372ms[2m (transform 48%, import 44%, tests 4%, worker 4%)[22m
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | > cicd-learn@1.0.0 build
+[Composite actions demo/Use a composite action]   | > node build.mjs
+[Composite actions demo/Use a composite action]   | 
+[Composite actions demo/Use a composite action]   | built dist/app.js (2887 bytes)
+[Composite actions demo/Use a composite action]   ✅  Success - Main Run the checks [1.995579907s]
+[Composite actions demo/Use a composite action]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Composite actions demo/Use a composite action]   ✅  Success - Main Set up the whole app with one composite action [7.375670811s]
+[Composite actions demo/Use a composite action]   ⚙  Summary - ## Vitest Test Report
+
+### Summary
+
+- **Test Files**: ✅ **2 passes** · 2 total
+- **Test Results**: ✅ **13 passes** · 13 total
+[Composite actions demo/Use a composite action] ⭐ Run Main The workspace is shared, so this works
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[bash -e /var/run/act/workflow/1] user= workdir=
+[Composite actions demo/Use a composite action]   | composite actions run on the caller's runner, so the built
+[Composite actions demo/Use a composite action]   | output is simply here:
+[Composite actions demo/Use a composite action]   | -rw-r--r-- 1 root root 525 Oct 26 12:34 cicd-learn/dist/app.js
+[Composite actions demo/Use a composite action]   ✅  Success - Main The workspace is shared, so this works [88.020977ms]
+[Composite actions demo/Use a composite action] ⭐ Run Post Set up the whole app with one composite action
+[Composite actions demo/Use a composite action] ⭐ Run Post actions/setup-node@v7
+[Composite actions demo/Use a composite action]   🐳  docker exec cmd=[/usr/local/bin/node /var/run/act/actions/actions-setup-node@v7/dist/cache-save/index.js] user= workdir=
+[Composite actions demo/Use a composite action]   | [command]/usr/bin/tar --posix -cf cache.tgz --exclude cache.tgz -P -C /home/sunny/app/nimo/cicd-docs --files-from manifest.txt -z
+[Composite actions demo/Use a composite action]   | Cache Size: ~21 MB (22348940 B)
+[Composite actions demo/Use a composite action]   | Cache saved successfully
+[Composite actions demo/Use a composite action]   | Cache saved with the key: node-cache-Linux-x64-npm-6aabe04fd4b2161267891150af82ba292cb51d2ee06dbd26ffcafaa2da9cc66c
+[Composite actions demo/Use a composite action]   ✅  Success - Post actions/setup-node@v7 [1.193437752s]
+[Composite actions demo/Use a composite action]   ✅  Success - Post Set up the whole app with one composite action [1.22858686s]
+[Composite actions demo/Use a composite action] ⭐ Run Complete job
+[Composite actions demo/Use a composite action] Cleaning up container for job Use a composite action
+[Composite actions demo/Use a composite action]   ✅  Success - Complete job
+[Composite actions demo/Use a composite action] 🏁  Job succeeded
+
+### act exit status: 0
